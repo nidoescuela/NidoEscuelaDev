@@ -1490,55 +1490,28 @@ footer {
     <div class="section-eyebrow reveal" style="color:rgba(255,255,255,0.6);">Inscripciones abiertas · Ciclo 2025–2026</div>
     <h2 class="section-title reveal" style="color:var(--white);">¿Listo para darle a tu hijo<br>la educación que merece?</h2>
     <p class="section-desc reveal" style="color:rgba(255,255,255,0.7);margin:0 auto 48px;">Completá el formulario. Un asesor de NIDO Escuela se contacta con vos en menos de 24 horas para contarte todo y responder tus dudas — sin compromiso.</p>
-
     <div class="cta-form reveal">
       <div class="form-title">Quiero inscribir a mi hijo</div>
       <div class="form-sub">Diagnóstico inicial gratuito · Sin compromiso · Respuesta en 24 hs</div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Tu nombre</label>
-          <input type="text" class="form-input" placeholder="Ej: María González">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tu WhatsApp</label>
-          <input type="tel" class="form-input" placeholder="+54 9 11 0000 0000">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Tu email</label>
-        <input type="email" class="form-input" placeholder="tu@email.com">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Ciudad / Provincia</label>
-          <input type="text" class="form-input" placeholder="Ej: Córdoba">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Edad del niño / los niños</label>
-          <input type="text" class="form-input" placeholder="Ej: 7 y 10 años">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">¿Por qué considerás el homeschooling?</label>
-        <select class="form-select">
-          <option value="">Seleccioná una opción</option>
-          <option>Mi hijo tiene altas capacidades / se aburre en la escuela</option>
-          <option>Mi hijo necesita más tiempo o apoyo del que el aula da</option>
-          <option>Somos una familia que viaja o nos movemos frecuentemente</option>
-          <option>Vivimos en una zona alejada con pocas opciones educativas</option>
-          <option>Quiero una certificación internacional para mi hijo</option>
-          <option>Queremos más tiempo en familia y más autonomía educativa</option>
-          <option>Otro motivo</option>
-        </select>
-      </div>
-      <button class="form-submit">Solicitar mi diagnóstico gratuito →</button>
-      <div class="form-disclaimer">
-        Al enviar este formulario aceptás que un asesor de NIDO Escuela se contacte con vos por WhatsApp o email. Sin spam. Sin compromiso. Podés darte de baja cuando quieras.
-      </div>
+      <iframe
+        data-tally-src="https://tally.so/embed/jaz0qY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="500"
+        frameborder="0"
+        title="Formulario diagnóstico NIDO Escuela"
+        style="border:none; background:transparent; min-height:500px;"
+      ></iframe>
     </div>
   </div>
 </section>
+
+<script>
+  var d=document,w="https://tally.so/widgets/embed.js",
+  v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
+  if("undefined"!=typeof Tally)v();
+  else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
+</script>
 
 <!-- ══════ FOOTER ══════ -->
 <footer>
