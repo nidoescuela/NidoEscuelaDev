@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIDO Escuela — Educación en Casa con Certificación Internacional</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:   #1A1A2E;
+  --violet: #534AB7;
+  --mid:    #7F77DD;
+  --soft:   #AFA9EC;
+  --light:  #CECBF6;
+  --xlight: #EEEDFE;
+  --cream:  #F7F5F0;
+  --border: #E0DDD6;
+  --gray:   #888780;
+  --gray2:  #5F5E5A;
+  --white:  #FFFFFF;
+  --green:  #1D9E75;
+  --green-light: #E1F5EE;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--deep); overflow-x: hidden; }
+
+/* ─── NAVBAR ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(26,26,46,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(83,74,183,0.25);
+  height: 64px; padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-wordmark { color: var(--white); font-weight: 800; font-size: 18px; letter-spacing: -0.5px; line-height: 1; }
+.nav-wordmark span { display: block; font-size: 7.5px; font-weight: 400; color: var(--mid); letter-spacing: 1.2px; margin-top: 2px; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 24px; margin-left: 32px; }
+.nav-links a { color: var(--soft); font-size: 13px; text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--violet); color: var(--white) !important;
+  padding: 10px 22px; border-radius: 8px; font-weight: 600;
+  font-size: 13px !important; transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--mid) !important; }
+.nav-menu-btn {
+  display: none; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(83,74,183,0.3); border: 1px solid rgba(83,74,183,0.4);
+  cursor: pointer; color: var(--white); flex-shrink: 0;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--deep);
+  display: flex; align-items: center;
+  padding: 100px 5% 80px;
+  position: relative; overflow: hidden;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(83,74,183,0.07) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(83,74,183,0.07) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.hero-glow {
+  position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(83,74,183,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  position: relative;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--soft); margin-bottom: 28px;
+}
+.hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  color: var(--white); line-height: 1.1; margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; color: var(--soft); }
+.hero-desc { font-size: 17px; color: var(--soft); line-height: 1.8; margin-bottom: 36px; font-weight: 300; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-primary {
+  background: var(--violet); color: var(--white);
+  padding: 16px 32px; border-radius: 10px; font-size: 15px; font-weight: 600;
+  text-decoration: none; transition: all .2s; border: 2px solid var(--violet);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--mid); border-color: var(--mid); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--white);
+  padding: 16px 32px; border-radius: 10px; font-size: 15px; font-weight: 500;
+  text-decoration: none; transition: all .2s; border: 2px solid rgba(255,255,255,0.2);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
+.hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; }
+.trust-icon { color: var(--green); font-size: 16px; }
+.trust-text { font-size: 12px; color: var(--gray); line-height: 1.4; }
+
+/* Hero visual */
+.hero-visual { position: relative; }
+.hero-card-main {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 36px;
+  backdrop-filter: blur(10px);
+}
+.hero-card-isotipo { margin-bottom: 24px; }
+.hero-card-name { font-size: 52px; font-weight: 800; color: var(--white); letter-spacing: -2px; line-height: 1; }
+.hero-card-sub { font-size: 11px; color: var(--mid); letter-spacing: 1.8px; margin-top: 4px; margin-bottom: 20px; }
+.hero-card-tagline { font-size: 14px; color: var(--soft); font-style: italic; margin-bottom: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
+.hero-badges { display: flex; flex-direction: column; gap: 10px; }
+.hero-badge-item {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(83,74,183,0.2); border: 1px solid rgba(83,74,183,0.3);
+  border-radius: 10px; padding: 12px 16px;
+}
+.hero-badge-flag { font-size: 20px; }
+.hero-badge-text { font-size: 13px; }
+.hero-badge-text strong { color: var(--white); display: block; font-size: 13px; }
+.hero-badge-text span { color: var(--soft); font-size: 11px; }
+
+/* Floating cards */
+.float-card {
+  position: absolute; background: var(--white); border-radius: 12px;
+  padding: 12px 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--deep);
+  font-weight: 500; animation: float 4s ease-in-out infinite;
+}
+.float-card-1 { top: -20px; right: -30px; animation-delay: 0s; }
+.float-card-2 { bottom: 40px; left: -40px; animation-delay: 2s; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.float-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ─── SECTIONS BASE ─── */
+section { padding: 96px 5%; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--violet); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); color: var(--deep); line-height: 1.15; margin-bottom: 16px; }
+.section-desc { font-size: 17px; color: var(--gray2); line-height: 1.8; max-width: 580px; }
+.centered { text-align: center; }
+.centered .section-desc { margin: 0 auto; }
+.bg-cream { background: var(--cream); }
+.bg-deep  { background: var(--deep); }
+
+/* ─── PROBLEMA / PAIN ─── */
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 56px; }
+.pain-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 24px;
+  border-top: 3px solid var(--soft);
+}
+.pain-icon { font-size: 28px; margin-bottom: 14px; }
+.pain-title { font-size: 16px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.pain-desc { font-size: 14px; color: var(--gray2); line-height: 1.6; }
+.pain-quote {
+  margin-top: 56px;
+  background: var(--xlight); border-left: 4px solid var(--violet);
+  border-radius: 0 16px 16px 0; padding: 28px 32px;
+}
+.pain-quote p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: var(--deep); line-height: 1.5; }
+.pain-quote cite { display: block; margin-top: 12px; font-size: 13px; color: var(--gray); }
+
+/* ─── MÉTODO ─── */
+.method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 56px; }
+@media (max-width:768px) { .method-grid { grid-template-columns: 1fr; } }
+.method-steps { display: flex; flex-direction: column; gap: 0; }
+.method-step {
+  display: flex; gap: 20px; padding: 24px 0;
+  border-bottom: 1px solid var(--border); position: relative;
+}
+.method-step:last-child { border-bottom: none; }
+.step-num {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--xlight); color: var(--violet);
+  font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-title { font-size: 16px; font-weight: 700; color: var(--deep); margin-bottom: 6px; }
+.step-desc  { font-size: 14px; color: var(--gray2); line-height: 1.6; }
+.method-visual {
+  background: var(--deep); border-radius: 24px; padding: 40px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.method-visual-title { font-size: 14px; font-weight: 600; color: var(--soft); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.method-bar { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 20px; }
+.method-bar-label { font-size: 11px; color: var(--gray); margin-bottom: 8px; font-weight: 500; }
+.method-bar-track { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.method-bar-fill { height: 100%; border-radius: 3px; }
+.method-bar-note { font-size: 11px; color: var(--soft); margin-top: 6px; }
+
+/* ─── CERTIFICACIÓN ─── */
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+@media (max-width:700px) { .cert-grid { grid-template-columns: 1fr; } }
+.cert-card {
+  border-radius: 20px; padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  position: relative; overflow: hidden;
+}
+.cert-card.hla { background: var(--deep); border: 1px solid rgba(83,74,183,0.3); }
+.cert-card.utn { background: var(--xlight); border: 1px solid var(--light); }
+.cert-flag { font-size: 36px; }
+.cert-inst { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.cert-card.hla .cert-inst { color: var(--soft); }
+.cert-card.utn .cert-inst { color: var(--violet); }
+.cert-name { font-size: 22px; font-weight: 800; line-height: 1.2; }
+.cert-card.hla .cert-name { color: var(--white); }
+.cert-card.utn .cert-name { color: var(--deep); }
+.cert-desc { font-size: 14px; line-height: 1.7; }
+.cert-card.hla .cert-desc { color: var(--soft); }
+.cert-card.utn .cert-desc { color: var(--gray2); }
+.cert-features { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.cert-feature { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.cert-card.hla .cert-feature { color: var(--light); }
+.cert-card.utn .cert-feature { color: var(--gray2); }
+.cert-check { font-size: 14px; }
+.cert-bottom {
+  margin-top: 24px; background: var(--xlight); border-radius: 16px; padding: 24px 28px;
+  border: 1px solid var(--light);
+}
+.cert-bottom-title { font-size: 16px; font-weight: 700; color: var(--violet); margin-bottom: 8px; }
+.cert-bottom-desc { font-size: 14px; color: var(--gray2); line-height: 1.7; }
+.cert-logos { display: flex; gap: 16px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+.cert-logo-chip {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--deep);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ─── PARA QUIÉN ─── */
+.quien-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 56px; }
+.quien-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 22px; text-align: center;
+  transition: all .2s; cursor: default;
+}
+.quien-card:hover { border-color: var(--violet); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(83,74,183,0.12); }
+.quien-emoji { font-size: 36px; margin-bottom: 14px; }
+.quien-title { font-size: 15px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.quien-desc { font-size: 13px; color: var(--gray2); line-height: 1.6; }
+
+/* ─── CÓMO FUNCIONA ─── */
+.how-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 0; margin-top: 56px; position: relative; }
+.how-timeline::before {
+  content: '';
+  position: absolute; top: 28px; left: 10%; right: 10%;
+  height: 2px; background: linear-gradient(90deg, var(--xlight), var(--violet), var(--xlight));
+}
+.how-step { text-align: center; padding: 0 16px; position: relative; }
+.how-step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--violet); color: var(--white);
+  font-weight: 800; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; position: relative; z-index: 1;
+  box-shadow: 0 0 0 6px var(--xlight), 0 0 0 7px var(--light);
+}
+.how-step-title { font-size: 15px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.how-step-desc  { font-size: 13px; color: var(--gray2); line-height: 1.6; }
+
+/* ─── TESTIMONIOS ─── */
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; margin-top: 56px; }
+.testi-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px 28px;
+}
+.testi-stars { color: #F59E0B; font-size: 16px; margin-bottom: 16px; }
+.testi-text { font-size: 15px; color: var(--deep); line-height: 1.75; font-style: italic; margin-bottom: 20px; }
+.testi-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--border); padding-top: 16px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--xlight); color: var(--violet);
+  font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center;
+}
+.testi-name { font-size: 14px; font-weight: 600; color: var(--deep); }
+.testi-location { font-size: 12px; color: var(--gray); }
+
+/* ─── STATS ─── */
+.stats-bar {
+  background: var(--deep); padding: 60px 5%; margin: 0;
+}
+.stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 40px; text-align: center; }
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--white); line-height: 1; margin-bottom: 8px; }
+.stat-num span { color: var(--mid); }
+.stat-label { font-size: 14px; color: var(--soft); }
+
+/* ─── FAQ ─── */
+.faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.faq-q {
+  padding: 22px 28px; font-size: 16px; font-weight: 600; color: var(--deep);
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  list-style: none; user-select: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+details[open] .faq-q { color: var(--violet); border-bottom: 1px solid var(--border); }
+.faq-arrow { transition: transform .25s; font-size: 18px; color: var(--violet); }
+details[open] .faq-arrow { transform: rotate(45deg); }
+.faq-a { padding: 20px 28px; font-size: 15px; color: var(--gray2); line-height: 1.75; }
+.faq-a strong { color: var(--violet); }
+
+/* ─── CTA FINAL ─── */
+.cta-section {
+  background: var(--violet); padding: 100px 5%;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+}
+.cta-section .section-title { color: var(--white); margin-bottom: 16px; }
+.cta-section .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto 40px; }
+.cta-form {
+  background: var(--white); border-radius: 20px; padding: 40px;
+  max-width: 540px; margin: 0 auto; text-align: left;
+}
+.form-title { font-size: 20px; font-weight: 700; color: var(--deep); margin-bottom: 6px; }
+.form-sub { font-size: 14px; color: var(--gray2); margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--deep); margin-bottom: 6px; display: block; }
+.form-input {
+  width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: var(--deep); background: var(--cream); transition: border .2s;
+  outline: none;
+}
+.form-input:focus { border-color: var(--violet); background: var(--white); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-select {
+  width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: var(--deep); background: var(--cream); outline: none; cursor: pointer;
+}
+.form-submit {
+  width: 100%; padding: 16px; background: var(--violet); color: var(--white);
+  border: none; border-radius: 10px; font-size: 16px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px;
+  transition: background .2s;
+}
+.form-submit:hover { background: var(--deep); }
+.form-disclaimer { font-size: 11px; color: var(--gray); text-align: center; margin-top: 14px; line-height: 1.5; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--deep); padding: 64px 5% 32px;
+  border-top: 2px solid var(--violet);
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+@media (max-width:768px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+.footer-brand { }
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-name { font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+.footer-name-sub { font-size: 8px; color: var(--mid); letter-spacing: 1.8px; display: block; }
+.footer-tagline { font-size: 14px; color: var(--soft); line-height: 1.7; margin-bottom: 20px; }
+.footer-cert-chips { display: flex; flex-direction: column; gap: 8px; }
+.footer-cert-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; color: var(--soft);
+  background: rgba(83,74,183,0.2); border: 1px solid rgba(83,74,183,0.3);
+  padding: 6px 12px; border-radius: 8px;
+}
+.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: var(--gray2); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 12px; color: var(--gray2); }
+
+/* ─── UTILS ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.tag-pill {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 4px 14px; border-radius: 20px; letter-spacing: 0.5px;
+}
+.pill-green  { background: var(--green-light); color: #085041; }
+.pill-violet { background: var(--xlight); color: var(--violet); }
+.divider { height: 1px; background: var(--border); margin: 56px 0; }
+
+/* ─── RESPONSIVE ─── */
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET (≤900px)
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-links { gap: 16px; margin-left: 20px; }
+  .nav-links a { font-size: 12px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .method-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cert-grid { grid-template-columns: 1fr; }
+  .anatomy-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .colors-primary { grid-template-columns: 1fr 1fr 1fr; }
+  .int-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .pieces-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤640px)
+═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* Nav */
+  nav { padding: 0 4%; height: 58px; }
+  .nav-links { display: none; }
+  .nav-badge { display: none; }
+  .nav-wordmark { font-size: 15px; } .nav-wordmark span { letter-spacing: 0.8px; font-size: 7px; }
+
+  /* Nav mobile menu toggle */
+  .nav-menu-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(83,74,183,0.25); border: none; cursor: pointer; color: var(--white);
+  }
+
+  /* Hero */
+  .hero { padding: 80px 5% 60px; min-height: auto; }
+  .hero-title { font-size: clamp(32px, 9vw, 48px); }
+  .hero-desc { font-size: 15px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions a { text-align: center; justify-content: center; }
+  .hero-trust { flex-direction: column; gap: 12px; }
+  .hero-eyebrow { font-size: 10px; }
+  .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; width: 100%; text-align: center; justify-content: center; }
+
+  /* Sections */
+  section { padding: 64px 5%; }
+  .section-title { font-size: clamp(26px, 7vw, 36px); }
+  .section-desc { font-size: 15px; }
+
+  /* Stats bar */
+  .stats-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .stat-num { font-size: 40px; }
+
+  /* Pain grid */
+  .pain-grid { grid-template-columns: 1fr; }
+
+  /* Method */
+  .method-grid { grid-template-columns: 1fr; }
+  .method-visual { padding: 28px 20px; }
+
+  /* Cert */
+  .cert-grid { grid-template-columns: 1fr; }
+  .cert-card { padding: 28px 22px; }
+  .cert-bottom { padding: 20px 22px; }
+  .cert-logos { flex-direction: column; gap: 8px; }
+
+  /* Para quién */
+  .quien-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .quien-card { padding: 20px 16px; }
+  .quien-emoji { font-size: 28px; }
+  .quien-title { font-size: 13px; }
+  .quien-desc { font-size: 12px; }
+
+  /* How timeline */
+  .how-timeline { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .how-timeline::before { display: none; }
+  .how-step-num { width: 44px; height: 44px; font-size: 15px; }
+
+  /* Testimonios */
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card { padding: 24px 20px; }
+
+  /* Anatomy */
+  .anatomy-wrap { grid-template-columns: 1fr; }
+  .anatomy-visual { padding: 32px 20px; }
+
+  /* Rules */
+  .rules-grid { grid-template-columns: 1fr; }
+
+  /* Colors */
+  .colors-primary { grid-template-columns: 1fr; gap: 8px; }
+  .color-swatch { height: 70px; }
+  .colors-secondary { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* Type rows */
+  .type-row { flex-direction: column; gap: 6px; padding: 14px 16px; }
+  .type-label { width: 100%; }
+
+  /* Piezas */
+  .pieces-grid { grid-template-columns: 1fr; }
+
+  /* Padres / Fuego Silencioso — columnas a 1 */
+  #padres .reveal[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Realidad aulas stats */
+  #realidad .reveal[style*="grid-template-columns:repeat(auto-fit"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  #realidad .reveal[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* CTA form */
+  .cta-section { padding: 64px 5%; }
+  .cta-form { padding: 28px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* Inline grids con style */
+  .int-grid { grid-template-columns: 1fr !important; }
+  .pro-con { grid-template-columns: 1fr !important; }
+  .domain-box .domain-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .summary-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤400px)
+═══════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .hero-title { font-size: 28px; }
+  .quien-grid { grid-template-columns: 1fr; }
+  .how-timeline { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr; }
+  .colors-secondary { grid-template-columns: 1fr; }
+  .hero-trust { gap: 10px; }
+  .cover-chips { flex-direction: column; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="34" height="22" viewBox="0 0 34 22" fill="none">
+      <path d="M2 20 A15 15 0 0 1 32 20" stroke="#534AB7" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M7 20 A10 10 0 0 1 27 20" stroke="#7F77DD" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M12 20 A5 5 0 0 1 22 20" stroke="#AFA9EC" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="17" cy="20" r="2.2" fill="#534AB7"/>
+    </svg>
+    <div class="nav-wordmark">NIDO <span>E S C U E L A</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#metodo-detalle">El método</a>
+    <a href="#certificacion">Certificación</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#padres">Para padres</a><a href="#realidad">Realidad escolar</a><a href="#faq">Preguntas</a>
+    <a href="#inscripcion" class="nav-cta">Inscribirme</a>
+  </div>
+  <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" style="display:none;">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">
+        <span class="hero-eyebrow-dot"></span>
+        Inscripciones abiertas · Ciclo 2025–2026
+      </div>
+      <h1 class="hero-title reveal">
+        Tu hogar.<br><em>El aula más poderosa del mundo.</em><br><span style="font-size:clamp(22px,2.8vw,36px); font-weight:300; color:var(--soft); font-style:normal; font-family:'DM Sans',sans-serif; letter-spacing:-0.3px;">Aprendizaje aumentado con certificación internacional.</span>
+      </h1>
+      <p class="hero-desc reveal">
+        Educamos en casa: metodología de aprendizaje aumentado, inteligencia artificial adaptativa y certificación internacional de <strong style="color:var(--white)">Home Life Academy</strong> (Tennessee, USA) y validación de <strong style="color:var(--white)">UTN Argentina</strong>. Sin moldes. Sin límites. Con propósito.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#inscripcion" class="btn-primary">Quiero inscribir a mi hijo →</a>
+        <a href="#metodo-detalle" class="btn-secondary">Conocer el método</a>
+      </div>
+      <div class="hero-trust reveal">
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">Certificado internacionalmente<br>en USA y Argentina</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">Válido para ingreso a<br>universidades del mundo</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">Sin cambiar tu ciudad<br>ni tu estilo de vida</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div style="position:relative;">
+        <div class="float-card float-card-1">
+          <span class="float-dot" style="background:var(--green)"></span>
+          🎓 Diploma reconocido en 50+ países
+        </div>
+        <div class="hero-card-main">
+          <div class="hero-card-isotipo">
+            <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+              <path d="M3 36 A27 27 0 0 1 57 36" stroke="#534AB7" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M11 36 A19 19 0 0 1 49 36" stroke="#7F77DD" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M19 36 A11 11 0 0 1 41 36" stroke="#AFA9EC" stroke-width="4.5" stroke-linecap="round"/>
+              <circle cx="30" cy="36" r="4" fill="#534AB7"/>
+            </svg>
+          </div>
+          <div class="hero-card-name">NIDO</div>
+          <div class="hero-card-sub">E S C U E L A</div>
+          <div class="hero-card-tagline">"Tu hogar. El aula más poderosa del mundo."</div>
+          <div class="hero-badges">
+            <div class="hero-badge-item">
+              <span class="hero-badge-flag">🇺🇸</span>
+              <div class="hero-badge-text">
+                <strong>Home Life Academy</strong>
+                <span>Tennessee, USA · Escuela privada PreK–12</span>
+              </div>
+            </div>
+            <div class="hero-badge-item">
+              <span class="hero-badge-flag">🇦🇷</span>
+              <div class="hero-badge-text">
+                <strong>UTN Argentina</strong>
+                <span>Universidad Tecnológica Nacional · Validación académica</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card float-card-2">
+          <span class="float-dot" style="background:var(--violet)"></span>
+          🤖 Aprendizaje aumentado con IA
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ STATS ══════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="reveal">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">Países donde se reconoce la certificación</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">PreK<span>–12</span></div>
+      <div class="stat-label">Niveles educativos cubiertos</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">2<span>x</span></div>
+      <div class="stat-label">Certificaciones internacionales simultáneas</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Online y desde cualquier ciudad de Argentina</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ MÉTODO DETALLE ══════ -->
+<section id="metodo-detalle" style="background:var(--white); padding:96px 5%;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Header -->
+    <div style="text-align:center; margin-bottom:72px;">
+      <div class="section-eyebrow reveal" style="justify-content:center; display:flex;">Metodología NIDO Escuela</div>
+      <h2 class="section-title reveal" style="max-width:700px; margin:0 auto 20px;">
+        El Método de Aprendizaje Aumentado:<br>así funciona en la práctica
+      </h2>
+      <p class="section-desc reveal" style="margin:0 auto; text-align:center;">
+        No es solo aprender en casa. Es un sistema diseñado para que cada niño alcance su máximo potencial, con la tecnología como aliada y la familia como protagonista.
+      </p>
+    </div>
+
+    <!-- ── 3 PILARES ── -->
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">Los 3 pilares del método</div>
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:72px;">
+
+      <div style="background:var(--xlight); border-radius:20px; padding:36px 28px; border:1px solid var(--light); position:relative; overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(83,74,183,0.08);"></div>
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--violet);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="white" stroke-width="2"/><path d="M9 13l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:10px;">Pilar 01</div>
+        <div style="font-size:20px;font-weight:800;color:var(--deep);margin-bottom:12px;letter-spacing:-0.3px;">Inteligencia Artificial Adaptativa</div>
+        <p style="font-size:14px;color:var(--gray2);line-height:1.75;margin-bottom:16px;">La IA detecta en tiempo real cómo aprende tu hijo — su ritmo, sus fortalezas, sus áreas de mejora — y ajusta los contenidos automáticamente. No hay dos estudiantes que reciban el mismo programa.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:var(--violet);font-size:14px;">✓</span> Diagnóstico cognitivo inicial</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:var(--violet);font-size:14px;">✓</span> Ajuste de ritmo en tiempo real</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:var(--violet);font-size:14px;">✓</span> Reportes mensuales de progreso</div>
+        </div>
+      </div>
+
+      <div style="background:var(--deep); border-radius:20px; padding:36px 28px; position:relative; overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(127,119,221,0.12);"></div>
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(83,74,183,0.5);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 4L4 9v8l9 5 9-5V9L13 4z" stroke="white" stroke-width="2" stroke-linejoin="round"/><path d="M13 4v13M4 9l9 4 9-4" stroke="white" stroke-width="2"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:10px;">Pilar 02</div>
+        <div style="font-size:20px;font-weight:800;color:var(--white);margin-bottom:12px;letter-spacing:-0.3px;">Metodología Activa de Aprendizaje</div>
+        <p style="font-size:14px;color:var(--soft);line-height:1.75;margin-bottom:16px;">Los niños aprenden haciendo, creando y resolviendo problemas reales. No memorizan para el examen — desarrollan pensamiento crítico, creatividad y autonomía que les sirven para toda la vida.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light);"><span style="color:var(--mid);font-size:14px;">✓</span> Aprendizaje basado en proyectos</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light);"><span style="color:var(--mid);font-size:14px;">✓</span> Pensamiento crítico y resolución</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light);"><span style="color:var(--mid);font-size:14px;">✓</span> Mastery learning — avanza al dominar</div>
+        </div>
+      </div>
+
+      <div style="background:var(--cream); border-radius:20px; padding:36px 28px; border:1px solid var(--border); position:relative; overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(29,158,117,0.06);"></div>
+        <div style="width:52px;height:52px;border-radius:14px;background:#1D9E75;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 22c5 0 9-4 9-9S18 4 13 4 4 8 4 13s4 9 9 9z" stroke="white" stroke-width="2"/><path d="M9 13c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="13" r="1.5" fill="white"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1D9E75;margin-bottom:10px;">Pilar 03</div>
+        <div style="font-size:20px;font-weight:800;color:var(--deep);margin-bottom:12px;letter-spacing:-0.3px;">Acompañamiento Familiar Profundo</div>
+        <p style="font-size:14px;color:var(--gray2);line-height:1.75;margin-bottom:16px;">Los padres no son espectadores — son guías. NIDO Escuela los prepara y acompaña en ese rol. La familia es el corazón del modelo, no una variable secundaria.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:#1D9E75;font-size:14px;">✓</span> Formación para padres-guías</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:#1D9E75;font-size:14px;">✓</span> Tutores especializados de respaldo</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:#1D9E75;font-size:14px;">✓</span> Comunidad de familias NIDO</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── COMPARATIVA ── -->
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">Comparativa directa</div>
+    <h3 class="reveal" style="font-family:'DM Serif Display',serif; font-size:32px; color:var(--deep); margin-bottom:36px; letter-spacing:-0.5px;">NIDO Escuela vs. escuela tradicional</h3>
+
+    <div class="reveal" style="border:1px solid var(--border); border-radius:20px; overflow:hidden; margin-bottom:72px;">
+
+      <!-- Table header -->
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; background:var(--deep);">
+        <div style="padding:18px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray);">Dimensión</div>
+        <div style="padding:18px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--white); border-left:1px solid rgba(83,74,183,0.3); display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 10A8 8 0 0 1 17 10" stroke="#534AB7" stroke-width="2" stroke-linecap="round"/><path d="M4 10A5 5 0 0 1 14 10" stroke="#7F77DD" stroke-width="2" stroke-linecap="round"/><path d="M7 10A2 2 0 0 1 11 10" stroke="#AFA9EC" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.5" fill="#534AB7"/></svg>
+          NIDO Escuela
+        </div>
+        <div style="padding:18px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); border-left:1px solid rgba(255,255,255,0.06);">Escuela tradicional</div>
+      </div>
+
+      <!-- Rows -->
+      <!-- Row template: alternating bg -->
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Personalización del aprendizaje</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> 100% individual, a medida</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Un programa para 30 alumnos</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Ritmo del estudiante</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> El ritmo de tu hijo</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Ritmo del grupo</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Certificación internacional</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> HLA (USA) + UTN Argentina</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Solo local / provincial</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Uso de IA en el aprendizaje</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> IA adaptativa integrada</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Mínima o ninguna</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Rol de la familia</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> Protagonista del proceso</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Espectador externo</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Entorno de aprendizaje</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> Seguro, controlado por vos</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Exposición a bullying y violencia</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Flexibilidad horaria</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> Total, se adapta a tu familia</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Horario fijo inamovible</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Horas de aprendizaje activo / día</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> 3–5 hs de aprendizaje real</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— 6–7 hs (40% tiempo muerto)</div>
+      </div>
+
+    </div>
+
+    <!-- ── CTA CIERRE ── -->
+    <div class="reveal" style="background:var(--deep); border-radius:20px; padding:48px; text-align:center; position:relative; overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%, rgba(83,74,183,0.25), transparent);pointer-events:none;"></div>
+      <div style="position:relative;">
+        <div style="margin-bottom:24px; display:flex; justify-content:center;">
+          <svg width="56" height="38" viewBox="0 0 56 38" fill="none">
+            <path d="M3 34 A25 25 0 0 1 53 34" stroke="#534AB7" stroke-width="4" stroke-linecap="round"/>
+            <path d="M11 34 A17 17 0 0 1 45 34" stroke="#7F77DD" stroke-width="4" stroke-linecap="round"/>
+            <path d="M19 34 A9 9 0 0 1 37 34" stroke="#AFA9EC" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="28" cy="34" r="3.5" fill="#534AB7"/>
+          </svg>
+        </div>
+        <h3 style="font-family:'DM Serif Display',serif; font-size:32px; color:var(--white); margin-bottom:14px; letter-spacing:-0.5px;">¿Este método es para tu hijo?</h3>
+        <p style="font-size:16px; color:var(--soft); line-height:1.75; max-width:520px; margin:0 auto 32px;">Hacemos un diagnóstico inicial gratuito. En una sesión de 60 minutos descubrís exactamente cómo aprende tu hijo y cómo NIDO Escuela puede potenciarlo.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="#inscripcion" class="btn-primary">Solicitar diagnóstico gratuito →</a>
+          <a href="#faq" class="btn-secondary">Ver preguntas frecuentes</a>
+        </div>
+        <div style="margin-top:20px; font-size:12px; color:var(--gray2);">Sin costo · Sin compromiso · Respuesta en menos de 24 hs</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ EL PROBLEMA ══════ -->
+<section>
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">El punto de partida</div>
+    <h2 class="section-title reveal">¿Por qué las familias eligen educar en casa?</h2>
+    <p class="section-desc reveal">No es un capricho. Es una decisión informada de padres que ven algo que el sistema educativo tradicional no puede darle a su hijo.</p>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon">😔</div>
+        <div class="pain-title">Mi hijo se aburre en el aula</div>
+        <div class="pain-desc">Aprende más rápido que el grupo. El ritmo del sistema no es el suyo. Cada día es una lucha entre su potencial y el programa.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">⏳</div>
+        <div class="pain-title">Necesita más tiempo del que el aula da</div>
+        <div class="pain-desc">Algunos niños necesitan profundizar, repetir, explorar. La escuela tradicional tiene 30 alumnos y un solo programa para todos.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🌍</div>
+        <div class="pain-title">Vivimos diferente al molde</div>
+        <div class="pain-desc">Viajamos, vivimos en zonas alejadas, o simplemente tenemos un proyecto de vida que no encaja en los horarios fijos del sistema.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🧠</div>
+        <div class="pain-title">Tiene altas capacidades o necesidades especiales</div>
+        <div class="pain-desc">El sistema no está equipado para acompañar a un niño que aprende diferente — ni por encima ni por debajo del promedio.</div>
+      </div>
+    </div>
+
+    <div class="pain-quote reveal">
+      <p>"El problema no es tu hijo. El problema es que el sistema fue diseñado para el promedio, y tu hijo no es promedio."</p>
+      <cite>— Filosofía fundacional de NIDO Escuela</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ EL MÉTODO ══════ -->
+<section id="metodo" class="bg-cream">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">02 — El método</div>
+    <h2 class="section-title reveal">Aprendizaje aumentado:<br>lo que ninguna escuela tradicional puede ofrecer</h2>
+    <p class="section-desc reveal">Combinamos tres elementos que el sistema convencional nunca une: inteligencia artificial adaptativa, metodología activa y el vínculo insustituible de la familia.</p>
+
+    <div class="method-grid">
+      <div class="method-steps reveal">
+        <div class="method-step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Diagnóstico cognitivo inicial</div>
+            <div class="step-desc">Identificamos el perfil de aprendizaje único de tu hijo: su ritmo, su estilo (visual, auditivo, kinestésico), sus fortalezas y sus áreas de crecimiento.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Plan de estudios personalizado</div>
+            <div class="step-desc">Construimos una ruta de aprendizaje a medida, no un programa genérico. Elegís los libros, los horarios y el ambiente que mejor funciona para tu familia.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">IA como tutora adaptativa</div>
+            <div class="step-desc">Herramientas de inteligencia artificial que detectan cómo aprende tu hijo en tiempo real y ajustan los contenidos, el ritmo y la profundidad automáticamente.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Proyectos reales con impacto</div>
+            <div class="step-desc">Los conocimientos se aplican en proyectos concretos vinculados a los intereses del niño. No memorizan para el examen — crean, resuelven, producen.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">5</div>
+          <div>
+            <div class="step-title">Evaluación y doble certificación</div>
+            <div class="step-desc">Portafolio de evidencias que da lugar a la certificación de Home Life Academy (USA) y la validación de UTN Argentina. Dos sellos. Un estudiante preparado para todo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-visual reveal">
+        <div class="method-visual-title">Comparativa de resultados</div>
+        <div class="method-bar">
+          <div class="method-bar-label">Personalización del aprendizaje</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:95%;background:var(--violet);"></div></div>
+          <div class="method-bar-note">NIDO Escuela — 95% personalizado</div>
+        </div>
+        <div class="method-bar">
+          <div class="method-bar-label">Escuela tradicional</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:12%;background:var(--soft);"></div></div>
+          <div class="method-bar-note">Aula de 30 alumnos — 1 programa para todos</div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:8px 0;"></div>
+        <div class="method-bar">
+          <div class="method-bar-label">Ritmo propio del estudiante</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:100%;background:var(--green);"></div></div>
+          <div class="method-bar-note">NIDO Escuela — 100% a su tiempo</div>
+        </div>
+        <div class="method-bar">
+          <div class="method-bar-label">Escuela tradicional</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:20%;background:var(--soft);"></div></div>
+          <div class="method-bar-note">Ritmo del grupo, no del niño</div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:8px 0;"></div>
+        <div class="method-bar">
+          <div class="method-bar-label">Validez internacional del título</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:90%;background:#F59E0B;"></div></div>
+          <div class="method-bar-note">Home Life Academy + UTN — 50+ países</div>
+        </div>
+        <div style="margin-top:20px;background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:4px;">✓ Nuestros estudiantes acceden a</div>
+          <div style="font-size:12px;color:var(--soft);line-height:1.6;">Universidades en Argentina, USA, Europa y toda América Latina con el diploma de NIDO Escuela.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CERTIFICACIÓN ══════ -->
+<section id="certificacion">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">03 — Respaldo institucional</div>
+    <h2 class="section-title reveal">Dos certificaciones.<br>Un estudiante preparado para el mundo.</h2>
+    <p class="section-desc reveal">Lo que tu hijo aprende en casa tiene validez real, internacional y verificable. No es un papel sin valor — es el respaldo de dos instituciones con décadas de trayectoria.</p>
+
+    <div class="cert-grid">
+      <div class="cert-card hla reveal">
+        <div class="cert-flag">🇺🇸</div>
+        <div class="cert-inst">Certificación internacional</div>
+        <div class="cert-name">Home Life Academy</div>
+        <p class="cert-desc">Escuela privada PreK–12 con sede en Jackson, Tennessee, USA. Fundada para dar a las familias del mundo acceso a educación en casa con respaldo legal y académico internacional.</p>
+        <div class="cert-features">
+          <div class="cert-feature"><span class="cert-check">✓</span> Reconocida en los 50 estados de USA y en más de 50 países</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Diploma de escuela secundaria válido internacionalmente</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Registros académicos oficiales en inglés</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Cobertura legal para familias homeschoolers</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Acceso a universidades norteamericanas y europeas</div>
+        </div>
+      </div>
+
+      <div class="cert-card utn reveal">
+        <div class="cert-flag">🇦🇷</div>
+        <div class="cert-inst">Validación académica argentina</div>
+        <div class="cert-name">Universidad Tecnológica Nacional</div>
+        <p class="cert-desc">La UTN es una de las universidades más reconocidas de Argentina, con presencia en todo el país. Su validación garantiza que el proceso educativo de NIDO Escuela cumple estándares académicos argentinos.</p>
+        <div class="cert-features">
+          <div class="cert-feature"><span class="cert-check" style="color:var(--violet)">✓</span> <span style="color:var(--gray2)">Validación del proceso educativo aumentado</span></div>
+          <div class="cert-feature"><span class="cert-check" style="color:var(--violet)">✓</span> <span style="color:var(--gray2)">Certificación del Nivel III de Tecnopaternidad</span></div>
+          <div class="cert-feature"><span class="cert-check" style="color:var(--violet)">✓</span> <span style="color:var(--gray2)">Credibilidad institucional en Argentina</span></div>
+          <div class="cert-feature"><span class="cert-check" style="color:var(--violet)">✓</span> <span style="color:var(--gray2)">Facilita el acceso a educación superior local</span></div>
+          <div class="cert-feature"><span class="cert-check" style="color:var(--violet)">✓</span> <span style="color:var(--gray2)">Red de 29 facultades en todo el país</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-bottom reveal">
+      <div class="cert-bottom-title">¿Qué pasa si mi hijo quiere entrar a la universidad?</div>
+      <div class="cert-bottom-desc">Con la certificación de Home Life Academy, tu hijo tiene un diploma de escuela secundaria reconocido en USA y en la mayoría de los países. En Argentina, la ruta de ingreso a la universidad puede requerir un proceso de equivalencia, para el que NIDO Escuela te acompaña paso a paso. Muchas familias complementan el proceso con el examen de ingreso a la universidad deseada — algo que nuestros estudiantes logran con resultados sobresalientes por su nivel de preparación.</div>
+      <div class="cert-logos" style="margin-top:20px;">
+        <div class="cert-logo-chip">🇺🇸 Home Life Academy · Tennessee</div>
+        <div class="cert-logo-chip">🇦🇷 UTN Argentina</div>
+        <div class="cert-logo-chip">🌎 Válido en +50 países</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ ACOMPAÑAMIENTO PADRES + FUEGO SILENCIOSO ══════ -->
+<section id="padres" style="background:var(--white); padding:96px 5%; overflow:hidden;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Header centrado -->
+    <div style="text-align:center; margin-bottom:16px;">
+      <div class="section-eyebrow reveal" style="display:flex; justify-content:center;">Para los padres</div>
+    </div>
+    <h2 class="section-title reveal" style="text-align:center; max-width:720px; margin:0 auto 20px;">
+      En NIDO Escuela no solo educamos a tu hijo.<br>Te preparamos a <em style="font-family:'DM Serif Display',serif; font-style:italic; color:var(--violet);">vos</em> para acompañarlo.
+    </h2>
+    <p class="section-desc reveal" style="text-align:center; margin:0 auto 64px;">
+      Ser padre-guía no se improvisa. Por eso cada familia de NIDO Escuela accede al método educativo completo <strong>y</strong> al programa Fuego Silencioso — la escuela para padres que ninguna institución educativa convencional ofrece.
+    </p>
+
+    <!-- ── DOS COLUMNAS PRINCIPALES ── -->
+    <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+
+      <!-- Columna 1: Acceso al método -->
+      <div style="background:var(--cream); border:1px solid var(--border); border-radius:20px; padding:40px 36px;">
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--xlight);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <rect x="4" y="3" width="18" height="20" rx="2" stroke="#534AB7" stroke-width="2"/>
+            <path d="M8 8h10M8 12h10M8 16h6" stroke="#534AB7" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:10px;">Acceso completo</div>
+        <h3 style="font-size:22px;font-weight:800;color:var(--deep);margin-bottom:14px;letter-spacing:-0.3px;line-height:1.25;">El método educativo en tus manos</h3>
+        <p style="font-size:14px;color:var(--gray2);line-height:1.75;margin-bottom:24px;">Como padre-guía en NIDO Escuela, no sos un espectador. Tenés acceso completo a todo el programa educativo de tu hijo: los contenidos, el plan de estudios, el progreso real en tiempo real y las herramientas de aprendizaje aumentado con IA.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border-radius:10px;border:1px solid var(--border);">
+            <span style="color:var(--violet);font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--deep);margin-bottom:2px;">Dashboard familiar completo</div>
+              <div style="font-size:12px;color:var(--gray2);">Ves en tiempo real en qué está trabajando tu hijo, su progreso y los ajustes del plan.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border-radius:10px;border:1px solid var(--border);">
+            <span style="color:var(--violet);font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--deep);margin-bottom:2px;">Guía de facilitación semanal</div>
+              <div style="font-size:12px;color:var(--gray2);">Cada semana recibís una guía práctica para acompañar las actividades sin necesitar ser docente.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border-radius:10px;border:1px solid var(--border);">
+            <span style="color:var(--violet);font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--deep);margin-bottom:2px;">Sesiones de consulta con tutores</div>
+              <div style="font-size:12px;color:var(--gray2);">Acceso mensual a tutores especializados para responder tus preguntas y ajustar el camino.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 2: Fuego Silencioso -->
+      <div style="background:var(--deep); border-radius:20px; padding:40px 36px; position:relative; overflow:hidden;">
+        <!-- Decoración de fondo -->
+        <div style="position:absolute;bottom:-40px;right:-40px;opacity:0.06;">
+          <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
+            <path d="M10 110 A80 80 0 0 1 170 110" stroke="white" stroke-width="12" stroke-linecap="round"/>
+            <path d="M35 110 A55 55 0 0 1 145 110" stroke="white" stroke-width="10" stroke-linecap="round"/>
+            <path d="M60 110 A30 30 0 0 1 120 110" stroke="white" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="position:relative;">
+          <!-- Badge especial -->
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(229,115,115,0.2);border:1px solid rgba(229,115,115,0.4);border-radius:20px;padding:6px 14px;margin-bottom:20px;">
+            <span style="font-size:14px;">🔥</span>
+            <span style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#FFAB91;">Incluido en tu membresía</span>
+          </div>
+          <h3 style="font-size:26px;font-weight:800;color:var(--white);margin-bottom:6px;letter-spacing:-0.5px;line-height:1.2;">Fuego Silencioso</h3>
+          <div style="font-size:13px;color:var(--soft);margin-bottom:16px;font-style:italic;">La escuela para padres que sí se anima a hablar de lo que pasa en casa</div>
+          <p style="font-size:14px;color:var(--soft);line-height:1.75;margin-bottom:24px;">El programa que le enseña a los padres a entender, prevenir y revertir las tecnoadicciones en sus hijos. No con prohibiciones. Con estrategia, herramientas y presencia.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:16px;flex-shrink:0;margin-top:1px;">🧠</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Cómo funciona el cerebro adicto a las pantallas</div>
+                <div style="font-size:12px;color:var(--gray2);">Dopamina, cortisol y los loops de recompensa que diseñaron las apps para enganchar a tus hijos.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:16px;flex-shrink:0;margin-top:1px;">🛡️</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Herramientas para recuperar la atención</div>
+                <div style="font-size:12px;color:var(--gray2);">Protocolos prácticos para reducir el tiempo de pantalla sin conflictos ni rebeldía.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:16px;flex-shrink:0;margin-top:1px;">💬</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Cómo hablar con tu hijo sobre tecnología</div>
+                <div style="font-size:12px;color:var(--gray2);">Guiones reales para las conversaciones difíciles: redes sociales, videojuegos, tiempo de pantalla.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08);">
+              <span style="font-size:16px;flex-shrink:0;margin-top:1px;">📵</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Plan de desconexión gradual y sin drama</div>
+                <div style="font-size:12px;color:var(--gray2);">Un protocolo de 30 días para reemplazar el tiempo de pantalla con actividades de alto significado.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── BANDA DE ESTADÍSTICAS TECNOADICCIÓN ── -->
+    <div class="reveal" style="background:var(--xlight); border:1px solid var(--light); border-radius:20px; padding:36px 40px; margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:24px;text-align:center;">Por qué Fuego Silencioso es urgente — Argentina 2025</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:24px; text-align:center;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif; font-size:44px; color:var(--deep); line-height:1; margin-bottom:6px;">94<span style="font-size:28px; color:var(--violet);">%</span></div>
+          <div style="font-size:13px; font-weight:600; color:var(--deep); margin-bottom:4px;">ven YouTube o TikTok todos los días</div>
+          <div style="font-size:11px; color:var(--gray);">Niños y adolescentes 9–17 años · UNICEF/UNESCO 2025</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif; font-size:44px; color:var(--deep); line-height:1; margin-bottom:6px;">9,6<span style="font-size:28px; color:var(--violet);">años</span></div>
+          <div style="font-size:13px; font-weight:600; color:var(--deep); margin-bottom:4px;">Edad promedio del primer celular en Argentina</div>
+          <div style="font-size:11px; color:var(--gray);">Kids Online Argentina 2025 · UNICEF/UNESCO</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif; font-size:44px; color:var(--deep); line-height:1; margin-bottom:6px;">46<span style="font-size:28px; color:var(--violet);">%</span></div>
+          <div style="font-size:13px; font-weight:600; color:var(--deep); margin-bottom:4px;">Siente que pasa demasiado tiempo conectado</div>
+          <div style="font-size:11px; color:var(--gray);">Y que eso baja su rendimiento escolar · UNICEF 2025</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif; font-size:44px; color:var(--deep); line-height:1; margin-bottom:6px;">5 <span style="font-size:28px; color:var(--violet);">hs</span></div>
+          <div style="font-size:13px; font-weight:600; color:var(--deep); margin-bottom:4px;">Tiempo diario promedio frente a pantallas</div>
+          <div style="font-size:11px; color:var(--gray);">El 23,4% supera las 5 hs diarias · GCBA 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BLOQUE IMPACTO EMOCIONAL ── -->
+    <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:48px;">
+
+      <div style="background:var(--cream); border-radius:16px; padding:28px 28px; border-left:4px solid var(--violet);">
+        <div style="font-size:15px; font-style:italic; color:var(--deep); line-height:1.75; margin-bottom:14px;">"La salud mental está en juego. La tecnología creció, pero la biología sigue a su ritmo. Y el cerebro de un niño no fue diseñado para este nivel de estimulación constante."</div>
+        <div style="font-size:11px; color:var(--gray);">— Dra. Geraldine Peronace, psiquiatra especialista en adicciones · Infobae, marzo 2025</div>
+      </div>
+
+      <div style="background:var(--deep); border-radius:16px; padding:28px 28px; border-left:4px solid #FFAB91;">
+        <div style="font-size:13px; font-weight:700; color:#FFAB91; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">Lo que Fuego Silencioso te da como padre</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:13px; color:var(--soft); display:flex; gap:10px;"><span style="color:#FFAB91;">→</span> Entender qué pasa en el cerebro de tu hijo</div>
+          <div style="font-size:13px; color:var(--soft); display:flex; gap:10px;"><span style="color:#FFAB91;">→</span> Hablar de tecnología sin que sea una pelea</div>
+          <div style="font-size:13px; color:var(--soft); display:flex; gap:10px;"><span style="color:#FFAB91;">→</span> Diseñar un hogar con tecnología consciente</div>
+          <div style="font-size:13px; color:var(--soft); display:flex; gap:10px;"><span style="color:#FFAB91;">→</span> Recuperar la atención y el vínculo familiar</div>
+          <div style="font-size:13px; color:var(--soft); display:flex; gap:10px;"><span style="color:#FFAB91;">→</span> Prevenir, no solo reaccionar cuando ya es tarde</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── CTA FUEGO SILENCIOSO ── -->
+    <div class="reveal" style="background:linear-gradient(135deg, var(--deep) 0%, #2D1A3E 100%); border-radius:20px; padding:48px 40px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:-60px; right:100px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(229,115,115,0.12), transparent 70%); pointer-events:none;"></div>
+      <div style="position:relative;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+          <span style="font-size:28px;">🔥</span>
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#FFAB91;">Incluido sin costo adicional</div>
+            <div style="font-size:22px; font-weight:800; color:var(--white); letter-spacing:-0.3px;">Fuego Silencioso</div>
+          </div>
+        </div>
+        <p style="font-size:15px; color:var(--soft); line-height:1.75; max-width:540px;">Al inscribir a tu hijo en NIDO Escuela, accedés automáticamente al programa completo Fuego Silencioso — la escuela para padres que te prepara para criar en la era digital con conciencia, herramientas y sin culpa.</p>
+        <div style="margin-top:16px; font-size:12px; color:var(--gray2); display:flex; align-items:center; gap:8px;">
+          <span style="color:#FFAB91;">✓</span> Co-certificado con UTN Argentina &nbsp;·&nbsp;
+          <span style="color:#FFAB91;">✓</span> Acceso digital inmediato &nbsp;·&nbsp;
+          <span style="color:#FFAB91;">✓</span> Comunidad privada de padres
+        </div>
+      </div>
+      <div style="flex-shrink:0; position:relative;">
+        <a href="#inscripcion" style="display:inline-flex; flex-direction:column; align-items:center; gap:6px; background:linear-gradient(135deg, #E57373, #C62828); color:white; padding:20px 32px; border-radius:14px; text-decoration:none; font-weight:700; font-size:15px; transition:all .2s; text-align:center; box-shadow: 0 8px 32px rgba(229,115,115,0.3);">
+          <span>Quiero acceder a</span>
+          <span style="font-size:18px;">🔥 Fuego Silencioso</span>
+          <span style="font-size:11px; font-weight:400; opacity:0.8;">con mi inscripción a NIDO Escuela</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ PARA QUIÉN ══════ -->
+<section class="bg-cream">
+  <div class="section-inner centered">
+    <div class="section-eyebrow reveal">04 — Para quién</div>
+    <h2 class="section-title reveal">¿Es NIDO Escuela para tu familia?</h2>
+    <p class="section-desc reveal">Este modelo es para familias que tomaron una decisión consciente sobre el futuro de sus hijos. No para todos — para los que eligen más.</p>
+
+    <div class="quien-grid">
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🚀</div>
+        <div class="quien-title">Niños con altas capacidades</div>
+        <div class="quien-desc">Tu hijo aprende mucho más rápido que el grupo y el aula lo frena. Necesita profundidad, no velocidad estándar.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🎯</div>
+        <div class="quien-title">Ritmos de aprendizaje distintos</div>
+        <div class="quien-desc">Tu hijo necesita más tiempo, más repetición o un enfoque diferente. El sistema no puede dárselo. Nosotros sí.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">✈️</div>
+        <div class="quien-title">Familias que viajan o se mueven</div>
+        <div class="quien-desc">Nómadas digitales, familias con traslados frecuentes o proyectos de vida no convencionales. La escuela va con ustedes.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🌿</div>
+        <div class="quien-title">Familias en zonas alejadas</div>
+        <div class="quien-desc">Vivís en el campo, en una localidad sin buenas opciones educativas, o simplemente lejos de la oferta convencional.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">👨‍👩‍👧</div>
+        <div class="quien-title">Padres que quieren ser protagonistas</div>
+        <div class="quien-desc">No querés delegar la educación de tu hijo completamente. Querés estar adentro del proceso, acompañar y guiar.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🌐</div>
+        <div class="quien-title">Proyección internacional</div>
+        <div class="quien-desc">Querés que tu hijo tenga opciones en el mundo anglosajón: universidades en USA, becas internacionales, oportunidades globales.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CÓMO FUNCIONA ══════ -->
+<section id="como-funciona">
+  <div class="section-inner centered">
+    <div class="section-eyebrow reveal">05 — El proceso</div>
+    <h2 class="section-title reveal">Cómo funciona NIDO Escuela</h2>
+    <p class="section-desc reveal">Empezar es más simple de lo que creés. En menos de dos semanas tu hijo ya puede estar aprendiendo con su propio plan.</p>
+
+    <div class="how-timeline">
+      <div class="how-step reveal">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Completás el formulario</div>
+        <div class="how-step-desc">Nos contás sobre tu hijo: edad, estilo de aprendizaje, contexto familiar y expectativas.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Diagnóstico gratuito</div>
+        <div class="how-step-desc">Un especialista de NIDO Escuela realiza el diagnóstico cognitivo inicial en una sesión online de 60 minutos.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Tu plan personalizado</div>
+        <div class="how-step-desc">Diseñamos el plan de estudios a medida con los recursos, horarios y metodología adaptada para tu hijo.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Inscripción y acceso</div>
+        <div class="how-step-desc">Procesamos la inscripción en Home Life Academy y activamos el acceso a la plataforma de aprendizaje aumentado.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">5</div>
+        <div class="how-step-title">¡Empezamos!</div>
+        <div class="how-step-desc">Tu hijo empieza a aprender. Vos acompañás. Nosotros monitoreamos y ajustamos el plan en tiempo real.</div>
+      </div>
+    </div>
+</div>
+</section>
+
+<!-- ══════ TESTIMONIOS ══════ -->
+<section class="bg-cream">
+  <div class="section-inner centered">
+    <div class="section-eyebrow reveal">06 — Familias</div>
+    <h2 class="section-title reveal">Lo que dicen las familias que eligieron NIDO Escuela</h2>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nuestra hija tenía 9 años y ya aburría a la maestra con preguntas que nadie podía responder. Hoy, con NIDO Escuela, por primera vez en su vida dice que 'le gusta aprender'. Eso no tiene precio."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Mariana Rodríguez</div>
+            <div class="testi-location">Córdoba, Argentina · 2 hijos</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Somos una familia que viaja. La idea de que nuestros hijos pudieran tener un diploma estadounidense real mientras aprenden desde cualquier parte del mundo nos cambió la vida. NIDO Escuela lo hizo posible."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Pablo y Andrea Fuentes</div>
+            <div class="testi-location">Bariloche → Buenos Aires → México · 3 hijos</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Al principio tenía miedo de que mi hijo no tuviera suficiente socialización o que el certificado no valiera nada. Hoy tiene amigos, proyectos propios, y una certificación que varias universidades de USA ya reconocieron."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div>
+            <div class="testi-name">Laura Méndez</div>
+            <div class="testi-location">Mendoza, Argentina · 1 hijo, 14 años</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ ══════ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">07 — Preguntas frecuentes</div>
+    <h2 class="section-title reveal">Todo lo que necesitás saber antes de inscribirte</h2>
+
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary class="faq-q">¿El certificado de Home Life Academy es reconocido en Argentina?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Home Life Academy es una escuela privada PreK–12 reconocida en los 50 estados de USA y en más de 50 países. Para el ingreso a universidades argentinas, el proceso puede requerir una equivalencia de título extranjero, que NIDO Escuela te acompaña a gestionar. <strong>Muchas de nuestras familias complementan con el examen de ingreso de la universidad elegida</strong>, para el que nuestros estudiantes llegan con una preparación superior al promedio.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Es legal educar en casa en Argentina?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          La educación en casa (homeschooling) no está expresamente regulada en Argentina a nivel nacional, lo que significa que no está prohibida. Muchas familias educan en casa y obtienen certificaciones a través de instituciones internacionales como Home Life Academy. <strong>NIDO Escuela te asesora sobre el marco legal vigente y la mejor estrategia para tu provincia</strong>. La validación de UTN agrega respaldo institucional local al proceso.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Qué edad tienen que tener los niños para inscribirse?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Trabajamos con estudiantes desde PreKinder (4–5 años) hasta la finalización del secundario (Grado 12, equivalente a 5to/6to año en Argentina). <strong>Cada etapa tiene un plan de estudios y metodología adaptada</strong>. También acompañamos el proceso de inscripción formal en Home Life Academy para cada nivel.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Cuántas horas por día implica para mi hijo y para mí?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Una de las grandes ventajas del aprendizaje aumentado es que <strong>es significativamente más eficiente que el aula convencional</strong>. En promedio, nuestros estudiantes trabajan entre 3 y 5 horas diarias de aprendizaje activo, en el horario que mejor se adapta a la familia. Como padre, tu rol es de acompañante y guía — no necesitás ser profesor ni tener formación pedagógica especial. NIDO Escuela te prepara para ese rol.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Mi hijo puede tener vida social y actividades fuera de casa?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Absolutamente. La socialización es una parte importante del desarrollo y en NIDO Escuela la promovemos activamente. <strong>Los estudiantes participan en proyectos grupales, actividades extracurriculares y encuentros presenciales</strong> con otras familias de la red NIDO Escuela. Además, al no estar 6 horas en el aula, tienen más tiempo para deportes, artes, música y otras actividades sociales.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Cuánto cuesta NIDO Escuela?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          El costo depende del nivel educativo, la cantidad de hijos y el plan de acompañamiento elegido. <strong>Tenemos planes desde USD 49 mensuales</strong>, que incluyen el proceso de inscripción en Home Life Academy, acceso a la plataforma de aprendizaje aumentado con IA, y acompañamiento pedagógico mensual. Completá el formulario de inscripción y uno de nuestros asesores te envía el detalle completo según tu situación.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Puedo usar mis propios libros y materiales?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Sí. Una de las características centrales de Home Life Academy es precisamente esa libertad: <strong>los padres pueden elegir sus propios libros, recursos y materiales</strong>. NIDO Escuela te sugiere recursos de calidad y te acompaña en la selección, pero la decisión final es tuya. El plan de estudios se construye en función de lo que mejor funciona para tu hijo, no de un catálogo cerrado.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ REALIDAD DE LAS AULAS ══════ -->
+<section id="realidad" style="background:#1A1A2E; padding:96px 5%;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Eyebrow -->
+    <div class="section-eyebrow reveal" style="color:var(--soft);">Lo que está pasando hoy</div>
+    <h2 class="section-title reveal" style="color:var(--white); max-width:660px;">
+      La realidad de las aulas en Argentina que ningún padre puede ignorar
+    </h2>
+    <p class="section-desc reveal" style="color:var(--soft); max-width:580px; margin-bottom:56px;">
+      No compartimos esto para asustar. Lo compartimos porque en NIDO Escuela creemos que una decisión educativa informada empieza por entender qué está pasando realmente adentro de las escuelas.
+    </p>
+
+    <!-- Stats grid -->
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-bottom:40px;">
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">140<span style="color:var(--mid); font-size:32px;">k</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Casos de bullying en un año</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">Entre mayo 2024 y mayo 2025, la Organización Mundial Bullying Sin Fronteras registró al menos 140.000 casos graves en Argentina. <strong style="color:var(--soft);">El número más alto desde que existen registros.</strong></div>
+        <a href="https://bullyingsinfronteras.blogspot.com/2022/02/estadisticas-de-bullying-en-la.html" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FUENTE →</a>
+      </div>
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">10°</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Argentina en el ranking mundial de bullying</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">Según el ranking mundial de Bullying Sin Fronteras 2025, Argentina ocupa el lugar 10 entre los países con más casos de acoso escolar. Un puesto que nadie quiere ocupar.</div>
+        <a href="https://bullyingsinfronteras.blogspot.com/2022/02/estadisticas-de-bullying-en-la.html" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FUENTE →</a>
+      </div>
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">250<span style="color:var(--mid); font-size:32px;">%</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Aumento del bullying en 5 años</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">El Observatorio de Acoso Escolar para la República Argentina registró un crecimiento del 250% en los casos de bullying y ciberbullying en apenas cinco años.</div>
+        <a href="https://www.eldiariodetandil.com/nota-el-acoso-se-instala-y-crece-en-las-escuelas-72438" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FUENTE →</a>
+      </div>
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">4</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Causas identificadas de la violencia escolar creciente</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">Según La Nación (dic. 2025): fragmentación social, impacto de las redes sociales, pérdida de autoridad docente y ausencia de protocolos de prevención efectivos.</div>
+        <a href="https://www.lanacion.com.ar/sociedad/crisis-en-las-aulas-las-cuatro-razones-detras-del-aumento-de-la-violencia-escolar-nid26122025/" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FUENTE →</a>
+      </div>
+
+    </div>
+
+    <!-- Divider quote -->
+    <div class="reveal" style="border-left:3px solid var(--violet); background:rgba(83,74,183,0.12); border-radius:0 16px 16px 0; padding:28px 32px; margin-bottom:40px;">
+      <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:20px; color:var(--white); line-height:1.55; margin-bottom:10px;">"En los últimos 12 meses hubo al menos 111 muertes relacionadas con el bullying en Argentina, tanto por suicidio como por homicidio, más 44 tentativas de homicidio y 99 tentativas de suicidio."</p>
+      <div style="font-size:11px; color:var(--gray); letter-spacing:0.5px;">— Organización Mundial Bullying Sin Fronteras · Estadísticas Argentina 2025 · <a href="https://bullyingsinfronteras.blogspot.com/2022/02/estadisticas-de-bullying-en-la.html" target="_blank" style="color:var(--mid); text-decoration:none;">bullyingsinfronteras.blogspot.com</a></div>
+    </div>
+
+    <!-- 4 razones La Nacion -->
+    <div class="section-eyebrow reveal" style="color:var(--soft); margin-bottom:16px;">Las 4 razones del aumento — La Nación, diciembre 2025</div>
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; margin-bottom:48px;">
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">📱</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Redes sociales sin límites</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">El bullying ya no termina cuando suena el timbre. El ciberbullying sigue las 24 horas, en el dispositivo que el niño lleva a casa.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">🏫</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Pérdida de autoridad docente</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">Los docentes están desbordados, sin herramientas ni protocolos para contener situaciones de agresión que crecen en intensidad y frecuencia.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">🧩</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Fragmentación social</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">La crisis económica y social se traslada al aula. Los niños expresan afuera lo que viven adentro. El aula es el primer espejo de la sociedad.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">🚨</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Prevención ausente</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">No hay protocolos reales de prevención. Se actúa cuando el daño ya está hecho. Los especialistas advierten que el clima escolar se minimiza hasta que es demasiado tarde.</div>
+      </div>
+
+    </div>
+
+    <!-- Cierre esperanzador -->
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(83,74,183,0.3), rgba(29,158,117,0.2)); border:1px solid rgba(83,74,183,0.4); border-radius:20px; padding:40px 36px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px;">EN NIDO ESCUELA</div>
+        <div style="font-family:'DM Serif Display',serif; font-size:24px; color:var(--white); line-height:1.4; margin-bottom:12px;">Tu hijo aprende en un entorno seguro, contenido y diseñado por vos.</div>
+        <p style="font-size:14px; color:var(--soft); line-height:1.75;">Sin bullying. Sin violencia. Sin redes sociales que no podés controlar durante el horario escolar. La educación en casa no es aislamiento — es elección consciente del entorno donde tu hijo crece.</p>
+      </div>
+      <div style="text-align:center; flex-shrink:0;">
+        <a href="#inscripcion" class="btn-primary" style="white-space:nowrap;">Proteger a mi hijo →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ CTA FINAL ══════ -->
+<section id="inscripcion" class="cta-section">
+  <div style="position:relative; max-width:1100px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="color:rgba(255,255,255,0.6);">Inscripciones abiertas · Ciclo 2025–2026</div>
+    <h2 class="section-title reveal" style="color:var(--white);">¿Listo para darle a tu hijo<br>la educación que merece?</h2>
+    <p class="section-desc reveal" style="color:rgba(255,255,255,0.7);margin:0 auto 48px;">Completá el formulario. Un asesor de NIDO Escuela se contacta con vos en menos de 24 horas para contarte todo y responder tus dudas — sin compromiso.</p>
+
+    <div class="cta-form reveal">
+      <div class="form-title">Quiero inscribir a mi hijo</div>
+      <div class="form-sub">Diagnóstico inicial gratuito · Sin compromiso · Respuesta en 24 hs</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Tu nombre</label>
+          <input type="text" class="form-input" placeholder="Ej: María González">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tu WhatsApp</label>
+          <input type="tel" class="form-input" placeholder="+54 9 11 0000 0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tu email</label>
+        <input type="email" class="form-input" placeholder="tu@email.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Ciudad / Provincia</label>
+          <input type="text" class="form-input" placeholder="Ej: Córdoba">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Edad del niño / los niños</label>
+          <input type="text" class="form-input" placeholder="Ej: 7 y 10 años">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">¿Por qué considerás el homeschooling?</label>
+        <select class="form-select">
+          <option value="">Seleccioná una opción</option>
+          <option>Mi hijo tiene altas capacidades / se aburre en la escuela</option>
+          <option>Mi hijo necesita más tiempo o apoyo del que el aula da</option>
+          <option>Somos una familia que viaja o nos movemos frecuentemente</option>
+          <option>Vivimos en una zona alejada con pocas opciones educativas</option>
+          <option>Quiero una certificación internacional para mi hijo</option>
+          <option>Queremos más tiempo en familia y más autonomía educativa</option>
+          <option>Otro motivo</option>
+        </select>
+      </div>
+      <button class="form-submit">Solicitar mi diagnóstico gratuito →</button>
+      <div class="form-disclaimer">
+        Al enviar este formulario aceptás que un asesor de NIDO Escuela se contacte con vos por WhatsApp o email. Sin spam. Sin compromiso. Podés darte de baja cuando quieras.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="36" height="24" viewBox="0 0 36 24" fill="none">
+            <path d="M2 22 A16 16 0 0 1 34 22" stroke="#534AB7" stroke-width="3" stroke-linecap="round"/>
+            <path d="M7 22 A11 11 0 0 1 29 22" stroke="#7F77DD" stroke-width="3" stroke-linecap="round"/>
+            <path d="M12 22 A6 6 0 0 1 24 22" stroke="#AFA9EC" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="18" cy="22" r="2.5" fill="#534AB7"/>
+          </svg>
+          <div>
+            <div class="footer-name">NIDO <span class="footer-name-sub">E S C U E L A</span></div>
+          </div>
+        </div>
+        <div class="footer-tagline">Tu hogar. El aula más poderosa del mundo.<br>Aprendizaje aumentado con certificación internacional.</div>
+        <div class="footer-cert-chips">
+          <div class="footer-cert-chip">🇺🇸 Certificado por Home Life Academy · Tennessee, USA</div>
+          <div class="footer-cert-chip">🇦🇷 Validado por UTN Argentina</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">La escuela</div>
+        <div class="footer-links">
+          <a href="#metodo-detalle">El método</a>
+          <a href="#certificacion">Certificaciones</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#faq">Preguntas frecuentes</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Para familias</div>
+        <div class="footer-links">
+          <a href="#inscripcion">Inscribirme</a>
+          <a href="#">Diagnóstico gratuito</a>
+          <a href="#">Comunidad NIDO</a>
+          <a href="#">Blog educativo</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-links">
+          <a href="mailto:hola@nidoescuela.com">hola@nidoescuela.com</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 NIDO Escuela. Todos los derechos reservados. Elaborado con <strong style="color:var(--violet)"><a href="https://www.promptear.org" target="_blank" style="color:var(--violet);text-decoration:none;">PROMPTEAR AI Ecosystem</a></strong>.</div>
+      <div class="footer-copy">nidoescuela.com · Argentina</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+// Mobile nav button visibility
+function handleNavResize() {
+  const btn = document.getElementById('navMenuBtn');
+  if (!btn) return;
+  btn.style.display = window.innerWidth <= 640 ? 'flex' : 'none';
+}
+window.addEventListener('resize', handleNavResize);
+handleNavResize();
+
+document.getElementById('navMenuBtn')?.addEventListener('click', function() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMobileMenu();
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// FAQ click feedback
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', function() {
+    setTimeout(() => {
+      this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  });
+});
+
+// Form submit
+document.querySelector('.form-submit').addEventListener('click', function(e) {
+  e.preventDefault();
+  this.textContent = '✓ ¡Recibimos tu consulta! Te contactamos en 24 hs.';
+  this.style.background = '#1D9E75';
+  this.disabled = true;
+});
+</script>
+
+
+<!-- ══════ MOBILE MENU ══════ -->
+<div id="mobileMenu" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:#1A1A2E; box-sizing:border-box; padding:16px 6% 32px;">
+
+  <!-- FILA 1: Logo + botón X -->
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="30" height="20" viewBox="0 0 30 20" fill="none">
+        <path d="M2 18 A13 13 0 0 1 28 18" stroke="#534AB7" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M6 18 A9 9 0 0 1 24 18" stroke="#7F77DD" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M10 18 A5 5 0 0 1 20 18" stroke="#AFA9EC" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="15" cy="18" r="2" fill="#534AB7"/>
+      </svg>
+      <div style="color:white; font-weight:800; font-size:17px; letter-spacing:-0.3px; line-height:1.1;">NIDO<div style="font-size:7px; color:#7F77DD; letter-spacing:1.2px; font-weight:400; margin-top:2px;">ESCUELA</div></div>
+    </div>
+    <button onclick="closeMobileMenu()" aria-label="Cerrar menú" style="width:48px; height:48px; background:#534AB7; border:2px solid #7F77DD; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 4l14 14M18 4L4 18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- FILA 2: Links -->
+  <div style="border-top:1px solid rgba(83,74,183,0.25); border-bottom:1px solid rgba(83,74,183,0.25);">
+    <a href="#metodo-detalle" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">El método <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#certificacion" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Certificación <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#padres" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Para padres <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#realidad" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Realidad escolar <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#faq" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; display:flex; align-items:center; justify-content:space-between;">Preguntas frecuentes <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+  </div>
+
+  <!-- FILA 3: CTA -->
+  <div style="margin-top:28px;">
+    <a href="#inscripcion" onclick="closeMobileMenu()" style="display:block; background:#534AB7; color:white; padding:18px; border-radius:12px; font-size:16px; font-weight:700; text-decoration:none; text-align:center;">Inscribirme →</a>
+    <p style="text-align:center; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.3);">Sin costo · Sin compromiso · Respuesta en 24 hs</p>
+  </div>
+
+</div>
+
+</div>
+</body>
+</html>
