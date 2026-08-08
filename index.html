@@ -38,7 +38,7 @@ nav {
 .nav-wordmark { color: var(--white); font-weight: 800; font-size: 18px; letter-spacing: -0.5px; line-height: 1; }
 .nav-wordmark span { display: block; font-size: 7.5px; font-weight: 400; color: var(--mid); letter-spacing: 1.2px; margin-top: 2px; white-space: nowrap; }
 .nav-links { display: flex; align-items: center; gap: 24px; margin-left: 32px; }
-.nav-links a { color: var(--soft); font-size: 13px; text-decoration: none; transition: color .2s; }
+.nav-links a { color: var(--soft); font-size: 13px; text-decoration: none; transition: color .2s; white-space: nowrap; }
 .nav-links a:hover { color: var(--white); }
 .nav-cta {
   background: var(--violet); color: var(--white) !important;
@@ -52,6 +52,10 @@ nav {
   background: rgba(83,74,183,0.3); border: 1px solid rgba(83,74,183,0.4);
   cursor: pointer; color: var(--white); flex-shrink: 0;
 }
+.lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 20px; padding: 3px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
+.lang-flag { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 14px; text-decoration: none; opacity: 0.45; transition: opacity .2s, background .2s; filter: grayscale(40%); }
+.lang-flag:hover { opacity: 0.8; }
+.lang-flag.active { opacity: 1; background: rgba(255,255,255,0.12); filter: none; cursor: default; }
 
 /* ─── HERO ─── */
 .hero {
@@ -518,11 +522,16 @@ footer {
 /* ═══════════════════════════════════════════
    RESPONSIVE — MOBILE (≤640px)
 ═══════════════════════════════════════════ */
+@media (max-width: 1040px) {
+  /* Nav-links + hamburger cambian de punto de corte antes que el resto del mobile CSS,
+     para que el selector de idioma no fuerce el wrap del menú en tablets */
+  .nav-links { display: none; }
+  .nav-menu-btn { display: flex; }
+}
 @media (max-width: 640px) {
 
   /* Nav */
   nav { padding: 0 4%; height: 58px; }
-  .nav-links { display: none; }
   .nav-badge { display: none; }
   .nav-wordmark { font-size: 15px; } .nav-wordmark span { letter-spacing: 0.8px; font-size: 7px; }
 
@@ -667,6 +676,10 @@ footer {
     <a href="#como-funciona">Cómo funciona</a>
     <a href="#padres">Para padres</a><a href="#realidad">Realidad escolar</a><a href="#faq">Preguntas</a>
     <a href="#inscripcion" class="nav-cta">Inscribirme</a>
+    <div class="lang-switch">
+      <a href="/" class="lang-flag active" aria-label="Español (Argentina)" title="Español (Argentina)">🇦🇷</a>
+      <a href="/pt/" class="lang-flag" aria-label="Português (Brasil)" title="Português (Brasil)">🇧🇷</a>
+    </div>
   </div>
   <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" style="display:none;">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -1774,7 +1787,7 @@ footer {
 function handleNavResize() {
   const btn = document.getElementById('navMenuBtn');
   if (!btn) return;
-  btn.style.display = window.innerWidth <= 640 ? 'flex' : 'none';
+  btn.style.display = window.innerWidth <= 1040 ? 'flex' : 'none';
 }
 window.addEventListener('resize', handleNavResize);
 handleNavResize();
@@ -1818,7 +1831,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
 
 <!-- ══════ MOBILE MENU ══════ -->
-<div id="mobileMenu" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:#1A1A2E; box-sizing:border-box; padding:16px 6% 32px;">
+<div id="mobileMenu" style="display:none; flex-direction:column; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:#1A1A2E; box-sizing:border-box; padding:16px 6% 32px; overflow-y:auto;">
 
   <!-- FILA 1: Logo + botón X -->
   <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
@@ -1851,6 +1864,12 @@ document.querySelectorAll('.faq-q').forEach(q => {
   <div style="margin-top:28px;">
     <a href="#inscripcion" onclick="closeMobileMenu()" style="display:block; background:#534AB7; color:white; padding:18px; border-radius:12px; font-size:16px; font-weight:700; text-decoration:none; text-align:center;">Inscribirme →</a>
     <p style="text-align:center; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.3);">Sin costo · Sin compromiso · Respuesta en 24 hs</p>
+  </div>
+
+  <!-- FILA 4: Idioma -->
+  <div style="margin-top:24px; display:flex; align-items:center; justify-content:center; gap:10px;">
+    <a href="/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-size:18px;">🇦🇷</span> Español</a>
+    <a href="/pt/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇧🇷</span> Português</a>
   </div>
 
 </div>
