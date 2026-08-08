@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIDO Escuela · Perfil do Estudante</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:    #1A1A2E;
+  --card:    #20203A;
+  --card2:   #252545;
+  --violet:  #534AB7;
+  --mid:     #7F77DD;
+  --soft:    #AFA9EC;
+  --light:   #CECBF6;
+  --xlight:  #EEEDFE;
+  --white:   #FFFFFF;
+  --smoke:   rgba(255,255,255,0.55);
+  --border:  rgba(83,74,183,0.22);
+  --border2: rgba(255,255,255,0.07);
+  --amber:   #E8920A;
+  --green:   #1D9E75;
+  --red:     #E05252;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;font-weight:400;
+  background:var(--deep);color:var(--white);
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(83,74,183,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(83,74,183,0.06) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(26,26,46,0.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 5%;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-wm{font-size:15px;font-weight:700;color:var(--white);letter-spacing:-.3px}
+.nav-wm span{display:block;font-size:8px;color:var(--mid);letter-spacing:1.5px;font-weight:400;text-transform:uppercase}
+.nav-step{font-size:12px;color:var(--smoke);font-weight:400}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{
+  position:sticky;top:60px;z-index:99;
+  background:rgba(26,26,46,0.9);
+  padding:12px 5%;
+  border-bottom:1px solid var(--border2);
+}
+.progress-bar{
+  height:3px;background:var(--border2);border-radius:3px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--violet),var(--mid));
+  border-radius:3px;transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+.progress-steps{
+  display:flex;justify-content:space-between;margin-top:8px;
+}
+.ps{
+  font-size:10px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--border);transition:color .3s;cursor:default;
+}
+.ps.done{color:var(--violet)}
+.ps.active{color:var(--mid)}
+
+/* ── MAIN ── */
+main{
+  max-width:720px;margin:0 auto;
+  padding:48px 5% 100px;
+  position:relative;z-index:1;
+}
+
+/* ── SECCIONES ── */
+.form-section{display:none}
+.form-section.active{display:block;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-header{margin-bottom:36px}
+.sec-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--violet);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-eyebrow::before{content:'';width:20px;height:1px;background:var(--violet)}
+.sec-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.1;
+  margin-bottom:10px;
+}
+.sec-title em{font-style:italic;color:var(--soft)}
+.sec-desc{font-size:.9rem;color:var(--smoke);line-height:1.65;font-weight:300;max-width:560px}
+
+/* ── GRUPOS DE CAMPO ── */
+.field-group{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:16px;
+}
+.field-group-title{
+  font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--mid);margin-bottom:20px;padding-bottom:12px;
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;gap:8px;
+}
+.field-group-title .icon{font-size:14px}
+
+/* ── FIELDS ── */
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+label{
+  display:block;font-size:.82rem;font-weight:500;
+  color:rgba(255,255,255,.75);margin-bottom:7px;
+  letter-spacing:.2px;
+}
+label .req{color:var(--amber);margin-left:3px;font-size:.7rem}
+label .hint{
+  display:block;font-size:.74rem;font-weight:300;
+  color:var(--smoke);margin-top:2px;line-height:1.4;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea{
+  width:100%;
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:11px 14px;
+  font-family:'DM Sans',sans-serif;
+  font-size:.88rem;font-weight:400;
+  color:var(--white);
+  transition:border-color .2s,box-shadow .2s;
+  outline:none;
+  appearance:none;
+  -webkit-appearance:none;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.22)}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--violet);
+  box-shadow:0 0 0 3px rgba(83,74,183,0.18);
+}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237F77DD' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:36px;cursor:pointer;
+}
+select option{background:var(--deep);color:var(--white)}
+textarea{min-height:100px;resize:vertical;line-height:1.6}
+
+/* ── RADIO / CHECK GRID ── */
+.option-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;
+}
+.option-grid.col2{grid-template-columns:1fr 1fr}
+.option-grid.col1{grid-template-columns:1fr}
+
+.opt-item{
+  position:relative;
+}
+.opt-item input[type="radio"],
+.opt-item input[type="checkbox"]{
+  position:absolute;opacity:0;width:0;height:0;
+}
+.opt-item label{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 14px;
+  background:var(--card2);border:1px solid var(--border);border-radius:8px;
+  cursor:pointer;transition:all .15s;font-size:.83rem;
+  color:rgba(255,255,255,.65);font-weight:400;margin:0;
+  line-height:1.4;
+}
+.opt-item label .opt-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.opt-item input:checked + label{
+  background:rgba(83,74,183,0.18);
+  border-color:var(--violet);
+  color:var(--white);
+}
+.opt-item label:hover{border-color:rgba(83,74,183,0.5);color:var(--white)}
+
+/* ── SLIDER ── */
+.slider-wrap{padding:4px 0 8px}
+input[type="range"]{
+  width:100%;height:4px;
+  background:var(--border);border-radius:4px;
+  outline:none;border:none;padding:0;
+  accent-color:var(--violet);cursor:pointer;
+}
+.slider-labels{
+  display:flex;justify-content:space-between;
+  font-size:.72rem;color:var(--smoke);margin-top:6px;
+}
+.slider-val{
+  display:inline-block;background:var(--violet);
+  color:white;font-size:.72rem;font-weight:600;
+  padding:2px 8px;border-radius:4px;margin-top:4px;
+}
+
+/* ── CAMPO 2 COLS ── */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.field-row{grid-template-columns:1fr}}
+
+/* ── NAVEGACIÓN ENTRE PASOS ── */
+.step-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:40px;padding-top:24px;
+  border-top:1px solid var(--border2);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 24px;border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:all .2s;border:none;outline:none;
+  letter-spacing:.2px;
+}
+.btn-primary{background:var(--violet);color:white}
+.btn-primary:hover{background:var(--mid);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--smoke);border:1px solid var(--border)}
+.btn-secondary:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
+.btn-submit{
+  background:linear-gradient(135deg,var(--violet),var(--mid));
+  color:white;padding:15px 32px;font-size:.95rem;
+  box-shadow:0 4px 20px rgba(83,74,183,0.4);
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(83,74,183,0.5)}
+
+/* ── STEP INDICATOR ── */
+.step-counter{
+  font-size:.78rem;color:var(--smoke);
+  font-weight:400;
+}
+
+/* ── INTRO SCREEN ── */
+.intro-card{
+  background:var(--card);border:1px solid var(--border);
+  border-top:3px solid var(--violet);
+  border-radius:16px;padding:36px 32px;
+  margin-bottom:28px;
+}
+.intro-items{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+.intro-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px;background:var(--card2);border-radius:10px;
+}
+.intro-item .ii-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(83,74,183,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.intro-item .ii-text strong{font-size:.88rem;display:block;margin-bottom:2px;color:var(--white)}
+.intro-item .ii-text span{font-size:.78rem;color:var(--smoke);font-weight:300;line-height:1.4}
+
+/* ── ÉXITO ── */
+.success-wrap{
+  text-align:center;padding:60px 20px;
+  animation:fadeUp .5s ease both;
+}
+.success-icon{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(29,158,117,0.15);border:2px solid rgba(29,158,117,.4);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;font-size:36px;
+}
+
+/* ── SEPARADOR ── */
+.divider{
+  height:1px;background:var(--border2);
+  margin:24px 0;
+}
+
+/* ── TAGS ── */
+.tag{
+  display:inline-block;font-size:.7rem;font-weight:500;
+  padding:3px 9px;border-radius:4px;letter-spacing:.5px;
+  text-transform:uppercase;
+}
+.tag-required{background:rgba(232,146,10,.15);color:var(--amber);border:1px solid rgba(232,146,10,.25)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .intro-card{padding:22px 18px}
+  .field-group{padding:18px}
+  .option-grid{grid-template-columns:1fr}
+  .option-grid.col2{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/pt/" class="nav-logo">
+    <svg width="26" height="18" viewBox="0 0 60 40" fill="none">
+      <path d="M3 36 A27 27 0 0 1 57 36" stroke="#534AB7" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M11 36 A19 19 0 0 1 49 36" stroke="#7F77DD" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M19 36 A11 11 0 0 1 41 36" stroke="#AFA9EC" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="30" cy="36" r="4" fill="#534AB7"/>
+    </svg>
+    <div class="nav-wm">NIDO <span>Perfil do estudante</span></div>
+  </a>
+  <div class="nav-step" id="navStep">Etapa 1 de 6</div>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:16%"></div></div>
+  <div class="progress-steps">
+    <span class="ps active" id="ps1">Início</span>
+    <span class="ps" id="ps2">Dados</span>
+    <span class="ps" id="ps3">Aprendizado</span>
+    <span class="ps" id="ps4">Perfil</span>
+    <span class="ps" id="ps5">Matérias</span>
+    <span class="ps" id="ps6">Conclusão</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ══ PASO 0: INTRO ══ -->
+<div class="form-section active" id="step0">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Perfil do estudante · NIDO Escuela</div>
+    <h1 class="sec-title">Conhecemos seu filho<br><em>antes de ensinar.</em></h1>
+    <p class="sec-desc">Este formulário nos ajuda a entender como ele(a) aprende, o que o(a) apaixona, quais são seus pontos fortes e como construir o programa educacional ideal. Leva cerca de 15 minutos. Responda com sinceridade — não existem respostas certas ou erradas.</p>
+  </div>
+
+  <div class="intro-card">
+    <div class="field-group-title"><span class="icon">✦</span> Para que serve este formulário?</div>
+    <div class="intro-items">
+      <div class="intro-item">
+        <div class="ii-icon">🧠</div>
+        <div class="ii-text">
+          <strong>Perfil cognitivo único</strong>
+          <span>Entendemos como seu filho(a) processa as informações e qual estilo de aprendizagem é mais natural para ele(a).</span>
+        </div>
+      </div>
+      <div class="intro-item">
+        <div class="ii-icon">🤖</div>
+        <div class="ii-text">
+          <strong>Assistente de IA personalizado</strong>
+          <span>Com esses dados construímos um agente de IA adaptado exatamente à forma como ele(a) aprende, desde o primeiro dia.</span>
+        </div>
+      </div>
+      <div class="intro-item">
+        <div class="ii-icon">📄</div>
+        <div class="ii-text">
+          <strong>Relatório completo para a família</strong>
+          <span>A equipe da NIDO entrega um documento com o perfil completo do seu filho(a) — seus pontos fortes, tendências e plano sugerido.</span>
+        </div>
+      </div>
+      <div class="intro-item">
+        <div class="ii-icon">📐</div>
+        <div class="ii-text">
+          <strong>Programa adaptado à sua pessoa</strong>
+          <span>As 4 matérias principais da Home Life Academy se combinam com um programa personalizado de acordo com seus talentos e interesses.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <div></div>
+    <button class="btn btn-primary" onclick="goTo(1)">Começar →</button>
+  </div>
+</div>
+
+<!-- ══ PASO 1: DATOS BÁSICOS ══ -->
+<div class="form-section" id="step1">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Etapa 1 de 5 · Dados básicos</div>
+    <h2 class="sec-title">Quem é<br><em>seu filho(a)?</em></h2>
+    <p class="sec-desc">Dados gerais do estudante e do pai ou mãe que preenche o formulário.</p>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">👤</span> Sobre o estudante</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Nome completo do estudante <span class="req">*</span></label>
+        <input type="text" id="nombre_estudiante" placeholder="Ex: Sofia Martins">
+      </div>
+      <div class="field">
+        <label>Data de nascimento <span class="req">*</span></label>
+        <input type="date" id="fecha_nac">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Gênero</label>
+        <select id="genero">
+          <option value="">Selecione</option>
+          <option>Menino</option>
+          <option>Menina</option>
+          <option>Prefiro não especificar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Ano / série atual ou última cursada <span class="req">*</span></label>
+        <select id="grado">
+          <option value="">Selecione</option>
+          <option>Jardim / Pré-escola</option>
+          <option>1° ano (Grade 1)</option>
+          <option>2° ano (Grade 2)</option>
+          <option>3° ano (Grade 3)</option>
+          <option>4° ano (Grade 4)</option>
+          <option>5° ano (Grade 5)</option>
+          <option>6° ano (Grade 6)</option>
+          <option>7° ano / 1° EM (Grade 7)</option>
+          <option>8° ano (Grade 8)</option>
+          <option>9° ano (Grade 9)</option>
+          <option>1° EM (Grade 10)</option>
+          <option>2° EM (Grade 11)</option>
+          <option>3° EM (Grade 12)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Há quanto tempo está fora do sistema educacional formal? (se aplicável)</label>
+      <select id="tiempo_fuera">
+        <option value="">Selecione</option>
+        <option>Ainda está na escola</option>
+        <option>Menos de 6 meses</option>
+        <option>Entre 6 meses e 1 ano</option>
+        <option>Entre 1 e 2 anos</option>
+        <option>Mais de 2 anos</option>
+        <option>Nunca foi à escola tradicional</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">👨‍👩‍👦</span> Sobre a família</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Nome de quem preenche este formulário <span class="req">*</span></label>
+        <input type="text" id="nombre_padre" placeholder="Ex: Carlos Martins">
+      </div>
+      <div class="field">
+        <label>Relação com o estudante</label>
+        <select id="relacion">
+          <option value="">Selecione</option>
+          <option>Pai</option>
+          <option>Mãe</option>
+          <option>Tutor(a) legal</option>
+          <option>Outro</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>E-mail de contato <span class="req">*</span></label>
+      <input type="email" id="email_padre" placeholder="voce@email.com">
+    </div>
+
+    <div class="field">
+      <label>Há outros filhos na NIDO ou que vão ingressar?
+        <span class="hint">Se sim, você preencherá um formulário para cada um.</span>
+      </label>
+      <div class="option-grid col2">
+        <div class="opt-item"><input type="radio" name="otros_hijos" id="oh_si" value="sim"><label for="oh_si">Sim, tenho mais filhos</label></div>
+        <div class="opt-item"><input type="radio" name="otros_hijos" id="oh_no" value="não"><label for="oh_no">Não, é filho único</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goTo(0)">← Voltar</button>
+    <span class="step-counter">1 de 5</span>
+    <button class="btn btn-primary" onclick="goTo(2)">Avançar →</button>
+  </div>
+</div>
+
+<!-- ══ PASO 2: ESTILO DE APRENDIZAJE ══ -->
+<div class="form-section" id="step2">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Etapa 2 de 5 · Estilo de aprendizagem</div>
+    <h2 class="sec-title">Como <em>aprende</em><br>seu filho(a)?</h2>
+    <p class="sec-desc">Esta seção nos ajuda a entender como ele(a) processa melhor as informações. Não há respostas certas — o importante é ser sincero(a).</p>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🧠</span> Canais de aprendizagem</div>
+    <div class="field">
+      <label>Como aprende melhor? <span class="req">*</span>
+        <span class="hint">Selecione todas as que se aplicam.</span>
+      </label>
+      <div class="option-grid">
+        <div class="opt-item"><input type="checkbox" id="ap_visual" name="aprendizaje" value="Visual"><label for="ap_visual"><span class="opt-icon">👁️</span> Vendo imagens, vídeos ou diagramas</label></div>
+        <div class="opt-item"><input type="checkbox" id="ap_auditivo" name="aprendizaje" value="Auditivo"><label for="ap_auditivo"><span class="opt-icon">👂</span> Ouvindo explicações orais</label></div>
+        <div class="opt-item"><input type="checkbox" id="ap_kinestesico" name="aprendizaje" value="Cinestésico"><label for="ap_kinestesico"><span class="opt-icon">✋</span> Fazendo, tocando, experimentando</label></div>
+        <div class="opt-item"><input type="checkbox" id="ap_lectura" name="aprendizaje" value="Leitura"><label for="ap_lectura"><span class="opt-icon">📖</span> Lendo e fazendo anotações</label></div>
+        <div class="opt-item"><input type="checkbox" id="ap_social" name="aprendizaje" value="Social"><label for="ap_social"><span class="opt-icon">🗣️</span> Conversando e debatendo</label></div>
+        <div class="opt-item"><input type="checkbox" id="ap_solo" name="aprendizaje" value="Sozinho"><label for="ap_solo"><span class="opt-icon">🔇</span> Sozinho(a), sem distrações</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">⚡</span> Atenção e concentração</div>
+
+    <div class="field">
+      <label>Por quanto tempo consegue se concentrar sem interrupções? <span class="req">*</span></label>
+      <select id="concentracion">
+        <option value="">Selecione</option>
+        <option>Menos de 10 minutos</option>
+        <option>10 a 20 minutos</option>
+        <option>20 a 40 minutos</option>
+        <option>40 minutos a 1 hora</option>
+        <option>Mais de 1 hora (em temas de interesse)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>O que mais o(a) distrai? <span class="hint">Selecione todas as que se aplicam.</span></label>
+      <div class="option-grid">
+        <div class="opt-item"><input type="checkbox" id="d_celular" value="Celular / telas" name="distractores"><label for="d_celular">📱 Celular / telas</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_ruido" value="Ruído ambiente" name="distractores"><label for="d_ruido">🔊 Ruído ambiente</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_hermanos" value="Irmãos / outras pessoas" name="distractores"><label for="d_hermanos">👦 Irmãos / outras pessoas</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_aburrimiento" value="Fica entediado se o tema não agrada" name="distractores"><label for="d_aburrimiento">😴 Fica entediado se o tema não agrada</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_hambre" value="Fome / desconforto físico" name="distractores"><label for="d_hambre">🍎 Fome / desconforto físico</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_ansiedad" value="Ansiedade ou preocupações" name="distractores"><label for="d_ansiedad">😟 Ansiedade ou preocupações</label></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tem diagnóstico de TDA, TDAH, TEA, altas habilidades ou outro?
+        <span class="hint">Esta informação é confidencial e nos ajuda a personalizar melhor o programa.</span>
+      </label>
+      <textarea id="diagnostico" placeholder="Ex: Tem TDAH diagnosticado desde os 8 anos. Toma medicação pela manhã. Ou escreva 'Sem diagnóstico conhecido'." style="min-height:80px"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🌅</span> Ritmo e horários</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Em que momento do dia rende melhor?</label>
+        <select id="momento_dia">
+          <option value="">Selecione</option>
+          <option>Manhã cedo (7-9h)</option>
+          <option>Meio da manhã (9-12h)</option>
+          <option>Ao meio-dia (12-14h)</option>
+          <option>Tarde (15-18h)</option>
+          <option>Noite (depois das 20h)</option>
+          <option>Varia muito a cada dia</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Prefere trabalhar em blocos longos ou sessões curtas?</label>
+        <select id="bloques">
+          <option value="">Selecione</option>
+          <option>Blocos longos (1-2 horas contínuas)</option>
+          <option>Sessões curtas com pausas frequentes</option>
+          <option>Depende do tema</option>
+          <option>Não tem preferência clara</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goTo(1)">← Voltar</button>
+    <span class="step-counter">2 de 5</span>
+    <button class="btn btn-primary" onclick="goTo(3)">Avançar →</button>
+  </div>
+</div>
+
+<!-- ══ PASO 3: PERFIL EMOCIONAL Y SOCIAL ══ -->
+<div class="form-section" id="step3">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Etapa 3 de 5 · Perfil pessoal</div>
+    <h2 class="sec-title">Quem é<br><em>por dentro?</em></h2>
+    <p class="sec-desc">A educação que construímos precisa dialogar com sua personalidade, suas emoções e como se relaciona com os outros e consigo mesmo(a).</p>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">💬</span> Personalidade</div>
+
+    <div class="field">
+      <label>Como você descreveria a personalidade dele(a)? <span class="hint">Selecione as que mais o(a) representam.</span></label>
+      <div class="option-grid">
+        <div class="opt-item"><input type="checkbox" id="p_curioso" value="Curioso(a), faz muitas perguntas" name="personalidad"><label for="p_curioso">🔍 Curioso(a), faz muitas perguntas</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_creativo" value="Criativo(a), gosta de inventar" name="personalidad"><label for="p_creativo">🎨 Criativo(a), gosta de inventar</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_lider" value="Líder, gosta de organizar" name="personalidad"><label for="p_lider">🦁 Líder, gosta de organizar</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_introvertido" value="Introvertido(a), prefere ficar sozinho(a)" name="personalidad"><label for="p_introvertido">🌙 Introvertido(a), prefere ficar sozinho(a)</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_extrovertido" value="Extrovertido(a), adora estar com pessoas" name="personalidad"><label for="p_extrovertido">☀️ Extrovertido(a), adora estar com pessoas</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_perfeccionista" value="Perfeccionista, muito detalhista" name="personalidad"><label for="p_perfeccionista">📐 Perfeccionista, muito detalhista</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_sensible" value="Muito sensível emocionalmente" name="personalidad"><label for="p_sensible">💜 Muito sensível emocionalmente</label></div>
+        <div class="opt-item"><input type="checkbox" id="p_practico" value="Prático(a), gosta de resultados" name="personalidad"><label for="p_practico">🔧 Prático(a), gosta de resultados</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">❤️</span> O que o(a) apaixona</div>
+
+    <div class="field">
+      <label>Quais temas, atividades ou áreas geram verdadeira emoção nele(a)? <span class="req">*</span>
+        <span class="hint">Seja específico(a) — isso é o mais importante do formulário.</span>
+      </label>
+      <textarea id="pasiones" placeholder="Ex: Adora construir coisas com as mãos, é apaixonado(a) por dinossauros e astronomia, passa horas desenhando personagens de suas próprias histórias, gosta muito de cozinha e de experimentar ingredientes..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Tem algum talento ou habilidade especial que a família tenha notado?</label>
+      <textarea id="talentos" placeholder="Ex: Toca piano de ouvido sem saber ler música. Tem uma memória fotográfica para mapas. Resolve problemas matemáticos mentalmente..." style="min-height:80px"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">⛔</span> O que rejeita ou evita</div>
+
+    <div class="field">
+      <label>Quais temas ou atividades ele(a) evita ativamente ou rejeita? <span class="req">*</span></label>
+      <textarea id="rechazos" placeholder="Ex: Tem muita dificuldade com escrita à mão. Evita atividades em grupo competitivas. Fica ansioso(a) com cálculo mental em voz alta. Não tolera repetição mecânica..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Tem alguma frustração recorrente com a forma como aprendia na escola?</label>
+      <textarea id="frustraciones" placeholder="Ex: Ficava entediado(a) porque terminava tudo muito rápido. Sentia que nunca havia tempo para suas perguntas. O barulho da sala o(a) impedia de se concentrar..." style="min-height:80px"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🎯</span> Motivação</div>
+
+    <div class="field">
+      <label>O que o(a) motiva a se esforçar? <span class="hint">Selecione todas as que se aplicam.</span></label>
+      <div class="option-grid">
+        <div class="opt-item"><input type="checkbox" id="m_desafio" value="O desafio, superar seus próprios limites" name="motivacion"><label for="m_desafio">🏆 O desafio, superar seus próprios limites</label></div>
+        <div class="opt-item"><input type="checkbox" id="m_reconocimiento" value="O reconhecimento e os elogios" name="motivacion"><label for="m_reconocimiento">⭐ O reconhecimento e os elogios</label></div>
+        <div class="opt-item"><input type="checkbox" id="m_utilidad" value="Entender para que serve o que aprende" name="motivacion"><label for="m_utilidad">🔑 Entender para que serve o que aprende</label></div>
+        <div class="opt-item"><input type="checkbox" id="m_creatividad" value="Poder criar algo próprio" name="motivacion"><label for="m_creatividad">🎨 Poder criar algo próprio</label></div>
+        <div class="opt-item"><input type="checkbox" id="m_competencia" value="A competição com outros" name="motivacion"><label for="m_competencia">🥇 A competição com outros</label></div>
+        <div class="opt-item"><input type="checkbox" id="m_ayudar" value="Ajudar a família ou outras pessoas" name="motivacion"><label for="m_ayudar">🤝 Ajudar a família ou outras pessoas</label></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>O que acontece quando algo é muito difícil para ele(a)? <span class="req">*</span></label>
+      <select id="ante_dificultad">
+        <option value="">Selecione</option>
+        <option>Fica frustrado(a) e desiste rápido</option>
+        <option>Fica frustrado(a) mas insiste até conseguir</option>
+        <option>Busca ajuda imediatamente</option>
+        <option>Deixa de lado e volta depois com outra perspectiva</option>
+        <option>Evita o tema completamente</option>
+        <option>Varia muito conforme o tema</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goTo(2)">← Voltar</button>
+    <span class="step-counter">3 de 5</span>
+    <button class="btn btn-primary" onclick="goTo(4)">Avançar →</button>
+  </div>
+</div>
+
+<!-- ══ PASO 4: MATERIAS Y PROGRAMA ══ -->
+<div class="form-section" id="step4">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Etapa 4 de 5 · Matérias e programa</div>
+    <h2 class="sec-title">A relação dele(a)<br><em>com cada área.</em></h2>
+    <p class="sec-desc">Avalie como seu filho(a) se relaciona com cada área do conhecimento. Esta informação define o nível e o enfoque de cada matéria no programa dele(a).</p>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">📐</span> Matemática</div>
+    <div class="field">
+      <label>Como ele(a) se dá com números e raciocínio lógico?</label>
+      <select id="mat_nivel">
+        <option value="">Selecione</option>
+        <option>Tem muita dificuldade, gera ansiedade</option>
+        <option>Tem dificuldade mas consegue com apoio</option>
+        <option>Nível básico, sem dificuldades nem entusiasmo</option>
+        <option>Gosta e vai bem</option>
+        <option>É um ponto forte, está acima da idade</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Que tipo de problema matemático é mais natural para ele(a)?</label>
+      <div class="option-grid col2">
+        <div class="opt-item"><input type="radio" name="mat_tipo" id="mt_concreto" value="concreto"><label for="mt_concreto">🧩 Concreto (com objetos, visual)</label></div>
+        <div class="opt-item"><input type="radio" name="mat_tipo" id="mt_aplicado" value="aplicado"><label for="mt_aplicado">💰 Aplicado (dinheiro, culinária, vida real)</label></div>
+        <div class="opt-item"><input type="radio" name="mat_tipo" id="mt_abstracto" value="abstracto"><label for="mt_abstracto">🔢 Abstrato (fórmulas, álgebra)</label></div>
+        <div class="opt-item"><input type="radio" name="mat_tipo" id="mt_ninguno" value="ninguno"><label for="mt_ninguno">❌ Nenhum ainda é natural para ele(a)</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🌍</span> Ciências e História</div>
+    <div class="field">
+      <label>Ele(a) se interessa por entender como funciona o mundo natural?</label>
+      <select id="ciencias_nivel">
+        <option value="">Selecione</option>
+        <option>Quase não se interessa</option>
+        <option>Se interessa só quando há experimentos ou coisas visuais</option>
+        <option>Gosta em geral</option>
+        <option>É apaixonado(a) por ciências</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Ele(a) se interessa por história, pelos porquês das civilizações?</label>
+      <select id="historia_nivel">
+        <option value="">Selecione</option>
+        <option>Não se interessa</option>
+        <option>Só quando há histórias ou personagens interessantes</option>
+        <option>Gosta quando se conecta com o presente</option>
+        <option>É apaixonado(a), busca conteúdo por conta própria</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">📚</span> Comunicação e leitura</div>
+    <div class="field-row">
+      <div class="field">
+        <label>Como é a relação dele(a) com a leitura?</label>
+        <select id="lectura">
+          <option value="">Selecione</option>
+          <option>Tem dificuldade para ler, evita livros</option>
+          <option>Lê só quando é obrigado(a)</option>
+          <option>Lê quando gosta do tema</option>
+          <option>Adora ler, faz por prazer</option>
+          <option>Lê vorazmente, acima do seu nível</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>E com a escrita e expressão escrita?</label>
+        <select id="escritura">
+          <option value="">Selecione</option>
+          <option>Tem muita dificuldade, evita</option>
+          <option>Consegue escrever mas não gosta</option>
+          <option>Escreve bem quando se interessa pelo tema</option>
+          <option>Gosta de escrever histórias ou ideias próprias</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Fala ou entende outro idioma além do português?</label>
+      <input type="text" id="idiomas" placeholder="Ex: Inglês básico escolar. Ou: Só português.">
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🎨</span> Arte, música e criatividade</div>
+    <div class="field">
+      <label>Ele(a) tem alguma expressão artística ou criativa que pratica ou curte?
+        <span class="hint">Selecione todas as que se aplicam.</span>
+      </label>
+      <div class="option-grid">
+        <div class="opt-item"><input type="checkbox" id="a_dibujo" value="Desenho ou ilustração" name="arte"><label for="a_dibujo">✏️ Desenho ou ilustração</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_musica" value="Música (canto, instrumento)" name="arte"><label for="a_musica">🎵 Música (canto, instrumento)</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_escritura" value="Escrita criativa, contos" name="arte"><label for="a_escritura">✍️ Escrita criativa, contos</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_teatro" value="Teatro ou atuação" name="arte"><label for="a_teatro">🎭 Teatro ou atuação</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_video" value="Vídeo, animação, edição" name="arte"><label for="a_video">🎬 Vídeo, animação, edição</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_construccion" value="Construir, montar, fazer com as mãos" name="arte"><label for="a_construccion">🧱 Construir, montar, fazer com as mãos</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_cocina" value="Culinária ou gastronomia" name="arte"><label for="a_cocina">🍳 Culinária ou gastronomia</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_ninguno" value="Ainda não encontrou a sua" name="arte"><label for="a_ninguno">❓ Ainda não encontrou a sua</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">💻</span> Tecnologia e IA</div>
+    <div class="field-row">
+      <div class="field">
+        <label>Como usa a tecnologia atualmente?</label>
+        <select id="tecnologia">
+          <option value="">Selecione</option>
+          <option>Só para entretenimento (jogos, YouTube, redes)</option>
+          <option>Também para buscar informação ou aprender</option>
+          <option>Cria conteúdo (vídeos, design, jogos)</option>
+          <option>Programa ou tem interesse em aprender a programar</option>
+          <option>Uso muito reduzido de tecnologia</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Já usou ferramentas de IA (ChatGPT, etc.)?</label>
+        <select id="ia_uso">
+          <option value="">Selecione</option>
+          <option>Não, nunca</option>
+          <option>Já tentou mas não sabe usar bem</option>
+          <option>Usa às vezes para tarefas</option>
+          <option>Usa com frequência e com critério</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goTo(3)">← Voltar</button>
+    <span class="step-counter">4 de 5</span>
+    <button class="btn btn-primary" onclick="goTo(5)">Avançar →</button>
+  </div>
+</div>
+
+<!-- ══ PASO 5: CIERRE Y EXPECTATIVAS ══ -->
+<div class="form-section" id="step5">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Etapa 5 de 5 · Expectativas</div>
+    <h2 class="sec-title">O que espera<br><em>a família?</em></h2>
+    <p class="sec-desc">As últimas perguntas são sobre os sonhos de vocês para este filho(a) e o que esperam da NIDO Escuela.</p>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🌟</span> Sonhos e expectativas</div>
+
+    <div class="field">
+      <label>O que seu filho(a) quer ser ou fazer quando crescer? <span class="hint">Mesmo que seja vago ou mude sempre, é valioso saber.</span></label>
+      <textarea id="suenos" placeholder="Ex: Quer ser astronauta desde os 5 anos. Diz que quer ter sua própria empresa. Ainda não sabe, mas é apaixonado(a) por ajudar as pessoas. Tem vários sonhos e eles mudam com frequência..." style="min-height:80px"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Qual é o maior sonho da família para este filho(a)? <span class="req">*</span></label>
+      <textarea id="suenos_familia" placeholder="Ex: Que seja livre para escolher seu caminho com uma base sólida. Que tenha acesso à universidade no exterior. Que desenvolva seu talento musical sem perder a formação acadêmica..."></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🏫</span> O que esperam da NIDO</div>
+
+    <div class="field">
+      <label>O que é mais importante para vocês na experiência NIDO? <span class="req">*</span>
+        <span class="hint">Selecione até 3 opções.</span>
+      </label>
+      <div class="option-grid col1">
+        <div class="opt-item"><input type="checkbox" id="e_certificacion" value="A certificação internacional (Home Life Academy)" name="expectativas"><label for="e_certificacion">🏛️ A certificação internacional (Home Life Academy)</label></div>
+        <div class="opt-item"><input type="checkbox" id="e_personalizado" value="O programa personalizado para meu filho(a)" name="expectativas"><label for="e_personalizado">🎯 O programa personalizado para meu filho(a)</label></div>
+        <div class="opt-item"><input type="checkbox" id="e_ia" value="O uso de IA como ferramenta de aprendizagem" name="expectativas"><label for="e_ia">🤖 O uso de IA como ferramenta de aprendizagem</label></div>
+        <div class="opt-item"><input type="checkbox" id="e_flexibilidad" value="A flexibilidade de horários e ritmo próprio" name="expectativas"><label for="e_flexibilidad">⏰ A flexibilidade de horários e ritmo próprio</label></div>
+        <div class="opt-item"><input type="checkbox" id="e_valores" value="A formação em valores, ética e fé" name="expectativas"><label for="e_valores">✝️ A formação em valores, ética e fé</label></div>
+        <div class="opt-item"><input type="checkbox" id="e_comunidad" value="A comunidade de famílias NIDO" name="expectativas"><label for="e_comunidad">🤝 A comunidade de famílias NIDO</label></div>
+        <div class="opt-item"><input type="checkbox" id="e_autonomia" value="Que meu filho(a) aprenda a aprender sozinho(a)" name="expectativas"><label for="e_autonomia">🦅 Que meu filho(a) aprenda a aprender sozinho(a)</label></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Há mais alguma coisa que gostariam que a equipe da NIDO soubesse sobre seu filho(a) antes de montar o programa?</label>
+      <textarea id="libre" placeholder="Espaço livre para tudo o que não coube nas perguntas anteriores. Qualquer contexto, história, situação ou detalhe que considere importante." style="min-height:120px"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-group-title"><span class="icon">🔒</span> Confirmação</div>
+    <div class="field">
+      <div class="opt-item">
+        <input type="checkbox" id="acepto_privacidad">
+        <label for="acepto_privacidad" style="font-size:.82rem; color:rgba(255,255,255,.65)">
+          Entendo que esta informação é confidencial e será usada exclusivamente pela equipe da NIDO Escuela para construir o perfil e o programa educacional do meu filho(a).
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goTo(4)">← Voltar</button>
+    <span class="step-counter">5 de 5</span>
+    <button class="btn btn-submit" onclick="enviarFormulario()">Enviar perfil completo →</button>
+  </div>
+</div>
+
+<!-- ══ ÉXITO ══ -->
+<div class="form-section" id="stepSuccess">
+  <div class="success-wrap">
+    <div class="success-icon">✅</div>
+    <div class="sec-eyebrow" style="justify-content:center">Perfil recebido · Em andamento</div>
+    <h2 class="sec-title" style="margin-bottom:14px">Recebemos!<br><em>Obrigado pela confiança.</em></h2>
+    <p class="sec-desc" style="margin:0 auto 36px;max-width:480px;text-align:center">
+      A equipe da NIDO Escuela vai revisar o perfil do seu filho(a) e enviar o <strong style="color:var(--white)">Relatório de Perfil do Estudante</strong> — um documento único e personalizado — nos próximos dias.
+    </p>
+    <div class="field-group" style="text-align:left;max-width:480px;margin:0 auto 32px">
+      <div class="field-group-title">O que acontece agora?</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="width:28px;height:28px;border-radius:50%;background:rgba(83,74,183,0.2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--soft);flex-shrink:0">1</span>
+          <div><strong style="font-size:.88rem;display:block;margin-bottom:2px">A equipe analisa as respostas</strong><span style="font-size:.78rem;color:var(--smoke)">Revisamos cada seção com atenção para entender o estudante em profundidade.</span></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="width:28px;height:28px;border-radius:50%;background:rgba(83,74,183,0.2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--soft);flex-shrink:0">2</span>
+          <div><strong style="font-size:.88rem;display:block;margin-bottom:2px">Geramos o Relatório de Perfil</strong><span style="font-size:.78rem;color:var(--smoke)">Um documento PDF completo com o perfil cognitivo, emocional e o programa sugerido.</span></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="width:28px;height:28px;border-radius:50%;background:rgba(83,74,183,0.2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--soft);flex-shrink:0">3</span>
+          <div><strong style="font-size:.88rem;display:block;margin-bottom:2px">Enviamos por e-mail e WhatsApp</strong><span style="font-size:.78rem;color:var(--smoke)">Junto com o relatório, combinamos uma ligação para apresentá-lo e responder perguntas.</span></div>
+        </div>
+      </div>
+    </div>
+    <a href="/pt/" class="btn btn-primary">← Voltar para NIDO Escuela</a>
+  </div>
+</div>
+
+</main>
+
+<script>
+// Estado actual
+let currentStep = 0;
+const totalSteps = 5;
+const progressPct = [16, 32, 48, 64, 80, 100];
+const stepLabels = ['ps1','ps2','ps3','ps4','ps5','ps6'];
+
+function goTo(step) {
+  // Ocultar actual
+  document.getElementById('step' + (currentStep === 0 ? '0' : currentStep)).classList.remove('active');
+
+  currentStep = step;
+
+  // Mostrar nuevo
+  const targetId = step === 0 ? 'step0' : 'step' + step;
+  document.getElementById(targetId).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  // Progress
+  const pct = step === 0 ? 16 : progressPct[step];
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // Nav label
+  document.getElementById('navStep').textContent = step === 0
+    ? 'Introdução'
+    : 'Etapa ' + step + ' de ' + totalSteps;
+
+  // Step indicators
+  stepLabels.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if (i < step) el.classList.add('done');
+    else if (i === step) el.classList.add('active');
+  });
+}
+
+async function enviarFormulario() {
+  // Validación básica
+  const privacidad = document.getElementById('acepto_privacidad').checked;
+  if (!privacidad) {
+    alert('Por favor, confirme que aceita o uso das informações.');
+    return;
+  }
+
+  // Recolectar todos los datos
+  const datos = {
+    // Paso 1
+    nombre_estudiante: v('nombre_estudiante'),
+    fecha_nacimiento: v('fecha_nac'),
+    genero: v('genero'),
+    grado: v('grado'),
+    tiempo_fuera_escuela: v('tiempo_fuera'),
+    nombre_padre: v('nombre_padre'),
+    relacion: v('relacion'),
+    email: v('email_padre'),
+    otros_hijos: radioVal('otros_hijos'),
+    // Paso 2
+    estilo_aprendizaje: checkboxVals('aprendizaje'),
+    concentracion: v('concentracion'),
+    distractores: checkboxVals('distractores'),
+    diagnostico: v('diagnostico'),
+    momento_dia: v('momento_dia'),
+    bloques: v('bloques'),
+    // Paso 3
+    personalidad: checkboxVals('personalidad'),
+    pasiones: v('pasiones'),
+    talentos: v('talentos'),
+    rechazos: v('rechazos'),
+    frustraciones: v('frustraciones'),
+    motivacion: checkboxVals('motivacion'),
+    ante_dificultad: v('ante_dificultad'),
+    // Paso 4
+    matematica_nivel: v('mat_nivel'),
+    matematica_tipo: radioVal('mat_tipo'),
+    ciencias: v('ciencias_nivel'),
+    historia: v('historia_nivel'),
+    lectura: v('lectura'),
+    escritura: v('escritura'),
+    idiomas: v('idiomas'),
+    arte: checkboxVals('arte'),
+    tecnologia: v('tecnologia'),
+    ia_uso: v('ia_uso'),
+    // Paso 5
+    suenos_estudiante: v('suenos'),
+    suenos_familia: v('suenos_familia'),
+    expectativas_nido: checkboxVals('expectativas'),
+    notas_libres: v('libre'),
+    timestamp: new Date().toLocaleString('pt-BR')
+  };
+
+  // Envío a Formspree
+  const btn = document.querySelector('.btn-submit');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch('https://formspree.io/f/mjgdjrne', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(datos)
+    });
+    if (!response.ok) throw new Error('Error al enviar');
+  } catch(e) {
+    btn.textContent = 'Enviar perfil completo →';
+    btn.disabled = false;
+    alert('Houve um erro ao enviar. Por favor, tente novamente ou escreva para hola@nidoescuela.com');
+    return;
+  }
+
+  // Mostrar pantalla de éxito
+  document.getElementById('step5').classList.remove('active');
+  document.getElementById('stepSuccess').classList.add('active');
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('navStep').textContent = '¡Completado!';
+  stepLabels.forEach(id => {
+    document.getElementById(id).classList.remove('active');
+    document.getElementById(id).classList.add('done');
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function v(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+function checkboxVals(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(e => e.value);
+}
+function radioVal(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : '';
+}
+</script>
+</body>
+</html>

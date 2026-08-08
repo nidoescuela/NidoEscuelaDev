@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIDO Escuela — Educação em Casa com Certificação Internacional</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:   #1A1A2E;
+  --violet: #534AB7;
+  --mid:    #7F77DD;
+  --soft:   #AFA9EC;
+  --light:  #CECBF6;
+  --xlight: #EEEDFE;
+  --cream:  #F7F5F0;
+  --border: #E0DDD6;
+  --gray:   #888780;
+  --gray2:  #5F5E5A;
+  --white:  #FFFFFF;
+  --green:  #1D9E75;
+  --green-light: #E1F5EE;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--deep); overflow-x: hidden; }
+
+/* ─── NAVBAR ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(26,26,46,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(83,74,183,0.25);
+  height: 64px; padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-wordmark { color: var(--white); font-weight: 800; font-size: 18px; letter-spacing: -0.5px; line-height: 1; }
+.nav-wordmark span { display: block; font-size: 7.5px; font-weight: 400; color: var(--mid); letter-spacing: 1.2px; margin-top: 2px; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 24px; margin-left: 32px; }
+.nav-links a { color: var(--soft); font-size: 13px; text-decoration: none; transition: color .2s; white-space: nowrap; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--violet); color: var(--white) !important;
+  padding: 10px 22px; border-radius: 8px; font-weight: 600;
+  font-size: 13px !important; transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--mid) !important; }
+.nav-menu-btn {
+  display: none; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(83,74,183,0.3); border: 1px solid rgba(83,74,183,0.4);
+  cursor: pointer; color: var(--white); flex-shrink: 0;
+}
+.lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 20px; padding: 3px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
+.lang-flag { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 14px; text-decoration: none; opacity: 0.45; transition: opacity .2s, background .2s; filter: grayscale(40%); }
+.lang-flag:hover { opacity: 0.8; }
+.lang-flag.active { opacity: 1; background: rgba(255,255,255,0.12); filter: none; cursor: default; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--deep);
+  display: flex; align-items: center;
+  padding: 100px 5% 80px;
+  position: relative; overflow: hidden;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(83,74,183,0.07) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(83,74,183,0.07) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.hero-glow {
+  position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(83,74,183,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  position: relative;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--soft); margin-bottom: 28px;
+}
+.hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  color: var(--white); line-height: 1.1; margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; color: var(--soft); }
+.hero-desc { font-size: 17px; color: var(--soft); line-height: 1.8; margin-bottom: 36px; font-weight: 300; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-primary {
+  background: var(--violet); color: var(--white);
+  padding: 16px 32px; border-radius: 10px; font-size: 15px; font-weight: 600;
+  text-decoration: none; transition: all .2s; border: 2px solid var(--violet);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--mid); border-color: var(--mid); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--white);
+  padding: 16px 32px; border-radius: 10px; font-size: 15px; font-weight: 500;
+  text-decoration: none; transition: all .2s; border: 2px solid rgba(255,255,255,0.2);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
+.hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; }
+.trust-icon { color: var(--green); font-size: 16px; }
+.trust-text { font-size: 12px; color: var(--gray); line-height: 1.4; }
+
+/* Hero visual */
+.hero-visual { position: relative; }
+.hero-card-main {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 36px;
+  backdrop-filter: blur(10px);
+  position: relative; overflow: hidden;
+}
+.hero-card-isotipo { margin-bottom: 24px; }
+.hero-card-name { font-size: 52px; font-weight: 800; color: var(--white); letter-spacing: -2px; line-height: 1; }
+.hero-card-sub { font-size: 11px; color: var(--mid); letter-spacing: 1.8px; margin-top: 4px; margin-bottom: 20px; }
+.hero-card-tagline { font-size: 14px; color: var(--soft); font-style: italic; margin-bottom: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
+.hero-badges { display: flex; flex-direction: column; gap: 10px; }
+.hero-badge-item {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(83,74,183,0.2); border: 1px solid rgba(83,74,183,0.3);
+  border-radius: 10px; padding: 12px 16px;
+}
+.hero-badge-flag { font-size: 20px; }
+.hero-badge-text { font-size: 13px; }
+.hero-badge-text strong { color: var(--white); display: block; font-size: 13px; }
+.hero-badge-text span { color: var(--soft); font-size: 11px; }
+
+/* Floating cards */
+.float-card {
+  position: absolute; background: var(--white); border-radius: 12px;
+  padding: 10px 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--deep);
+  font-weight: 500; animation: float 4s ease-in-out infinite;
+  white-space: nowrap; z-index: 10;
+}
+.float-card-1 { top: 12px; right: 12px; animation-delay: 0s; }
+.float-card-2 { bottom: 12px; right: 12px; animation-delay: 2s; }
+.float-card-inline {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--white); border-radius: 10px;
+  padding: 9px 14px; font-size: 12px; color: var(--deep);
+  font-weight: 500; margin-bottom: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.float-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+@media (max-width: 768px) {
+  .float-card { display: none; }
+}
+
+/* ─── SECTIONS BASE ─── */
+section { padding: 96px 5%; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--violet); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); color: var(--deep); line-height: 1.15; margin-bottom: 16px; }
+.section-desc { font-size: 17px; color: var(--gray2); line-height: 1.8; max-width: 580px; }
+.centered { text-align: center; }
+.centered .section-desc { margin: 0 auto; }
+.bg-cream { background: var(--cream); }
+.bg-deep  { background: var(--deep); }
+
+/* ─── PROBLEMA / PAIN ─── */
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 56px; }
+.pain-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 24px;
+  border-top: 3px solid var(--soft);
+}
+.pain-icon { font-size: 28px; margin-bottom: 14px; }
+.pain-title { font-size: 16px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.pain-desc { font-size: 14px; color: var(--gray2); line-height: 1.6; }
+.pain-quote {
+  margin-top: 56px;
+  background: var(--xlight); border-left: 4px solid var(--violet);
+  border-radius: 0 16px 16px 0; padding: 28px 32px;
+}
+.pain-quote p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: var(--deep); line-height: 1.5; }
+.pain-quote cite { display: block; margin-top: 12px; font-size: 13px; color: var(--gray); }
+
+/* ─── MÉTODO ─── */
+.method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 56px; }
+@media (max-width:768px) { .method-grid { grid-template-columns: 1fr; } }
+.method-steps { display: flex; flex-direction: column; gap: 0; }
+.method-step {
+  display: flex; gap: 20px; padding: 24px 0;
+  border-bottom: 1px solid var(--border); position: relative;
+}
+.method-step:last-child { border-bottom: none; }
+.step-num {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--xlight); color: var(--violet);
+  font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-title { font-size: 16px; font-weight: 700; color: var(--deep); margin-bottom: 6px; }
+.step-desc  { font-size: 14px; color: var(--gray2); line-height: 1.6; }
+.method-visual {
+  background: var(--deep); border-radius: 24px; padding: 40px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.method-visual-title { font-size: 14px; font-weight: 600; color: var(--soft); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.method-bar { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 20px; }
+.method-bar-label { font-size: 11px; color: var(--gray); margin-bottom: 8px; font-weight: 500; }
+.method-bar-track { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.method-bar-fill { height: 100%; border-radius: 3px; }
+.method-bar-note { font-size: 11px; color: var(--soft); margin-top: 6px; }
+
+/* ─── CERTIFICACIÓN ─── */
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+@media (max-width:700px) { .cert-grid { grid-template-columns: 1fr; } }
+.cert-card {
+  border-radius: 20px; padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  position: relative; overflow: hidden;
+}
+.cert-card.hla { background: var(--deep); border: 1px solid rgba(83,74,183,0.3); }
+.cert-flag { font-size: 36px; }
+.cert-inst { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.cert-card.hla .cert-inst { color: var(--soft); }
+.cert-name { font-size: 22px; font-weight: 800; line-height: 1.2; }
+.cert-card.hla .cert-name { color: var(--white); }
+.cert-desc { font-size: 14px; line-height: 1.7; }
+.cert-card.hla .cert-desc { color: var(--soft); }
+.cert-features { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.cert-feature { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.cert-card.hla .cert-feature { color: var(--light); }
+.cert-check { font-size: 14px; }
+.cert-bottom {
+  margin-top: 24px; background: var(--xlight); border-radius: 16px; padding: 24px 28px;
+  border: 1px solid var(--light);
+}
+.cert-bottom-title { font-size: 16px; font-weight: 700; color: var(--violet); margin-bottom: 8px; }
+.cert-bottom-desc { font-size: 14px; color: var(--gray2); line-height: 1.7; }
+
+/* ─── CONVENIO DE LA HAYA ─── */
+.haya-block {
+  margin-top: 40px; background: var(--deep); border-radius: 24px; padding: 44px 40px;
+  position: relative; overflow: hidden;
+}
+.haya-header { max-width: 680px; margin-bottom: 32px; }
+.haya-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin-bottom: 10px; }
+.haya-title { font-size: 24px; font-weight: 800; color: var(--white); line-height: 1.3; margin-bottom: 14px; }
+.haya-desc { font-size: 14px; color: var(--light); line-height: 1.75; }
+.haya-countries { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+@media (max-width:700px) { .haya-countries { grid-template-columns: 1fr; } }
+.haya-country {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; padding: 22px 24px;
+}
+.haya-country-flag { font-size: 28px; margin-bottom: 10px; }
+.haya-country-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.haya-country-detail { font-size: 13px; color: var(--soft); line-height: 1.65; }
+.haya-note {
+  font-size: 12px; color: var(--gray); line-height: 1.7; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── FRONTERA ─── */
+.frontera-section { background: var(--deep); padding: 110px 5% 100px; position: relative; overflow: hidden; }
+.frontera-inner { max-width: 900px; margin: 0 auto; }
+
+.frontera-mark { text-align: center; margin-bottom: 90px; }
+.frontera-letters { font-family:'DM Serif Display',serif; font-size: clamp(32px,5vw,56px); color: var(--white); letter-spacing: 6px; }
+.frontera-letters-sub { font-size: 13px; color: var(--mid); letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; font-weight: 600; }
+.frontera-tagline { font-size: 16px; color: var(--soft); margin-top: 20px; font-style: italic; }
+
+.frontera-hero { text-align: center; margin-bottom: 56px; }
+.frontera-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
+.frontera-title { font-size: clamp(28px,4.2vw,46px); font-weight: 800; color: var(--white); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 20px; }
+.frontera-lead { font-size: clamp(17px,2vw,20px); color: var(--soft); font-weight: 500; max-width: 620px; margin: 0 auto 14px; line-height: 1.6; }
+.frontera-sub { font-size: 14px; color: var(--gray); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+
+.frontera-image {
+  width: 100%; aspect-ratio: 16/9; border-radius: 24px; background-size: cover; background-position: center;
+  background-color: rgba(255,255,255,0.04); margin-bottom: 56px; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; border: 1px solid rgba(255,255,255,0.08);
+}
+.frontera-image::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(26,26,46,0) 40%, rgba(26,26,46,0.85) 100%); }
+.frontera-image-caption { position: relative; z-index: 1; padding: 24px 28px; font-size: 13px; color: var(--light); line-height: 1.6; max-width: 480px; }
+.frontera-image-wide { aspect-ratio: 21/9; }
+.frontera-image-overlay { position: relative; z-index: 1; padding: 40px; }
+
+.frontera-block { margin-bottom: 56px; padding: 36px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+.frontera-block-dark { background: rgba(255,255,255,0.03); border-radius: 20px; padding: 40px 36px; border-top: none; }
+.frontera-block-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--violet); margin-bottom: 14px; }
+.frontera-block-lead { font-size: clamp(18px,2.4vw,24px); color: var(--white); font-weight: 700; line-height: 1.4; max-width: 640px; margin-bottom: 24px; }
+
+.frontera-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.frontera-tags span {
+  font-size: 13px; color: var(--soft); background: rgba(83,74,183,0.12); border: 1px solid rgba(83,74,183,0.3);
+  padding: 8px 16px; border-radius: 100px; font-weight: 500;
+}
+.frontera-tags-dark span { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14); color: var(--light); }
+
+.frontera-constellation { display: flex; flex-wrap: wrap; gap: 12px; }
+.frontera-constellation span {
+  font-size: 13px; font-weight: 600; color: var(--deep); background: var(--white);
+  padding: 10px 18px; border-radius: 100px;
+}
+.frontera-constellation span:nth-child(3n+2) { background: var(--mid); color: var(--white); }
+.frontera-constellation span:nth-child(3n) { background: var(--xlight); color: var(--violet); }
+
+.frontera-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.frontera-flow span:not(.frontera-flow-arrow) {
+  font-size: 14px; font-weight: 700; color: var(--white); background: var(--violet);
+  padding: 12px 22px; border-radius: 12px;
+}
+.frontera-flow-arrow { color: var(--gray); font-size: 16px; }
+
+.frontera-manifesto { text-align: center; padding-top: 70px; margin-top: 20px; }
+.frontera-manifesto-line { font-family:'DM Serif Display',serif; font-size: clamp(22px,3.4vw,34px); color: var(--gray); line-height: 1.4; }
+.frontera-manifesto-highlight { color: var(--white); margin-top: 4px; }
+.frontera-manifesto-nido { font-size: clamp(40px,7vw,72px); font-weight: 800; color: var(--violet); letter-spacing: 4px; margin-top: 20px; }
+.frontera-manifesto-mark { margin-top: 40px; display: flex; justify-content: center; }
+.frontera-manifesto-backronym { font-size: 13px; color: var(--mid); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 8px; font-weight: 600; }
+.frontera-manifesto-close { font-size: 16px; color: var(--soft); max-width: 480px; margin: 28px auto 0; line-height: 1.7; }
+
+@media (max-width:700px) {
+  .frontera-section { padding: 80px 6% 70px; }
+  .frontera-mark { margin-bottom: 60px; }
+  .frontera-block-dark { padding: 28px 22px; }
+  .frontera-image-overlay { padding: 24px; }
+}
+.cert-logos { display: flex; gap: 16px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+.cert-logo-chip {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--deep);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ─── PARA QUIÉN ─── */
+.quien-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 56px; }
+.quien-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 22px; text-align: center;
+  transition: all .2s; cursor: default;
+}
+.quien-card:hover { border-color: var(--violet); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(83,74,183,0.12); }
+.quien-emoji { font-size: 36px; margin-bottom: 14px; }
+.quien-title { font-size: 15px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.quien-desc { font-size: 13px; color: var(--gray2); line-height: 1.6; }
+
+/* ─── CÓMO FUNCIONA ─── */
+.how-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 0; margin-top: 56px; position: relative; }
+.how-timeline::before {
+  content: '';
+  position: absolute; top: 28px; left: 10%; right: 10%;
+  height: 2px; background: linear-gradient(90deg, var(--xlight), var(--violet), var(--xlight));
+}
+.how-step { text-align: center; padding: 0 16px; position: relative; }
+.how-step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--violet); color: var(--white);
+  font-weight: 800; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; position: relative; z-index: 1;
+  box-shadow: 0 0 0 6px var(--xlight), 0 0 0 7px var(--light);
+}
+.how-step-title { font-size: 15px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.how-step-desc  { font-size: 13px; color: var(--gray2); line-height: 1.6; }
+
+/* ─── TESTIMONIOS ─── */
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; margin-top: 56px; }
+.testi-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px 28px;
+}
+.testi-stars { color: #F59E0B; font-size: 16px; margin-bottom: 16px; }
+.testi-text { font-size: 15px; color: var(--deep); line-height: 1.75; font-style: italic; margin-bottom: 20px; }
+.testi-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--border); padding-top: 16px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--xlight); color: var(--violet);
+  font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center;
+}
+.testi-name { font-size: 14px; font-weight: 600; color: var(--deep); }
+.testi-location { font-size: 12px; color: var(--gray); }
+
+/* ─── STATS ─── */
+.stats-bar {
+  background: var(--deep); padding: 60px 5%; margin: 0;
+}
+.stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 40px; text-align: center; }
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--white); line-height: 1; margin-bottom: 8px; }
+.stat-num span { color: var(--mid); }
+.stat-label { font-size: 14px; color: var(--soft); }
+
+/* ─── FAQ ─── */
+.faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.faq-q {
+  padding: 22px 28px; font-size: 16px; font-weight: 600; color: var(--deep);
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  list-style: none; user-select: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+details[open] .faq-q { color: var(--violet); border-bottom: 1px solid var(--border); }
+.faq-arrow { transition: transform .25s; font-size: 18px; color: var(--violet); }
+details[open] .faq-arrow { transform: rotate(45deg); }
+.faq-a { padding: 20px 28px; font-size: 15px; color: var(--gray2); line-height: 1.75; }
+.faq-a strong { color: var(--violet); }
+
+/* ─── CTA FINAL ─── */
+.cta-section {
+  background: var(--violet); padding: 100px 5%;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+}
+.cta-section .section-title { color: var(--white); margin-bottom: 16px; }
+.cta-section .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto 40px; }
+.cta-form {
+  background: var(--white); border-radius: 20px; padding: 40px;
+  max-width: 540px; margin: 0 auto; text-align: left;
+}
+.form-title { font-size: 20px; font-weight: 700; color: var(--deep); margin-bottom: 6px; }
+.form-sub { font-size: 14px; color: var(--gray2); margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--deep); margin-bottom: 6px; display: block; }
+.form-input {
+  width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: var(--deep); background: var(--cream); transition: border .2s;
+  outline: none;
+}
+.form-input:focus { border-color: var(--violet); background: var(--white); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-select {
+  width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: var(--deep); background: var(--cream); outline: none; cursor: pointer;
+}
+.form-submit {
+  width: 100%; padding: 16px; background: var(--violet); color: var(--white);
+  border: none; border-radius: 10px; font-size: 16px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px;
+  transition: background .2s;
+}
+.form-submit:hover { background: var(--deep); }
+.form-disclaimer { font-size: 11px; color: var(--gray); text-align: center; margin-top: 14px; line-height: 1.5; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--deep); padding: 64px 5% 32px;
+  border-top: 2px solid var(--violet);
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+@media (max-width:768px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+.footer-brand { }
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-name { font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+.footer-name-sub { font-size: 8px; color: var(--mid); letter-spacing: 1.8px; display: block; }
+.footer-tagline { font-size: 14px; color: var(--soft); line-height: 1.7; margin-bottom: 20px; }
+.footer-cert-chips { display: flex; flex-direction: column; gap: 8px; }
+.footer-cert-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; color: var(--soft);
+  background: rgba(83,74,183,0.2); border: 1px solid rgba(83,74,183,0.3);
+  padding: 6px 12px; border-radius: 8px;
+}
+.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: var(--gray2); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 12px; color: var(--gray2); }
+
+/* ─── UTILS ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.tag-pill {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 4px 14px; border-radius: 20px; letter-spacing: 0.5px;
+}
+.pill-green  { background: var(--green-light); color: #085041; }
+.pill-violet { background: var(--xlight); color: var(--violet); }
+.divider { height: 1px; background: var(--border); margin: 56px 0; }
+
+/* ─── RESPONSIVE ─── */
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET (≤900px)
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-links { gap: 16px; margin-left: 20px; }
+  .nav-links a { font-size: 12px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .method-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cert-grid { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .anatomy-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .colors-primary { grid-template-columns: 1fr 1fr 1fr; }
+  .int-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .pieces-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤640px)
+═══════════════════════════════════════════ */
+@media (max-width: 1040px) {
+  /* Nav-links + hamburger cambian de punto de corte antes que el resto del mobile CSS,
+     para que el selector de idioma no fuerce el wrap del menú en tablets */
+  .nav-links { display: none; }
+  .nav-menu-btn { display: flex; }
+}
+@media (max-width: 640px) {
+
+  /* Nav */
+  nav { padding: 0 4%; height: 58px; }
+  .nav-badge { display: none; }
+  .nav-wordmark { font-size: 15px; } .nav-wordmark span { letter-spacing: 0.8px; font-size: 7px; }
+
+  /* Nav mobile menu toggle */
+  .nav-menu-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(83,74,183,0.25); border: none; cursor: pointer; color: var(--white);
+  }
+
+  /* Hero */
+  .hero { padding: 80px 5% 60px; min-height: auto; }
+  .hero-title { font-size: clamp(32px, 9vw, 48px); }
+  .hero-desc { font-size: 15px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions a { text-align: center; justify-content: center; }
+  .hero-trust { flex-direction: column; gap: 12px; }
+  .hero-eyebrow { font-size: 10px; }
+  .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; width: 100%; text-align: center; justify-content: center; }
+
+  /* Sections */
+  section { padding: 64px 5%; }
+  .section-title { font-size: clamp(26px, 7vw, 36px); }
+  .section-desc { font-size: 15px; }
+
+  /* Stats bar */
+  .stats-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .stat-num { font-size: 40px; }
+
+  /* Pain grid */
+  .pain-grid { grid-template-columns: 1fr; }
+
+  /* Method */
+  .method-grid { grid-template-columns: 1fr; }
+  .method-visual { padding: 28px 20px; }
+
+  /* Cert */
+  .cert-grid { grid-template-columns: 1fr; }
+  .cert-card { padding: 28px 22px; }
+  .cert-bottom { padding: 20px 22px; }
+  .cert-logos { flex-direction: column; gap: 8px; }
+
+  /* 3 Pilares — tarjetas independientes en columna, full-width */
+  .pillars-grid { grid-template-columns: 1fr !important; gap: 20px !important; margin-bottom: 48px !important; }
+  .pillars-grid > div { padding: 32px 24px !important; }
+
+  /* Para quién */
+  .quien-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .quien-card { padding: 20px 16px; }
+  .quien-emoji { font-size: 28px; }
+  .quien-title { font-size: 13px; }
+  .quien-desc { font-size: 12px; }
+
+  /* How timeline */
+  .how-timeline { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .how-timeline::before { display: none; }
+  .how-step-num { width: 44px; height: 44px; font-size: 15px; }
+
+  /* Testimonios */
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card { padding: 24px 20px; }
+
+  /* Anatomy */
+  .anatomy-wrap { grid-template-columns: 1fr; }
+  .anatomy-visual { padding: 32px 20px; }
+
+  /* Rules */
+  .rules-grid { grid-template-columns: 1fr; }
+
+  /* Colors */
+  .colors-primary { grid-template-columns: 1fr; gap: 8px; }
+  .color-swatch { height: 70px; }
+  .colors-secondary { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* Type rows */
+  .type-row { flex-direction: column; gap: 6px; padding: 14px 16px; }
+  .type-label { width: 100%; }
+
+  /* Piezas */
+  .pieces-grid { grid-template-columns: 1fr; }
+
+  /* Padres — coluna única, já responsivo */
+  #padres .reveal[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Realidad aulas stats */
+  #realidad .reveal[style*="grid-template-columns:repeat(auto-fit"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  #realidad .reveal[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* CTA form */
+  .cta-section { padding: 64px 5%; }
+  .cta-form { padding: 28px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* Inline grids con style */
+  .int-grid { grid-template-columns: 1fr !important; }
+  .pro-con { grid-template-columns: 1fr !important; }
+  .domain-box .domain-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .summary-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤400px)
+═══════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .hero-title { font-size: 28px; }
+  .quien-grid { grid-template-columns: 1fr; }
+  .how-timeline { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr; }
+  .colors-secondary { grid-template-columns: 1fr; }
+  .hero-trust { gap: 10px; }
+  .cover-chips { flex-direction: column; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="34" height="22" viewBox="0 0 34 22" fill="none">
+      <path d="M2 20 A15 15 0 0 1 32 20" stroke="#534AB7" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M7 20 A10 10 0 0 1 27 20" stroke="#7F77DD" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M12 20 A5 5 0 0 1 22 20" stroke="#AFA9EC" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="17" cy="20" r="2.2" fill="#534AB7"/>
+    </svg>
+    <div class="nav-wordmark">NIDO <span>E S C U E L A</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#metodo-detalle">O método</a>
+    <a href="#certificacion">Certificação</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#padres">Para os pais</a><a href="#realidad">Realidade escolar</a><a href="#faq">Perguntas</a>
+    <a href="#inscripcion" class="nav-cta">Inscrever-se</a>
+    <div class="lang-switch">
+      <a href="/" class="lang-flag" aria-label="Español (Argentina)" title="Español (Argentina)">🇦🇷</a>
+      <a href="/pt/" class="lang-flag active" aria-label="Português (Brasil)" title="Português (Brasil)">🇧🇷</a>
+    </div>
+  </div>
+  <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menu" style="display:none;">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">
+        <span class="hero-eyebrow-dot"></span>
+        Inscrições abertas · Ciclo 2025–2026
+      </div>
+      <h1 class="hero-title reveal">
+        Seu lar.<br><em>A sala de aula mais poderosa do mundo.</em><br><span style="font-size:clamp(22px,2.8vw,36px); font-weight:300; color:var(--soft); font-style:normal; font-family:'DM Sans',sans-serif; letter-spacing:-0.3px;">Aprendizado potencializado com certificação internacional.</span>
+      </h1>
+      <p class="hero-desc reveal">
+        Educamos em casa: metodologia de aprendizado potencializado, inteligência artificial adaptativa e certificação internacional da <strong style="color:var(--white)">Home Life Academy</strong> (Tennessee, EUA), com validade legal internacional amparada pela <strong style="color:var(--white)">Convenção de Haia</strong>. Sem moldes. Sem limites. Com propósito.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#inscripcion" class="btn-primary">Quero inscrever meu filho →</a>
+        <a href="#metodo-detalle" class="btn-secondary">Conhecer o método</a>
+      </div>
+      <div class="hero-trust reveal">
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">Certificação internacional<br>com validade legal (Convenção de Haia)</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">Válido para ingresso em<br>universidades do mundo</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">Sem mudar de cidade<br>nem de estilo de vida</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div style="position:relative;">
+        <div class="float-card float-card-1">
+          <span class="float-dot" style="background:var(--green)"></span>
+          🎓 Diploma reconhecido em mais de 50 países
+        </div>
+        <div class="hero-card-main">
+          <div class="hero-card-isotipo">
+            <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+              <path d="M3 36 A27 27 0 0 1 57 36" stroke="#534AB7" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M11 36 A19 19 0 0 1 49 36" stroke="#7F77DD" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M19 36 A11 11 0 0 1 41 36" stroke="#AFA9EC" stroke-width="4.5" stroke-linecap="round"/>
+              <circle cx="30" cy="36" r="4" fill="#534AB7"/>
+            </svg>
+          </div>
+          <div class="hero-card-name">NIDO</div>
+          <div class="hero-card-sub">E S C U E L A</div>
+          <div class="hero-card-tagline">"Seu lar. A sala de aula mais poderosa do mundo."</div>
+          <div class="float-card-inline">
+            <span class="float-dot" style="background:var(--violet)"></span>
+            🤖 Aprendizado potencializado com IA
+          </div>
+          <div class="hero-badges">
+            <div class="hero-badge-item">
+              <span class="hero-badge-flag">🇺🇸</span>
+              <div class="hero-badge-text">
+                <strong>Home Life Academy</strong>
+                <span>Tennessee, EUA · Escola privada PreK–12</span>
+              </div>
+            </div>
+            <div class="hero-badge-item">
+              <span class="hero-badge-flag">🌎</span>
+              <div class="hero-badge-text">
+                <strong>Convenção de Haia</strong>
+                <span>Apostila · Reconhecimento legal internacional do diploma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ STATS ══════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="reveal">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">Países onde a certificação é reconhecida</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">PreK<span>–12</span></div>
+      <div class="stat-label">Níveis educacionais cobertos</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">2<span>x</span></div>
+      <div class="stat-label">Certificações internacionais simultâneas</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Online e de qualquer cidade do Brasil</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ MÉTODO DETALLE ══════ -->
+<section id="metodo-detalle" style="background:var(--white); padding:96px 5%;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Header -->
+    <div style="text-align:center; margin-bottom:72px;">
+      <div class="section-eyebrow reveal" style="justify-content:center; display:flex;">Metodologia NIDO Escuela</div>
+      <h2 class="section-title reveal" style="max-width:700px; margin:0 auto 20px;">
+        O Método de Aprendizado Potencializado:<br>assim funciona na prática
+      </h2>
+      <p class="section-desc reveal" style="margin:0 auto; text-align:center;">
+        Não é apenas aprender em casa. É um sistema desenhado para que cada criança alcance seu máximo potencial, com a tecnologia como aliada e a família como protagonista.
+      </p>
+    </div>
+
+    <!-- ── 3 PILARES ── -->
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">Os 3 pilares do método</div>
+    <div class="reveal pillars-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:72px;">
+
+      <div style="background:var(--xlight); border-radius:20px; padding:36px 28px; border:1px solid var(--light); position:relative; overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(83,74,183,0.08);"></div>
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--violet);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="white" stroke-width="2"/><path d="M9 13l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:10px;">Pilar 01</div>
+        <div style="font-size:20px;font-weight:800;color:var(--deep);margin-bottom:12px;letter-spacing:-0.3px;">Inteligência Artificial Adaptativa</div>
+        <p style="font-size:14px;color:var(--gray2);line-height:1.75;margin-bottom:16px;">A IA detecta em tempo real como seu filho aprende — seu ritmo, seus pontos fortes, suas áreas de melhoria — e ajusta os conteúdos automaticamente. Não há dois estudantes que recebam o mesmo programa.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:var(--violet);font-size:14px;">✓</span> Diagnóstico cognitivo inicial</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:var(--violet);font-size:14px;">✓</span> Ajuste de ritmo em tempo real</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:var(--violet);font-size:14px;">✓</span> Relatórios mensais de progresso</div>
+        </div>
+      </div>
+
+      <div style="background:var(--deep); border-radius:20px; padding:36px 28px; position:relative; overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(127,119,221,0.12);"></div>
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(83,74,183,0.5);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 4L4 9v8l9 5 9-5V9L13 4z" stroke="white" stroke-width="2" stroke-linejoin="round"/><path d="M13 4v13M4 9l9 4 9-4" stroke="white" stroke-width="2"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:10px;">Pilar 02</div>
+        <div style="font-size:20px;font-weight:800;color:var(--white);margin-bottom:12px;letter-spacing:-0.3px;">Metodologia Ativa de Aprendizagem</div>
+        <p style="font-size:14px;color:var(--soft);line-height:1.75;margin-bottom:16px;">As crianças aprendem fazendo, criando e resolvendo problemas reais. Não decoram para a prova — desenvolvem pensamento crítico, criatividade e autonomia que servem para toda a vida.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light);"><span style="color:var(--mid);font-size:14px;">✓</span> Aprendizagem baseada em projetos</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light);"><span style="color:var(--mid);font-size:14px;">✓</span> Pensamento crítico e resolução</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--light);"><span style="color:var(--mid);font-size:14px;">✓</span> Mastery learning — avança ao dominar</div>
+        </div>
+      </div>
+
+      <div style="background:var(--cream); border-radius:20px; padding:36px 28px; border:1px solid var(--border); position:relative; overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(29,158,117,0.06);"></div>
+        <div style="width:52px;height:52px;border-radius:14px;background:#1D9E75;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 22c5 0 9-4 9-9S18 4 13 4 4 8 4 13s4 9 9 9z" stroke="white" stroke-width="2"/><path d="M9 13c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="13" r="1.5" fill="white"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1D9E75;margin-bottom:10px;">Pilar 03</div>
+        <div style="font-size:20px;font-weight:800;color:var(--deep);margin-bottom:12px;letter-spacing:-0.3px;">Acompanhamento Familiar Profundo</div>
+        <p style="font-size:14px;color:var(--gray2);line-height:1.75;margin-bottom:16px;">Os pais não são espectadores — são guias. NIDO Escuela os prepara e acompanha nesse papel. A família é o coração do modelo, não uma variável secundária.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:#1D9E75;font-size:14px;">✓</span> Formação para pais-guias</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:#1D9E75;font-size:14px;">✓</span> Tutores especializados de apoio</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray2);"><span style="color:#1D9E75;font-size:14px;">✓</span> Comunidade de famílias NIDO</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── COMPARATIVA ── -->
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">Comparação direta</div>
+    <h3 class="reveal" style="font-family:'DM Serif Display',serif; font-size:32px; color:var(--deep); margin-bottom:36px; letter-spacing:-0.5px;">NIDO Escuela vs. escola tradicional</h3>
+
+    <div class="reveal" style="border:1px solid var(--border); border-radius:20px; overflow:hidden; margin-bottom:72px;">
+
+      <!-- Table header -->
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; background:var(--deep);">
+        <div style="padding:18px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray);">Dimensão</div>
+        <div style="padding:18px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--white); border-left:1px solid rgba(83,74,183,0.3); display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 10A8 8 0 0 1 17 10" stroke="#534AB7" stroke-width="2" stroke-linecap="round"/><path d="M4 10A5 5 0 0 1 14 10" stroke="#7F77DD" stroke-width="2" stroke-linecap="round"/><path d="M7 10A2 2 0 0 1 11 10" stroke="#AFA9EC" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.5" fill="#534AB7"/></svg>
+          NIDO Escuela
+        </div>
+        <div style="padding:18px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); border-left:1px solid rgba(255,255,255,0.06);">Escola tradicional</div>
+      </div>
+
+      <!-- Rows -->
+      <!-- Row template: alternating bg -->
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Personalização do aprendizado</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> 100% individual, sob medida</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Um programa para 30 alunos</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Ritmo do estudante</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> O ritmo do seu filho</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Ritmo do grupo</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Certificação internacional</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> HLA (EUA) + Convenção de Haia</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Somente local / estadual</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Uso de IA no aprendizado</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> IA adaptativa integrada</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Mínimo ou nenhum</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Papel da família</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> Protagonista do processo</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Espectador externo</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Ambiente de aprendizado</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> Seguro, controlado por você</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Exposição a bullying e violência</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--cream);">Flexibilidade de horários</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> Total, se adapta à sua família</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--white); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— Horário fixo inflexível</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; border-top:1px solid var(--border);">
+        <div style="padding:18px 24px; font-size:14px; font-weight:600; color:var(--deep); background:var(--white);">Horas de aprendizado ativo / dia</div>
+        <div style="padding:18px 24px; font-size:14px; color:#085041; background:var(--green-light); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px; font-weight:500;"><span style="font-size:16px;">✓</span> 3–5h de aprendizado real</div>
+        <div style="padding:18px 24px; font-size:14px; color:var(--gray2); background:var(--cream); border-left:1px solid var(--border); display:flex; align-items:center; gap:8px;">— 6–7h (40% tempo ocioso)</div>
+      </div>
+
+    </div>
+
+    <!-- ── CTA CIERRE ── -->
+    <div class="reveal" style="background:var(--deep); border-radius:20px; padding:48px; text-align:center; position:relative; overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%, rgba(83,74,183,0.25), transparent);pointer-events:none;"></div>
+      <div style="position:relative;">
+        <div style="margin-bottom:24px; display:flex; justify-content:center;">
+          <svg width="56" height="38" viewBox="0 0 56 38" fill="none">
+            <path d="M3 34 A25 25 0 0 1 53 34" stroke="#534AB7" stroke-width="4" stroke-linecap="round"/>
+            <path d="M11 34 A17 17 0 0 1 45 34" stroke="#7F77DD" stroke-width="4" stroke-linecap="round"/>
+            <path d="M19 34 A9 9 0 0 1 37 34" stroke="#AFA9EC" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="28" cy="34" r="3.5" fill="#534AB7"/>
+          </svg>
+        </div>
+        <h3 style="font-family:'DM Serif Display',serif; font-size:32px; color:var(--white); margin-bottom:14px; letter-spacing:-0.5px;">Este método é para o seu filho?</h3>
+        <p style="font-size:16px; color:var(--soft); line-height:1.75; max-width:520px; margin:0 auto 32px;">Fazemos um diagnóstico inicial gratuito. Em uma sessão de 60 minutos você descobre exatamente como seu filho aprende e como a NIDO Escuela pode potencializá-lo.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="#inscripcion" class="btn-primary">Solicitar diagnóstico gratuito →</a>
+          <a href="#faq" class="btn-secondary">Ver perguntas frequentes</a>
+        </div>
+        <div style="margin-top:20px; font-size:12px; color:var(--gray2);">Sem custo · Sem compromisso · Resposta em menos de 24h</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ EL PROBLEMA ══════ -->
+<section>
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">O ponto de partida</div>
+    <h2 class="section-title reveal">Por que as famílias escolhem educar em casa?</h2>
+    <p class="section-desc reveal">Não é um capricho. É uma decisão informada de pais que enxergam algo que o sistema educacional tradicional não pode dar a seu filho.</p>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon">😔</div>
+        <div class="pain-title">Meu filho se entedia na sala de aula</div>
+        <div class="pain-desc">Aprende mais rápido que o grupo. O ritmo do sistema não é o dele. Cada dia é uma luta entre seu potencial e o programa.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">⏳</div>
+        <div class="pain-title">Precisa de mais tempo do que a sala de aula oferece</div>
+        <div class="pain-desc">Algumas crianças precisam se aprofundar, repetir, explorar. A escola tradicional tem 30 alunos e um único programa para todos.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🌍</div>
+        <div class="pain-title">Vivemos diferente do padrão</div>
+        <div class="pain-desc">Viajamos, vivemos em áreas afastadas, ou simplesmente temos um projeto de vida que não encaixa nos horários fixos do sistema.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🧠</div>
+        <div class="pain-title">Tem altas habilidades ou necessidades especiais</div>
+        <div class="pain-desc">O sistema não está preparado para acompanhar uma criança que aprende diferente — nem acima nem abaixo da média.</div>
+      </div>
+    </div>
+
+    <div class="pain-quote reveal">
+      <p>"O problema não é o seu filho. O problema é que o sistema foi desenhado para a média, e o seu filho não é média."</p>
+      <cite>— Filosofia fundacional da NIDO Escuela</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ EL MÉTODO ══════ -->
+<section id="metodo" class="bg-cream">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">02 — O método</div>
+    <h2 class="section-title reveal">Aprendizado potencializado:<br>o que nenhuma escola tradicional pode oferecer</h2>
+    <p class="section-desc reveal">Combinamos três elementos que o sistema convencional nunca une: inteligência artificial adaptativa, metodologia ativa e o vínculo insubstituível da família.</p>
+
+    <div class="method-grid">
+      <div class="method-steps reveal">
+        <div class="method-step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Diagnóstico cognitivo inicial</div>
+            <div class="step-desc">Identificamos o perfil de aprendizagem único do seu filho: seu ritmo, seu estilo (visual, auditivo, cinestésico), seus pontos fortes e suas áreas de crescimento.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Plano de estudos personalizado</div>
+            <div class="step-desc">Construímos uma trilha de aprendizagem sob medida, não um programa genérico. Você escolhe os livros, os horários e o ambiente que melhor funciona para sua família.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">IA como tutora adaptativa</div>
+            <div class="step-desc">Ferramentas de inteligência artificial que detectam como seu filho aprende em tempo real e ajustam os conteúdos, o ritmo e a profundidade automaticamente.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Projetos reais com impacto</div>
+            <div class="step-desc">Os conhecimentos são aplicados em projetos concretos ligados aos interesses da criança. Não decoram para a prova — criam, resolvem, produzem.</div>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">5</div>
+          <div>
+            <div class="step-title">Avaliação e certificação internacional</div>
+            <div class="step-desc">Portfólio de evidências que dá lugar à certificação da Home Life Academy (EUA), com validade legal internacional amparada pela Convenção de Haia. Um diploma, reconhecido no mundo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-visual reveal">
+        <div class="method-visual-title">Comparação de resultados</div>
+        <div class="method-bar">
+          <div class="method-bar-label">Personalização do aprendizado</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:95%;background:var(--violet);"></div></div>
+          <div class="method-bar-note">NIDO Escuela — 95% personalizado</div>
+        </div>
+        <div class="method-bar">
+          <div class="method-bar-label">Escola tradicional</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:12%;background:var(--soft);"></div></div>
+          <div class="method-bar-note">Sala de 30 alunos — 1 programa para todos</div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:8px 0;"></div>
+        <div class="method-bar">
+          <div class="method-bar-label">Ritmo próprio do estudante</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:100%;background:var(--green);"></div></div>
+          <div class="method-bar-note">NIDO Escuela — 100% no seu tempo</div>
+        </div>
+        <div class="method-bar">
+          <div class="method-bar-label">Escola tradicional</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:20%;background:var(--soft);"></div></div>
+          <div class="method-bar-note">Ritmo do grupo, não da criança</div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:8px 0;"></div>
+        <div class="method-bar">
+          <div class="method-bar-label">Validade internacional do diploma</div>
+          <div class="method-bar-track"><div class="method-bar-fill" style="width:90%;background:#F59E0B;"></div></div>
+          <div class="method-bar-note">Home Life Academy + Convenção de Haia — mais de 50 países</div>
+        </div>
+        <div style="margin-top:20px;background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:4px;">✓ Nossos estudantes acessam</div>
+          <div style="font-size:12px;color:var(--soft);line-height:1.6;">Universidades no Brasil, EUA, Europa e toda a América Latina com o diploma da NIDO Escuela.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CERTIFICACIÓN ══════ -->
+<section id="certificacion">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">03 — Respaldo institucional</div>
+    <h2 class="section-title reveal">Certificação internacional.<br>Um diploma preparado para o mundo.</h2>
+    <p class="section-desc reveal">O que seu filho aprende em casa tem validade real, internacional e verificável. Não é um papel sem valor — é o respaldo de uma instituição com décadas de trajetória, e de um tratado internacional que garante seu reconhecimento legal.</p>
+
+    <div class="cert-grid" style="grid-template-columns:1fr; max-width:640px; margin-left:auto; margin-right:auto;">
+      <div class="cert-card hla reveal">
+        <div class="cert-flag">🇺🇸</div>
+        <div class="cert-inst">Certificação internacional</div>
+        <div class="cert-name">Home Life Academy</div>
+        <p class="cert-desc">Escola privada PreK–12 com sede em Jackson, Tennessee, EUA. Fundada para dar às famílias do mundo acesso à educação em casa com respaldo legal e acadêmico internacional.</p>
+        <div class="cert-features">
+          <div class="cert-feature"><span class="cert-check">✓</span> Reconhecida nos 50 estados dos EUA e em mais de 50 países</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Diploma de ensino médio válido internacionalmente</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Registros acadêmicos oficiais em inglês</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Cobertura legal para famílias homeschoolers</div>
+          <div class="cert-feature"><span class="cert-check">✓</span> Acesso a universidades norte-americanas e europeias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MARCO LEGAL: CONVENÇÃO DE HAIA ═══ -->
+    <div class="haya-block reveal">
+      <div class="haya-header">
+        <div class="haya-eyebrow">Marco legal internacional</div>
+        <div class="haya-title">A Convenção de Haia: a lei que respalda o reconhecimento do diploma</div>
+        <p class="haya-desc">A Apostila de Haia (Convenção de 1961) é o tratado internacional que elimina a legalização diplomática entre países signatários e garante que um documento acadêmico emitido em um país — como o diploma da Home Life Academy — tenha validade legal direta em qualquer outro país membro, incluindo o ingresso na universidade.</p>
+      </div>
+      <div class="haya-countries">
+        <div class="haya-country">
+          <div class="haya-country-flag">🇧🇷</div>
+          <div class="haya-country-name">Brasil</div>
+          <div class="haya-country-detail">Membro da Convenção de Haia desde 14 de agosto de 2016. A apostila é emitida pelos cartórios habilitados e coordenada pelo Conselho Nacional de Justiça (CNJ).</div>
+        </div>
+        <div class="haya-country">
+          <div class="haya-country-flag">🇦🇷</div>
+          <div class="haya-country-name">Argentina</div>
+          <div class="haya-country-detail">Membro da Convenção de Haia desde 18 de fevereiro de 1988. A apostila é emitida pela Chancelaria Argentina e pelos Colégios de Tabeliães do país.</div>
+        </div>
+      </div>
+      <div class="haya-note">Mais de 120 países integram a Convenção de Haia, incluindo Estados Unidos, Brasil, Argentina e a maioria dos países da Europa e da América Latina — a base legal que torna possível que o diploma da NIDO Escuela viaje com seu filho, não importa em qual país ele continue os estudos.</div>
+    </div>
+
+    <div class="cert-bottom reveal">
+      <div class="cert-bottom-title">O que acontece se meu filho quiser entrar na universidade?</div>
+      <div class="cert-bottom-desc">Com a certificação da Home Life Academy e sua apostila sob a Convenção de Haia, seu filho tem um diploma de ensino médio com validade legal internacional reconhecida em mais de 120 países. No Brasil, o caminho de ingresso na universidade pode envolver um processo de equivalência/revalidação de estudos junto à Secretaria de Educação do estado, no qual a NIDO Escuela te acompanha passo a passo. Muitas famílias complementam o processo com o ENEM ou o vestibular da universidade desejada — algo que nossos estudantes alcançam com resultados excelentes pelo seu nível de preparo.</div>
+      <div class="cert-logos" style="margin-top:20px;">
+        <div class="cert-logo-chip">🇺🇸 Home Life Academy · Tennessee</div>
+        <div class="cert-logo-chip">🌎 Convenção de Haia · Apostila</div>
+        <div class="cert-logo-chip">🎓 Válido em +120 países</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ ACOMPANHAMENTO PARA OS PAIS ══════ -->
+<section id="padres" style="background:var(--white); padding:96px 5%; overflow:hidden;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Header centrado -->
+    <div style="text-align:center; margin-bottom:16px;">
+      <div class="section-eyebrow reveal" style="display:flex; justify-content:center;">Para os pais</div>
+    </div>
+    <h2 class="section-title reveal" style="text-align:center; max-width:720px; margin:0 auto 20px;">
+      Na NIDO Escuela não educamos só o seu filho.<br>Preparamos <em style="font-family:'DM Serif Display',serif; font-style:italic; color:var(--violet);">você</em> para acompanhá-lo.
+    </h2>
+    <p class="section-desc reveal" style="text-align:center; margin:0 auto 64px;">
+      Ser pai-guia não se improvisa. Por isso cada família da NIDO Escuela tem acesso completo ao método educativo — não só ao conteúdo do seu filho, mas às ferramentas para acompanhá-lo de perto.
+    </p>
+
+    <!-- Coluna única: Acesso ao método -->
+    <div class="reveal" style="max-width:720px; margin:0 auto;">
+      <div style="background:var(--cream); border:1px solid var(--border); border-radius:20px; padding:40px 36px;">
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--xlight);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <rect x="4" y="3" width="18" height="20" rx="2" stroke="#534AB7" stroke-width="2"/>
+            <path d="M8 8h10M8 12h10M8 16h6" stroke="#534AB7" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:10px;">Acesso completo</div>
+        <h3 style="font-size:22px;font-weight:800;color:var(--deep);margin-bottom:14px;letter-spacing:-0.3px;line-height:1.25;">O método educativo em suas mãos</h3>
+        <p style="font-size:14px;color:var(--gray2);line-height:1.75;margin-bottom:24px;">Como pai-guia na NIDO Escuela, você não é um espectador. Tem acesso completo a todo o programa educativo do seu filho: os conteúdos, o plano de estudos, o progresso em tempo real e as ferramentas de aprendizado potencializado com IA.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border-radius:10px;border:1px solid var(--border);">
+            <span style="color:var(--violet);font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--deep);margin-bottom:2px;">Dashboard familiar completo</div>
+              <div style="font-size:12px;color:var(--gray2);">Veja em tempo real no que seu filho está trabalhando, seu progresso e os ajustes do plano.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border-radius:10px;border:1px solid var(--border);">
+            <span style="color:var(--violet);font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--deep);margin-bottom:2px;">Guia de facilitação semanal</div>
+              <div style="font-size:12px;color:var(--gray2);">A cada semana você recebe um guia prático para acompanhar as atividades sem precisar ser professor.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border-radius:10px;border:1px solid var(--border);">
+            <span style="color:var(--violet);font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--deep);margin-bottom:2px;">Sessões de consulta com tutores</div>
+              <div style="font-size:12px;color:var(--gray2);">Acesso mensal a tutores especializados para responder suas dúvidas e ajustar o caminho.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ PARA QUIÉN ══════ -->
+<section class="bg-cream">
+  <div class="section-inner centered">
+    <div class="section-eyebrow reveal">04 — Para quem</div>
+    <h2 class="section-title reveal">A NIDO Escuela é para a sua família?</h2>
+    <p class="section-desc reveal">Este modelo é para famílias que tomaram uma decisão consciente sobre o futuro de seus filhos. Não é para todos — é para quem escolhe mais.</p>
+
+    <div class="quien-grid">
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🚀</div>
+        <div class="quien-title">Crianças com altas habilidades</div>
+        <div class="quien-desc">Seu filho aprende muito mais rápido que o grupo e a sala de aula o freia. Precisa de profundidade, não de velocidade padrão.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🎯</div>
+        <div class="quien-title">Ritmos de aprendizagem diferentes</div>
+        <div class="quien-desc">Seu filho precisa de mais tempo, mais repetição ou uma abordagem diferente. O sistema não pode dar isso a ele. Nós sim.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">✈️</div>
+        <div class="quien-title">Famílias que viajam ou se mudam</div>
+        <div class="quien-desc">Nômades digitais, famílias com mudanças frequentes ou projetos de vida não convencionais. A escola vai com vocês.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🌿</div>
+        <div class="quien-title">Famílias em áreas afastadas</div>
+        <div class="quien-desc">Vocês vivem no campo, em uma cidade sem boas opções educacionais, ou simplesmente longe da oferta convencional.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">👨‍👩‍👧</div>
+        <div class="quien-title">Pais que querem ser protagonistas</div>
+        <div class="quien-desc">Vocês não querem delegar totalmente a educação do filho. Querem estar dentro do processo, acompanhar e guiar.</div>
+      </div>
+      <div class="quien-card reveal">
+        <div class="quien-emoji">🌐</div>
+        <div class="quien-title">Projeção internacional</div>
+        <div class="quien-desc">Vocês querem que seu filho tenha opções no mundo anglo-saxão: universidades nos EUA, bolsas internacionais, oportunidades globais.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CÓMO FUNCIONA ══════ -->
+<section id="como-funciona">
+  <div class="section-inner centered">
+    <div class="section-eyebrow reveal">05 — O processo</div>
+    <h2 class="section-title reveal">Como funciona a NIDO Escuela</h2>
+    <p class="section-desc reveal">Começar é mais simples do que você imagina. Em menos de duas semanas seu filho já pode estar aprendendo com seu próprio plano.</p>
+
+    <div class="how-timeline">
+      <div class="how-step reveal">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Você preenche o formulário</div>
+        <div class="how-step-desc">Você nos conta sobre seu filho: idade, estilo de aprendizagem, contexto familiar e expectativas.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Diagnóstico gratuito</div>
+        <div class="how-step-desc">Um especialista da NIDO Escuela realiza o diagnóstico cognitivo inicial em uma sessão online de 60 minutos.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Seu plano personalizado</div>
+        <div class="how-step-desc">Desenhamos o plano de estudos sob medida com os recursos, horários e metodologia adaptados para seu filho.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Inscrição e acesso</div>
+        <div class="how-step-desc">Processamos a inscrição na Home Life Academy e ativamos o acesso à plataforma de aprendizado potencializado.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">5</div>
+        <div class="how-step-title">Vamos começar!</div>
+        <div class="how-step-desc">Seu filho começa a aprender. Você acompanha. Nós monitoramos e ajustamos o plano em tempo real.</div>
+      </div>
+    </div>
+</div>
+</section>
+
+<!-- ══════ TESTIMONIOS ══════ -->
+<section class="bg-cream">
+  <div class="section-inner centered">
+    <div class="section-eyebrow reveal">06 — Famílias</div>
+    <h2 class="section-title reveal">O que dizem as famílias que escolheram a NIDO Escuela</h2>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nossa filha tinha 9 anos e já deixava a professora sem resposta com perguntas que ninguém conseguia responder. Hoje, com a NIDO Escuela, pela primeira vez na vida ela diz que 'gosta de aprender'. Isso não tem preço."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Mariana Rodríguez</div>
+            <div class="testi-location">Córdoba, Argentina · 2 filhos</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Somos uma família que viaja. A ideia de que nossos filhos pudessem ter um diploma americano de verdade enquanto aprendem de qualquer lugar do mundo mudou nossa vida. A NIDO Escuela tornou isso possível."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Pablo e Andrea Fuentes</div>
+            <div class="testi-location">Bariloche → Buenos Aires → México · 3 filhos</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"No início eu tinha medo de que meu filho não tivesse socialização suficiente ou que o certificado não valesse nada. Hoje ele tem amigos, projetos próprios, e uma certificação que várias universidades dos EUA já reconheceram."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div>
+            <div class="testi-name">Laura Méndez</div>
+            <div class="testi-location">Mendoza, Argentina · 1 filho, 14 anos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ ══════ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">07 — Perguntas frequentes</div>
+    <h2 class="section-title reveal">Tudo o que você precisa saber antes de se inscrever</h2>
+
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary class="faq-q">O certificado da Home Life Academy é reconhecido no Brasil?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          A Home Life Academy é uma escola privada PreK–12 reconhecida nos 50 estados dos EUA e em mais de 50 países. Para o ingresso em universidades brasileiras, o processo pode exigir uma equivalência/revalidação de estudos junto à Secretaria de Educação do seu estado, e a NIDO Escuela te acompanha nessa gestão. <strong>Muitas de nossas famílias complementam com o ENEM ou o vestibular da universidade escolhida</strong>, para o qual nossos estudantes chegam com uma preparação acima da média.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">A educação domiciliar (homeschooling) é legal no Brasil?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          <strong>É importante ser direto aqui: a situação no Brasil é diferente da Argentina.</strong> Em 2018, o Supremo Tribunal Federal (STF) decidiu que a educação domiciliar não é inconstitucional, mas que sua prática depende de uma lei federal específica que regule a fiscalização — lei que ainda não existe. O Projeto de Lei 1338/2022 segue em tramitação no Senado, e em 2025 o STF reafirmou que somente o Congresso Nacional pode autorizar essa modalidade, invalidando leis estaduais que tentaram permiti-la isoladamente. O Estatuto da Criança e do Adolescente (ECA) e a LDB exigem a matrícula das crianças em instituição de ensino a partir dos 4 anos.
+          <br><br>
+          Isso significa que optar por educar exclusivamente em casa, sem vínculo com uma instituição de ensino no Brasil, pode envolver risco jurídico para a família enquanto essa lei não for sancionada. <strong>Recomendamos fortemente que cada família converse com um advogado de sua confiança, especializado em direito educacional, antes de tomar essa decisão</strong> — a NIDO Escuela pode compartilhar informações gerais atualizadas sobre o cenário legal, mas isso não substitui uma orientação jurídica personalizada para a situação específica da sua família.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Que idade as crianças precisam ter para se inscrever?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Trabalhamos com estudantes desde o PreKinder (4–5 anos) até a conclusão do ensino médio (Grade 12, equivalente ao 3° ano do Ensino Médio no Brasil). <strong>Cada etapa tem um plano de estudos e metodologia adaptados</strong>. Também acompanhamos o processo de inscrição formal na Home Life Academy para cada nível.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Quantas horas por dia isso representa para o meu filho e para mim?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Uma das grandes vantagens do aprendizado potencializado é que <strong>ele é significativamente mais eficiente do que a sala de aula convencional</strong>. Em média, nossos estudantes trabalham entre 3 e 5 horas diárias de aprendizado ativo, no horário que melhor se adapta à família. Como pai/mãe, seu papel é de acompanhante e guia — você não precisa ser professor nem ter formação pedagógica especial. A NIDO Escuela te prepara para esse papel.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Meu filho pode ter vida social e atividades fora de casa?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Com certeza. A socialização é uma parte importante do desenvolvimento e na NIDO Escuela a promovemos ativamente. <strong>Os estudantes participam de projetos em grupo, atividades extracurriculares e encontros presenciais</strong> com outras famílias da rede NIDO Escuela. Além disso, por não passarem 6 horas em sala de aula, eles têm mais tempo para esportes, artes, música e outras atividades sociais.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Quanto custa a NIDO Escuela?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          O custo depende do nível educacional, da quantidade de filhos e do plano de acompanhamento escolhido. <strong>Temos planos a partir de USD 49 mensais</strong>, que incluem o processo de inscrição na Home Life Academy, acesso à plataforma de aprendizado potencializado com IA, e acompanhamento pedagógico mensal. Preencha o formulário de inscrição e um de nossos consultores te envia o detalhamento completo de acordo com a sua situação.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Posso usar meus próprios livros e materiais?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">
+          Sim. Uma das características centrais da Home Life Academy é justamente essa liberdade: <strong>os pais podem escolher seus próprios livros, recursos e materiais</strong>. A NIDO Escuela sugere recursos de qualidade e te acompanha na seleção, mas a decisão final é sua. O plano de estudos é construído em função do que funciona melhor para o seu filho, não de um catálogo fechado.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ REALIDAD DE LAS AULAS ══════ -->
+<section id="realidad" style="background:#1A1A2E; padding:96px 5%;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Eyebrow -->
+    <div class="section-eyebrow reveal" style="color:var(--soft);">O que está acontecendo hoje</div>
+    <h2 class="section-title reveal" style="color:var(--white); max-width:660px;">
+      A realidade das salas de aula no Brasil que nenhum pai pode ignorar
+    </h2>
+    <p class="section-desc reveal" style="color:var(--soft); max-width:580px; margin-bottom:56px;">
+      Não compartilhamos isso para assustar. Compartilhamos porque na NIDO Escuela acreditamos que uma decisão educacional informada começa por entender o que está realmente acontecendo dentro das escolas.
+    </p>
+
+    <!-- Stats grid -->
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-bottom:40px;">
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">300<span style="color:var(--mid); font-size:32px;">k</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Casos graves de bullying registrados</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">Segundo as Estatísticas Mundiais de Bullying 2026 da Bullying Sem Fronteiras, o Brasil ocupa o <strong style="color:var(--soft);">4° lugar no ranking mundial</strong>, com cerca de 300.000 casos graves registrados.</div>
+        <a href="https://bullyingsinfronteras.blogspot.com/2026/03/estatisticas-mundiais-sobre-bullying_30.html" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FONTE →</a>
+      </div>
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">4<span style="color:var(--mid); font-size:32px;"> em 10</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Estudantes que já sofreram bullying</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">Segundo a Pesquisa Nacional de Saúde do Escolar (PeNSE/IBGE 2024), 4 em cada 10 estudantes de 13 a 17 anos afirmam já ter sofrido bullying na escola.</div>
+        <a href="https://olhardigital.com.br/2026/07/23/internet-e-redes-sociais/brasil-registra-aumento-de-67-nos-casos-de-bullying-e-cyberbullying-em-2025" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FONTE →</a>
+      </div>
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">67<span style="color:var(--mid); font-size:32px;">%</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Aumento de registros em um ano</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">O Anuário Brasileiro de Segurança Pública 2026 registrou 5.226 ocorrências de bullying e cyberbullying contra crianças e adolescentes em 2025 — alta de 67,3% frente a 2024.</div>
+        <a href="https://ver-o-fato.com.br/bullying-e-cyberbullying-crescem-673-entre-criancas-e-adolescentes-no-brasil-em-2025-aponta-anuario-de-seguranca-publica/" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FONTE →</a>
+      </div>
+
+      <div style="background:rgba(83,74,183,0.15); border:1px solid rgba(83,74,183,0.3); border-radius:16px; padding:28px 24px;">
+        <div style="font-family:'DM Serif Display',serif; font-size:52px; color:var(--soft); line-height:1; margin-bottom:10px;">61<span style="color:var(--mid); font-size:32px;">%</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:6px;">Alta específica no cyberbullying</div>
+        <div style="font-size:12px; color:var(--gray); line-height:1.6;">Os registros de cyberbullying passaram de 425 para 677 casos em um ano — o crime foi tipificado no Código Penal pela Lei 14.811/2024.</div>
+        <a href="https://ver-o-fato.com.br/bullying-e-cyberbullying-crescem-673-entre-criancas-e-adolescentes-no-brasil-em-2025-aponta-anuario-de-seguranca-publica/" target="_blank" style="display:inline-block; margin-top:12px; font-size:10px; color:var(--mid); letter-spacing:1px; text-decoration:none; border-bottom:1px solid rgba(127,119,221,0.4);">VER FONTE →</a>
+      </div>
+
+    </div>
+
+    <!-- Divider quote -->
+    <div class="reveal" style="border-left:3px solid var(--violet); background:rgba(83,74,183,0.12); border-radius:0 16px 16px 0; padding:28px 32px; margin-bottom:40px;">
+      <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:20px; color:var(--white); line-height:1.55; margin-bottom:10px;">"O bullying, e sua versão estendida para os ambientes digitais, constitui um fenômeno muito mais disseminado do que sugerem as estatísticas oficiais."</p>
+      <div style="font-size:11px; color:var(--gray); letter-spacing:0.5px;">— Cauê Martins, coordenador de Infância e Juventude do Fórum Brasileiro de Segurança Pública · Anuário 2026</div>
+    </div>
+
+    <!-- 4 razones -->
+    <div class="section-eyebrow reveal" style="color:var(--soft); margin-bottom:16px;">O que está por trás do aumento — Fórum Brasileiro de Segurança Pública, 2026</div>
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; margin-bottom:48px;">
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">📱</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Redes sociais sem limites</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">O cyberbullying cresce junto com o uso das redes sociais entre adolescentes — o pico de casos ocorre por volta dos 14 anos.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">⚖️</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Nova tipificação penal</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">A Lei 14.811/2024 tornou o bullying e o cyberbullying crimes específicos, o que aumentou o reconhecimento e a notificação dos casos.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">🧩</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Subnotificação persistente</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">A PeNSE mostra 4 em cada 10 estudantes vitimados — um universo muito maior do que os pouco mais de 5 mil registros policiais formais.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 20px;">
+        <div style="font-size:24px; margin-bottom:12px;">🚨</div>
+        <div style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Concentração na pré-adolescência</div>
+        <div style="font-size:13px; color:var(--gray2); line-height:1.6;">As maiores taxas de bullying presencial ocorrem entre crianças de 10 a 13 anos — momento-chave para repensar o ambiente de aprendizagem.</div>
+      </div>
+
+    </div>
+
+    <!-- Cierre esperanzador -->
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(83,74,183,0.3), rgba(29,158,117,0.2)); border:1px solid rgba(83,74,183,0.4); border-radius:20px; padding:40px 36px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px;">NA NIDO ESCUELA</div>
+        <div style="font-family:'DM Serif Display',serif; font-size:24px; color:var(--white); line-height:1.4; margin-bottom:12px;">Seu filho aprende em um ambiente seguro, acolhedor e desenhado por você.</div>
+        <p style="font-size:14px; color:var(--soft); line-height:1.75;">Sem bullying. Sem violência. Sem redes sociais que você não pode controlar durante o horário escolar. A educação em casa não é isolamento — é uma escolha consciente do ambiente onde seu filho cresce.</p>
+      </div>
+      <div style="text-align:center; flex-shrink:0;">
+        <a href="#inscripcion" class="btn-primary" style="white-space:nowrap;">Proteger meu filho →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ FRONTERA ══════ -->
+<section id="frontera" class="frontera-section">
+  <div class="frontera-inner">
+
+    <!-- Significado NIDO -->
+    <div class="frontera-mark reveal">
+      <div class="frontera-letters">N · I · D · O</div>
+      <div class="frontera-letters-sub">Nutrir · Impulsionar · Desenvolver · Orientar</div>
+      <div class="frontera-tagline">Um NIDO para crescer. Um mundo para transformar.</div>
+    </div>
+
+    <!-- Hero statement -->
+    <div class="frontera-hero reveal">
+      <div class="frontera-eyebrow">Fronteira</div>
+      <h2 class="frontera-title">O mundo mudou.<br>A educação também precisa mudar.</h2>
+      <p class="frontera-lead">Estamos preparando seus filhos para um mundo atravessado pela Inteligência Artificial.</p>
+      <p class="frontera-sub">Educação assistida e acelerada com Inteligência Artificial, pensamento crítico, liderança, criatividade, habilidades humanas e valores para uma nova realidade global.</p>
+    </div>
+
+    <!-- Imagen hero hiperrealista -->
+    <div class="frontera-image reveal" style="background-image:url('images/frontera-hero.jpg');">
+      <div class="frontera-image-caption">Um mundo conectado em tempo real — cidades, campi de inovação e energia renovável, a infraestrutura sobre a qual seus filhos vão construir o futuro.</div>
+    </div>
+
+    <!-- IA acelerada -->
+    <div class="frontera-block reveal">
+      <div class="frontera-block-eyebrow">Educação assistida e acelerada com IA</div>
+      <p class="frontera-block-lead">A IA pode acelerar o aprendizado. O pensamento crítico deve direcioná-lo. Os valores devem dar-lhe propósito.</p>
+      <div class="frontera-tags">
+        <span>Aprendizado personalizado</span><span>Trilhas adaptativas</span><span>Tutores de IA</span>
+        <span>Experimentação criativa</span><span>Simulação</span><span>Resolução de problemas</span>
+        <span>Aprendizado multilíngue</span><span>Desenvolvimento de projetos</span>
+      </div>
+    </div>
+
+    <!-- Gobernanza de IA -->
+    <div class="frontera-block frontera-block-dark reveal">
+      <div class="frontera-block-eyebrow" style="color:var(--soft);">Governança da Inteligência Artificial</div>
+      <p class="frontera-block-lead" style="color:var(--white);">A próxima geração não vai apenas precisar aprender a usar a Inteligência Artificial. Vai precisar aprender a governá-la.</p>
+      <div class="frontera-tags frontera-tags-dark">
+        <span>IA ética</span><span>Responsabilidade digital</span><span>Privacidade</span>
+        <span>Supervisão humana</span><span>Pensamento crítico</span><span>Verificação</span>
+        <span>Vieses algorítmicos</span><span>Tomada de decisão</span>
+      </div>
+    </div>
+
+    <!-- Capacidades del futuro -->
+    <div class="frontera-block reveal">
+      <div class="frontera-block-eyebrow">Capacidades para o futuro</div>
+      <p class="frontera-block-lead">Hard skills para construir o futuro. Soft skills para liderá-lo.</p>
+      <div class="frontera-constellation">
+        <span>Pensamento crítico</span><span>Criatividade</span><span>Comunicação</span>
+        <span>Liderança</span><span>Colaboração</span><span>Empreendedorismo</span>
+        <span>Resolução de problemas</span><span>Inteligência emocional</span>
+        <span>Adaptabilidade</span><span>Cidadania digital</span>
+        <span>Pensamento computacional</span><span>IA aplicada</span>
+      </div>
+    </div>
+
+    <!-- NIDO x empresas -->
+    <div class="frontera-block reveal">
+      <div class="frontera-block-eyebrow">A escola conectada com o mundo real</div>
+      <p class="frontera-block-lead">A NIDO conecta educação, empresas, tecnologia e novas indústrias para aproximar nossos estudantes dos desafios reais do mundo que vem por aí.</p>
+      <div class="frontera-flow">
+        <span>Escola</span><span class="frontera-flow-arrow">→</span>
+        <span>Habilidades</span><span class="frontera-flow-arrow">→</span>
+        <span>Projetos</span><span class="frontera-flow-arrow">→</span>
+        <span>Empresas</span><span class="frontera-flow-arrow">→</span>
+        <span>Mundo</span>
+      </div>
+    </div>
+
+    <!-- Mundo hiperglobalizado -->
+    <div class="frontera-image frontera-image-wide reveal" style="background-image:url('images/frontera-world.jpg');">
+      <div class="frontera-image-overlay">
+        <div class="frontera-block-eyebrow" style="color:var(--soft);">Preparados para um mundo hiperglobalizado</div>
+        <p class="frontera-block-lead" style="color:var(--white); max-width:520px;">Nossos estudantes vão crescer em um mundo onde as ideias, as equipes, as oportunidades e os desafios já não têm fronteiras.</p>
+      </div>
+    </div>
+
+    <!-- Manifiesto final -->
+    <div class="frontera-manifesto reveal">
+      <div class="frontera-manifesto-line">Não educamos para o mundo que foi.</div>
+      <div class="frontera-manifesto-line frontera-manifesto-highlight">Preparamos para o mundo que vem.</div>
+      <div class="frontera-manifesto-mark">
+        <svg width="76" height="50" viewBox="0 0 60 40" fill="none">
+          <path d="M3 36 A27 27 0 0 1 57 36" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M11 36 A19 19 0 0 1 49 36" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" opacity="0.75"/>
+          <path d="M19 36 A11 11 0 0 1 41 36" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="30" cy="36" r="4" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <div class="frontera-manifesto-nido">NIDO</div>
+      <div class="frontera-manifesto-backronym">Nutrir. Impulsionar. Desenvolver. Orientar.</div>
+      <p class="frontera-manifesto-close">Formando a geração que vai aprender, criar e liderar junto com a Inteligência Artificial.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ CTA FINAL ══════ -->
+<section id="inscripcion" class="cta-section">
+  <div style="position:relative; max-width:1100px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="color:rgba(255,255,255,0.6);">Inscrições abertas · Ciclo 2025–2026</div>
+    <h2 class="section-title reveal" style="color:var(--white);">Pronto para dar ao seu filho<br>a educação que ele merece?</h2>
+    <p class="section-desc reveal" style="color:rgba(255,255,255,0.7);margin:0 auto 48px;">Preencha o formulário. Um consultor da NIDO Escuela entra em contato com você em menos de 24 horas para te contar tudo e responder suas dúvidas — sem compromisso.</p>
+    <div class="cta-form reveal">
+      <div class="form-title">Quero inscrever meu filho</div>
+      <div class="form-sub">Diagnóstico inicial gratuito · Sem compromisso · Resposta em 24h</div>
+      <iframe
+        data-tally-src="https://tally.so/embed/jaz0qY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="500"
+        frameborder="0"
+        title="Formulário diagnóstico NIDO Escuela"
+        style="border:none; background:transparent; min-height:500px;"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<script>
+  var d=document,w="https://tally.so/widgets/embed.js",
+  v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
+  if("undefined"!=typeof Tally)v();
+  else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
+</script>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="36" height="24" viewBox="0 0 36 24" fill="none">
+            <path d="M2 22 A16 16 0 0 1 34 22" stroke="#534AB7" stroke-width="3" stroke-linecap="round"/>
+            <path d="M7 22 A11 11 0 0 1 29 22" stroke="#7F77DD" stroke-width="3" stroke-linecap="round"/>
+            <path d="M12 22 A6 6 0 0 1 24 22" stroke="#AFA9EC" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="18" cy="22" r="2.5" fill="#534AB7"/>
+          </svg>
+          <div>
+            <div class="footer-name">NIDO <span class="footer-name-sub">E S C U E L A</span></div>
+          </div>
+        </div>
+        <div class="footer-tagline">Seu lar. A sala de aula mais poderosa do mundo.<br>Aprendizado potencializado com certificação internacional.</div>
+        <div class="footer-cert-chips">
+          <div class="footer-cert-chip">🇺🇸 Certificado pela Home Life Academy · Tennessee, EUA</div>
+          <div class="footer-cert-chip">🌎 Convenção de Haia · Validade internacional</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">A escola</div>
+        <div class="footer-links">
+          <a href="#metodo-detalle">O método</a>
+          <a href="#certificacion">Certificações</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#faq">Perguntas frequentes</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Para famílias</div>
+        <div class="footer-links">
+          <a href="#inscripcion">Inscrever-se</a>
+          <a href="#">Diagnóstico gratuito</a>
+          <a href="#">Comunidade NIDO</a>
+          <a href="#">Blog educacional</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contato</div>
+        <div class="footer-links">
+          <a href="mailto:hola@nidoescuela.com">hola@nidoescuela.com</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 NIDO Escuela. Todos os direitos reservados. Desenvolvido com <strong style="color:var(--violet)"><a href="https://www.promptear.org" target="_blank" style="color:var(--violet);text-decoration:none;">PROMPTEAR AI Ecosystem</a></strong>.</div>
+      <div class="footer-copy">nidoescuela.com/pt · Brasil</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+// Mobile nav button visibility
+function handleNavResize() {
+  const btn = document.getElementById('navMenuBtn');
+  if (!btn) return;
+  btn.style.display = window.innerWidth <= 1040 ? 'flex' : 'none';
+}
+window.addEventListener('resize', handleNavResize);
+handleNavResize();
+
+document.getElementById('navMenuBtn')?.addEventListener('click', function() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMobileMenu();
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// FAQ click feedback
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', function() {
+    setTimeout(() => {
+      this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  });
+});
+</script>
+
+
+<!-- ══════ MOBILE MENU ══════ -->
+<div id="mobileMenu" style="display:none; flex-direction:column; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:#1A1A2E; box-sizing:border-box; padding:16px 6% 32px; overflow-y:auto;">
+
+  <!-- FILA 1: Logo + botón X -->
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="30" height="20" viewBox="0 0 30 20" fill="none">
+        <path d="M2 18 A13 13 0 0 1 28 18" stroke="#534AB7" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M6 18 A9 9 0 0 1 24 18" stroke="#7F77DD" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M10 18 A5 5 0 0 1 20 18" stroke="#AFA9EC" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="15" cy="18" r="2" fill="#534AB7"/>
+      </svg>
+      <div style="color:white; font-weight:800; font-size:17px; letter-spacing:-0.3px; line-height:1.1;">NIDO<div style="font-size:7px; color:#7F77DD; letter-spacing:1.2px; font-weight:400; margin-top:2px;">ESCUELA</div></div>
+    </div>
+    <button onclick="closeMobileMenu()" aria-label="Fechar menu" style="width:48px; height:48px; background:#534AB7; border:2px solid #7F77DD; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 4l14 14M18 4L4 18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- FILA 2: Links -->
+  <div style="border-top:1px solid rgba(83,74,183,0.25); border-bottom:1px solid rgba(83,74,183,0.25);">
+    <a href="#metodo-detalle" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">O método <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#certificacion" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Certificação <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#padres" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Para os pais <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#realidad" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Realidade escolar <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#faq" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; display:flex; align-items:center; justify-content:space-between;">Perguntas frequentes <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+  </div>
+
+  <!-- FILA 3: CTA -->
+  <div style="margin-top:28px;">
+    <a href="#inscripcion" onclick="closeMobileMenu()" style="display:block; background:#534AB7; color:white; padding:18px; border-radius:12px; font-size:16px; font-weight:700; text-decoration:none; text-align:center;">Inscrever-se →</a>
+    <p style="text-align:center; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.3);">Sem custo · Sem compromisso · Resposta em 24h</p>
+  </div>
+
+  <!-- FILA 4: Idioma -->
+  <div style="margin-top:24px; display:flex; align-items:center; justify-content:center; gap:10px;">
+    <a href="/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇦🇷</span> Español</a>
+    <a href="/pt/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-size:18px;">🇧🇷</span> Português</a>
+  </div>
+
+</div>
+
+</div>
+</body>
+</html>
