@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admissão — NIDO Escola | Matricule seu filho</title>
+<meta name="description" content="Matricule seu filho na NIDO Escola: matrícula de admissão, mensalidade por Família NIDO e certificação internacional gerenciada por nós.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:   #1A1A2E;
+  --violet: #534AB7;
+  --mid:    #7F77DD;
+  --soft:   #AFA9EC;
+  --light:  #CECBF6;
+  --xlight: #EEEDFE;
+  --cream:  #F7F5F0;
+  --border: #E0DDD6;
+  --gray:   #888780;
+  --gray2:  #5F5E5A;
+  --white:  #FFFFFF;
+  --green:  #1D9E75;
+  --green-light: #E1F5EE;
+  --gold:   #DDA02A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--deep); overflow-x: hidden; }
+
+/* ─── NAVBAR ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(26,26,46,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(83,74,183,0.25);
+  height: 64px; padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-wordmark { color: var(--white); font-weight: 800; font-size: 18px; letter-spacing: -0.5px; line-height: 1; }
+.nav-wordmark span { display: block; font-size: 7.5px; font-weight: 400; color: var(--mid); letter-spacing: 1.2px; margin-top: 2px; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 24px; margin-left: 32px; }
+.nav-links a { color: var(--soft); font-size: 13px; text-decoration: none; transition: color .2s; white-space: nowrap; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--violet); color: var(--white) !important;
+  padding: 10px 22px; border-radius: 8px; font-weight: 600;
+  font-size: 13px !important; transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--mid) !important; }
+.nav-menu-btn {
+  display: none; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(83,74,183,0.3); border: 1px solid rgba(83,74,183,0.4);
+  cursor: pointer; color: var(--white); flex-shrink: 0;
+}
+@media (max-width: 1040px) {
+  .nav-links { display: none; }
+  .nav-menu-btn { display: flex; }
+}
+
+/* ─── BREADCRUMB HEADER (mini-hero) ─── */
+.adm-header {
+  background: var(--deep);
+  padding: 140px 5% 72px;
+  position: relative; overflow: hidden;
+}
+.adm-header-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(83,74,183,0.07) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(83,74,183,0.07) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.adm-header-inner { max-width: 760px; margin: 0 auto; position: relative; text-align: center; }
+.adm-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 22px;
+}
+.adm-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.adm-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4.5vw, 50px); color: var(--white); line-height: 1.18; margin-bottom: 20px; }
+.adm-title em { font-style: italic; color: var(--soft); }
+.adm-sub { font-size: 16px; color: var(--soft); line-height: 1.75; font-weight: 300; max-width: 600px; margin: 0 auto; }
+.adm-back { display: inline-flex; align-items: center; gap: 6px; margin-top: 28px; font-size: 12.5px; color: var(--mid); text-decoration: none; }
+.adm-back:hover { color: var(--soft); }
+
+/* ─── SECTION SHARED ─── */
+.section { padding: 88px 5%; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--violet); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.6vw, 40px); color: var(--deep); line-height: 1.18; margin-bottom: 16px; }
+.section-desc { font-size: 15.5px; color: var(--gray2); line-height: 1.75; max-width: 620px; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─── MATRÍCULA ─── */
+.matricula-wrap { background: var(--deep); border-radius: 24px; padding: 56px 6%; position: relative; overflow: hidden; }
+.matricula-glow { position:absolute; top:-120px; right:-80px; width:420px; height:420px; background: radial-gradient(ellipse, rgba(83,74,183,0.28) 0%, transparent 70%); pointer-events:none; }
+.matricula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; position: relative; }
+@media (max-width: 860px) { .matricula-grid { grid-template-columns: 1fr; gap: 36px; } }
+.matricula-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 14px; }
+.matricula-price { font-family: 'DM Serif Display', serif; font-size: clamp(46px, 5.6vw, 68px); color: var(--white); line-height: 1; margin-bottom: 6px; }
+.matricula-price span { font-size: 22px; color: var(--mid); font-family: 'DM Sans', sans-serif; font-weight: 500; margin-left: 4px; }
+.matricula-note { font-size: 13.5px; color: var(--gray); line-height: 1.6; margin-bottom: 28px; }
+.matricula-includes { display: flex; flex-direction: column; gap: 12px; }
+.matricula-includes-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--soft); line-height: 1.5; }
+.matricula-includes-item .check { color: var(--green); font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+.matricula-pay-options { display: flex; flex-direction: column; gap: 14px; }
+.pay-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px 24px; }
+.pay-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.pay-card-name { font-size: 13.5px; font-weight: 700; color: var(--white); }
+.pay-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; padding: 4px 9px; border-radius: 20px; }
+.pay-card.discount .pay-card-tag { background: var(--green-light); color: var(--green); }
+.pay-card.installments .pay-card-tag { background: rgba(127,119,221,0.25); color: var(--soft); }
+.pay-card-amount { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--white); margin-bottom: 4px; }
+.pay-card-desc { font-size: 12.5px; color: var(--gray); line-height: 1.5; }
+
+/* ─── PRICING CARDS (Familia NIDO) ─── */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+.price-card {
+  border: 1.5px solid var(--border); border-radius: 20px; padding: 36px 30px;
+  background: var(--white); position: relative; transition: border-color .2s, transform .2s;
+}
+.price-card:hover { transform: translateY(-4px); }
+.price-card.featured { border-color: var(--violet); box-shadow: 0 20px 50px rgba(83,74,183,0.14); }
+.price-card-badge {
+  position: absolute; top: -13px; left: 30px;
+  background: var(--violet); color: var(--white); font-size: 11px; font-weight: 700;
+  padding: 5px 14px; border-radius: 20px; letter-spacing: 0.3px;
+}
+.price-card-num { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--soft); margin-bottom: 4px; }
+.price-card-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--deep); margin-bottom: 4px; }
+.price-card-students { font-size: 12.5px; color: var(--gray2); margin-bottom: 24px; }
+.price-card-perstudent { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+.price-card-perstudent .amt { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--deep); line-height: 1; }
+.price-card-perstudent .unit { font-size: 13px; color: var(--gray2); }
+.price-card-persub { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; }
+.price-card-total { background: var(--xlight); border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; }
+.price-card-total-label { font-size: 11px; color: var(--violet); font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 3px; }
+.price-card-total-amt { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--deep); }
+.price-card-feats { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.price-card-feats div { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray2); line-height: 1.5; }
+.price-card-feats .check { color: var(--green); font-size: 13px; margin-top: 1px; flex-shrink: 0; }
+.price-card-cta {
+  display: block; text-align: center; padding: 13px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; text-decoration: none; transition: all .2s;
+}
+.price-card:not(.featured) .price-card-cta { background: var(--xlight); color: var(--violet); }
+.price-card:not(.featured) .price-card-cta:hover { background: var(--light); }
+.price-card.featured .price-card-cta { background: var(--violet); color: var(--white); }
+.price-card.featured .price-card-cta:hover { background: var(--mid); }
+.pricing-more-note { text-align: center; font-size: 13.5px; color: var(--gray2); margin-top: 32px; }
+.pricing-more-note a { color: var(--violet); font-weight: 600; text-decoration: none; }
+
+/* ─── BANCO DE INSTITUTRIZES ─── */
+.instit-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 52px; align-items: start; margin-top: 44px; }
+@media (max-width: 900px) { .instit-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+.instit-steps { display: flex; flex-direction: column; gap: 22px; }
+.instit-step { display: flex; gap: 16px; align-items: flex-start; }
+.instit-step-num {
+  flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--xlight); color: var(--violet); font-family: 'DM Mono', monospace;
+  font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.instit-step-title { font-size: 15px; font-weight: 700; color: var(--deep); margin-bottom: 3px; }
+.instit-step-desc { font-size: 13.5px; color: var(--gray2); line-height: 1.65; }
+
+.instit-card {
+  background: var(--white); border: 1.5px solid var(--border); border-radius: 20px;
+  padding: 28px; position: relative;
+}
+.instit-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.instit-avatar {
+  width: 54px; height: 54px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--violet), var(--mid));
+  color: var(--white); font-family: 'DM Serif Display', serif; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.instit-name { font-size: 15.5px; font-weight: 700; color: var(--deep); }
+.instit-role { font-size: 12px; color: var(--gray); margin-top: 2px; }
+.instit-rating { display: flex; align-items: center; gap: 7px; margin-bottom: 16px; }
+.instit-stars { color: var(--gold); font-size: 15px; letter-spacing: 1px; }
+.instit-rating-num { font-size: 13.5px; font-weight: 700; color: var(--deep); }
+.instit-rating-count { font-size: 12.5px; color: var(--gray); }
+.instit-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.instit-tag { background: var(--xlight); color: var(--violet); font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 20px; }
+.instit-quote { font-size: 12.5px; color: var(--gray2); line-height: 1.6; font-style: italic; border-top: 1px solid var(--border); padding-top: 16px; }
+.instit-card-badge {
+  position: absolute; top: -12px; right: 24px; background: var(--green); color: var(--white);
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; padding: 5px 12px; border-radius: 20px;
+}
+
+.instit-disclaimer {
+  background: var(--cream); border: 1px solid var(--border); border-radius: 16px;
+  padding: 22px 26px; margin-top: 32px; display: flex; gap: 14px; align-items: flex-start;
+}
+.instit-disclaimer-icon {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--xlight);
+  color: var(--violet); font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.instit-disclaimer-title { font-size: 12.5px; font-weight: 700; color: var(--deep); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.instit-disclaimer-text { font-size: 12.5px; color: var(--gray2); line-height: 1.7; }
+
+/* ─── FAQ MINI ─── */
+.faq-mini { display: flex; flex-direction: column; gap: 0; margin-top: 8px; max-width: 760px; }
+.faq-mini-item { border-bottom: 1px solid var(--border); padding: 22px 0; }
+.faq-mini-q { font-size: 15.5px; font-weight: 700; color: var(--deep); margin-bottom: 8px; }
+.faq-mini-a { font-size: 14px; color: var(--gray2); line-height: 1.7; }
+
+/* ─── CTA FINAL ─── */
+.cta-final { background: var(--violet); border-radius: 24px; padding: 56px 6%; text-align: center; position: relative; overflow: hidden; }
+.cta-final-glow { position:absolute; inset:0; background: radial-gradient(ellipse at top, rgba(255,255,255,0.12) 0%, transparent 60%); pointer-events:none; }
+.cta-final-title { font-family: 'DM Serif Display', serif; font-size: clamp(24px,3vw,32px); color: var(--white); margin-bottom: 14px; position: relative; }
+.cta-final-desc { font-size: 14.5px; color: var(--light); margin-bottom: 30px; max-width: 480px; margin-left: auto; margin-right: auto; position: relative; }
+.cta-final-btn {
+  display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--violet);
+  padding: 16px 34px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none;
+  position: relative; transition: transform .2s;
+}
+.cta-final-btn:hover { transform: translateY(-2px); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--deep); padding: 64px 5% 32px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+@media (max-width:768px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-name { font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+.footer-name-sub { font-size: 8px; color: var(--mid); letter-spacing: 1.8px; display: block; }
+.footer-tagline { font-size: 14px; color: var(--soft); line-height: 1.7; margin-bottom: 20px; max-width: 320px; }
+.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: var(--gray2); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 12px; color: var(--gray2); }
+
+@media (max-width: 640px) {
+  .adm-header { padding: 110px 6% 56px; }
+  .section { padding: 64px 6%; }
+  .matricula-wrap { padding: 40px 7%; border-radius: 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="22" viewBox="0 0 34 22" fill="none">
+      <path d="M2 20 A15 15 0 0 1 32 20" stroke="#534AB7" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M7 20 A10 10 0 0 1 27 20" stroke="#7F77DD" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M12 20 A5 5 0 0 1 22 20" stroke="#AFA9EC" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="17" cy="20" r="2.2" fill="#534AB7"/>
+    </svg>
+    <div class="nav-wordmark">NIDO <span>E S C O L A</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#metodo-detalle">O método</a>
+    <a href="index.html#certificacion">Certificação</a>
+    <a href="index.html#como-funciona">Como funciona</a>
+    <a href="index.html#faq">Perguntas</a>
+    <a href="#pricing" class="nav-cta">Ver preços</a>
+  </div>
+  <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menu" style="display:none;">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<!-- ══════ HEADER ══════ -->
+<header class="adm-header">
+  <div class="adm-header-grid"></div>
+  <div class="adm-header-inner">
+    <div class="adm-eyebrow"><span class="adm-eyebrow-dot"></span>ADMISSÃO NIDO ESCOLA</div>
+    <h1 class="adm-title">Seu filho pode ser<br><em>matriculado na NIDO</em></h1>
+    <p class="adm-sub">Já fizemos o diagnóstico e montamos o perfil de aprendizagem do seu filho. Este é o próximo passo: matriculá-lo, ativar sua certificação internacional e começar o acompanhamento.</p>
+    <a href="index.html" class="adm-back">← Voltar para NIDO Escola</a>
+  </div>
+</header>
+
+<!-- ══════ MATRÍCULA ══════ -->
+<section class="section" id="matricula">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Passo 1 · Pagamento único</div>
+      <h2 class="section-title">Matrícula de admissão</h2>
+      <p class="section-desc">É o pagamento único que ativa o cadastro do seu filho na NIDO. Cobre a gestão completa da inscrição, o diagnóstico inicial já realizado e o trâmite da sua certificação internacional.</p>
+    </div>
+
+    <div class="matricula-wrap reveal" style="margin-top:40px;">
+      <div class="matricula-glow"></div>
+      <div class="matricula-grid">
+        <div>
+          <div class="matricula-label">Matrícula única</div>
+          <div class="matricula-price">R$ 1.050<span>BRL</span></div>
+          <p class="matricula-note">Por estudante matriculado. Não se repete enquanto seu filho continuar na NIDO Escola.</p>
+          <div class="matricula-includes">
+            <div class="matricula-includes-item"><span class="check">✓</span> Gestão completa da inscrição e ativação do cadastro</div>
+            <div class="matricula-includes-item"><span class="check">✓</span> Trâmite da certificação internacional em seu nome — nós cuidamos disso por você</div>
+            <div class="matricula-includes-item"><span class="check">✓</span> Ativação da plataforma e do perfil de aprendizagem do seu filho</div>
+            <div class="matricula-includes-item"><span class="check">✓</span> Primeira reunião de acompanhamento com sua família</div>
+          </div>
+        </div>
+        <div class="matricula-pay-options">
+          <div class="pay-card installments">
+            <div class="pay-card-top">
+              <div class="pay-card-name">Com cartão bancarizado</div>
+              <div class="pay-card-tag">Em parcelas</div>
+            </div>
+            <div class="pay-card-amount">R$ 1.050</div>
+            <div class="pay-card-desc">Após receber o link de pagamento, você escolhe o número de parcelas de acordo com a promoção vigente com seu banco.</div>
+          </div>
+          <div class="pay-card discount">
+            <div class="pay-card-top">
+              <div class="pay-card-name">Dinheiro ou transferência</div>
+              <div class="pay-card-tag">30% off</div>
+            </div>
+            <div class="pay-card-amount">R$ 735</div>
+            <div class="pay-card-desc">Pagando à vista por transferência bancária, com 30% de desconto sobre a matrícula.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--gray); margin-top:16px;">*Valores convertidos de pesos argentinos (ARS) para reais (BRL) com cotação de referência de agosto de 2026. Sujeitos a atualização conforme variação cambial.</p>
+  </div>
+</section>
+
+<!-- ══════ CUOTA MENSUAL / FAMILIA NIDO ══════ -->
+<section class="section" id="pricing" style="background:var(--cream);">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Passo 2 · Mensalidade</div>
+      <h2 class="section-title">Mensalidade por Família NIDO</h2>
+      <p class="section-desc">O acompanhamento pedagógico, a plataforma e o monitoramento são cobrados por mês. Quanto mais irmãos você matricula, menor é o custo por filho.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-card-num">01</div>
+        <div class="price-card-name">Família NIDO 1</div>
+        <div class="price-card-students">1 estudante matriculado</div>
+        <div class="price-card-perstudent"><span class="amt">R$ 260</span><span class="unit">/mês</span></div>
+        <div class="price-card-persub">por estudante</div>
+        <div class="price-card-total">
+          <div class="price-card-total-label">Total mensal família</div>
+          <div class="price-card-total-amt">R$ 260</div>
+        </div>
+        <div class="price-card-feats">
+          <div><span class="check">✓</span> Acompanhamento pedagógico personalizado</div>
+          <div><span class="check">✓</span> Plataforma NIDO + perfil de aprendizagem</div>
+          <div><span class="check">✓</span> Comunidade de famílias NIDO</div>
+        </div>
+        <a href="#contacto" class="price-card-cta">Matricular 1 filho</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <div class="price-card-badge">Mais escolhida</div>
+        <div class="price-card-num">02</div>
+        <div class="price-card-name">Família NIDO 2</div>
+        <div class="price-card-students">2 estudantes matriculados</div>
+        <div class="price-card-perstudent"><span class="amt">R$ 235</span><span class="unit">/mês</span></div>
+        <div class="price-card-persub">por estudante</div>
+        <div class="price-card-total">
+          <div class="price-card-total-label">Total mensal família</div>
+          <div class="price-card-total-amt">R$ 470</div>
+        </div>
+        <div class="price-card-feats">
+          <div><span class="check">✓</span> Acompanhamento pedagógico personalizado para cada filho</div>
+          <div><span class="check">✓</span> Plataforma NIDO + perfil de aprendizagem por filho</div>
+          <div><span class="check">✓</span> Comunidade de famílias NIDO</div>
+        </div>
+        <a href="#contacto" class="price-card-cta">Matricular 2 filhos</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-card-num">03</div>
+        <div class="price-card-name">Família NIDO 3</div>
+        <div class="price-card-students">3 estudantes matriculados</div>
+        <div class="price-card-perstudent"><span class="amt">R$ 205</span><span class="unit">/mês</span></div>
+        <div class="price-card-persub">por estudante</div>
+        <div class="price-card-total">
+          <div class="price-card-total-label">Total mensal família</div>
+          <div class="price-card-total-amt">R$ 615</div>
+        </div>
+        <div class="price-card-feats">
+          <div><span class="check">✓</span> Acompanhamento pedagógico personalizado para cada filho</div>
+          <div><span class="check">✓</span> Plataforma NIDO + perfil de aprendizagem por filho</div>
+          <div><span class="check">✓</span> Comunidade de famílias NIDO</div>
+        </div>
+        <a href="#contacto" class="price-card-cta">Matricular 3 filhos</a>
+      </div>
+    </div>
+    <p class="pricing-more-note reveal">Sua família tem mais de 3 filhos? <a href="#contacto">Fale conosco</a> e montamos um plano sob medida.</p>
+  </div>
+</section>
+
+<!-- ══════ BANCO DE INSTITUTRIZES NIDO ══════ -->
+<section class="section" id="institutrizes">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Acompanhamento em casa · Opcional</div>
+      <h2 class="section-title">Institutriz NIDO</h2>
+      <p class="section-desc">A Institutriz é quem acompanha e cuida do seu filho no processo de aprendizagem dentro de casa. É um ator necessário do ecossistema de educação acelerada: ajuda sua família a sustentar o dia a dia do método enquanto avança o Perfil de Desenvolvimento NIDO.</p>
+    </div>
+
+    <div class="instit-grid">
+      <div class="instit-steps reveal">
+        <div class="instit-step">
+          <div class="instit-step-num">1</div>
+          <div>
+            <div class="instit-step-title">Você pede uma Institutriz NIDO</div>
+            <div class="instit-step-desc">Você conta o que sua família precisa — horas, dias, idade do seu filho — e propomos perfis disponíveis na sua região.</div>
+          </div>
+        </div>
+        <div class="instit-step">
+          <div class="instit-step-num">2</div>
+          <div>
+            <div class="instit-step-title">A comunidade a avalia</div>
+            <div class="instit-step-desc">Cada família que trabalhou com ela deixa uma avaliação com estrelinhas, igual aos aplicativos que você já usa todos os dias. Sua reputação se constrói com o tempo, família por família.</div>
+          </div>
+        </div>
+        <div class="instit-step">
+          <div class="instit-step-num">3</div>
+          <div>
+            <div class="instit-step-title">Você escolhe com essa reputação à vista</div>
+            <div class="instit-step-desc">Antes de somá-la à sua família, você vê sua avaliação, quantas famílias a avaliaram e o que destacam sobre ela.</div>
+          </div>
+        </div>
+        <div class="instit-step">
+          <div class="instit-step-num">4</div>
+          <div>
+            <div class="instit-step-title">A comunidade modera o bom comportamento</div>
+            <div class="instit-step-desc">Se algo não funcionar como esperado, qualquer família pode reportar e o perfil é revisado. A reputação pública é o mecanismo que cuida do restante das famílias NIDO.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="instit-card">
+          <div class="instit-card-badge">Disponível</div>
+          <div class="instit-card-top">
+            <div class="instit-avatar">MT</div>
+            <div>
+              <div class="instit-name">Maria T.</div>
+              <div class="instit-role">Institutriz NIDO · Zona Norte</div>
+            </div>
+          </div>
+          <div class="instit-rating">
+            <span class="instit-stars">★★★★★</span>
+            <span class="instit-rating-num">4.9</span>
+            <span class="instit-rating-count">· 128 famílias</span>
+          </div>
+          <div class="instit-tags">
+            <span class="instit-tag">Pontual</span>
+            <span class="instit-tag">Carinhosa</span>
+            <span class="instit-tag">Metodologia NIDO</span>
+          </div>
+          <div class="instit-quote">"Acompanhou nossos gêmeos durante todo o ciclo. Dá pra perceber que as famílias a escolhem de novo e de novo."</div>
+        </div>
+
+        <div class="instit-disclaimer">
+          <div class="instit-disclaimer-icon">i</div>
+          <div>
+            <div class="instit-disclaimer-title">Um apontamento importante</div>
+            <div class="instit-disclaimer-text">A Institutriz NIDO é uma pessoa independente que faz parte da comunidade do ecossistema: não é funcionária da NIDO Escola nem da PROMPTEAR. Sua reputação é pública e é construída e moderada pelas próprias famílias por meio do sistema de avaliação. A NIDO não se responsabiliza pelo comportamento, decisões ou ações dela fora do que foi combinado entre as partes. Cada família escolhe com quem trabalhar com base nessa reputação, e pode reportar qualquer situação para que o perfil seja revisado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ MINI ══════ -->
+<section class="section" id="faq-admision">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Perguntas frequentes</div>
+      <h2 class="section-title">Sobre a matrícula e a mensalidade</h2>
+    </div>
+    <div class="faq-mini reveal">
+      <div class="faq-mini-item">
+        <div class="faq-mini-q">A matrícula é paga uma única vez?</div>
+        <div class="faq-mini-a">Sim. A matrícula de admissão é um pagamento único por cada estudante. Não é cobrada novamente enquanto seu filho continuar matriculado na NIDO Escola.</div>
+      </div>
+      <div class="faq-mini-item">
+        <div class="faq-mini-q">O que inclui exatamente a certificação internacional?</div>
+        <div class="faq-mini-a">Nós cuidamos da inscrição e do trâmite junto à instituição certificadora internacional, para que você não precise fazer isso de forma independente. Esse trâmite está coberto dentro da matrícula de admissão.</div>
+      </div>
+      <div class="faq-mini-item">
+        <div class="faq-mini-q">Por que o custo por filho diminui se tenho mais irmãos?</div>
+        <div class="faq-mini-a">Porque parte da gestão e dos custos administrativos é compartilhada entre os irmãos de uma mesma família. Por isso Família NIDO 2 e Família NIDO 3 têm um valor por estudante mais baixo que Família NIDO 1.</div>
+      </div>
+      <div class="faq-mini-item">
+        <div class="faq-mini-q">Posso pagar a mensalidade com cartão?</div>
+        <div class="faq-mini-a">Sim, a mensalidade é paga todo mês com a forma de pagamento que preferir. Confirmamos isso na reunião de acompanhamento inicial.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA FINAL ══════ -->
+<section class="section" id="contacto" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="cta-final reveal">
+      <div class="cta-final-glow"></div>
+      <h2 class="cta-final-title">Vamos começar o processo de matrícula</h2>
+      <p class="cta-final-desc">Agendamos uma breve chamada, confirmamos o plano da sua Família NIDO e ativamos a matrícula.</p>
+      <a href="https://wa.me/5490000000000" class="cta-final-btn">Falar no WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg width="30" height="20" viewBox="0 0 30 20" fill="none">
+            <path d="M2 18 A13 13 0 0 1 28 18" stroke="#534AB7" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M6 18 A9 9 0 0 1 24 18" stroke="#7F77DD" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 18 A5 5 0 0 1 20 18" stroke="#AFA9EC" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="15" cy="18" r="2" fill="#534AB7"/>
+          </svg>
+          <div>
+            <div class="footer-name">NIDO<span class="footer-name-sub">ESCOLA</span></div>
+          </div>
+        </div>
+        <p class="footer-tagline">Sua casa. A sala de aula mais poderosa do mundo. Aprendizado potencializado com certificação internacional.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Site</div>
+        <div class="footer-links">
+          <a href="index.html#metodo-detalle">O método</a>
+          <a href="index.html#certificacion">Certificação</a>
+          <a href="index.html#como-funciona">Como funciona</a>
+          <a href="index.html#faq">Perguntas</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Admissão</div>
+        <div class="footer-links">
+          <a href="#matricula">Matrícula</a>
+          <a href="#pricing">Mensalidade</a>
+          <a href="#institutrizes">Institutriz NIDO</a>
+          <a href="#faq-admision">Perguntas sobre admissão</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Idioma</div>
+        <div class="footer-links">
+          <a href="../admision.html">🇦🇷 Español</a>
+          <a href="admissao.html">🇧🇷 Português</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 NIDO Escola. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleNavResize() {
+  const btn = document.getElementById('navMenuBtn');
+  if (!btn) return;
+  btn.style.display = window.innerWidth <= 1040 ? 'flex' : 'none';
+}
+window.addEventListener('resize', handleNavResize);
+handleNavResize();
+
+document.getElementById('navMenuBtn')?.addEventListener('click', function() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMobileMenu();
+});
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+<!-- ══════ MOBILE MENU ══════ -->
+<div id="mobileMenu" style="display:none; flex-direction:column; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:#1A1A2E; box-sizing:border-box; padding:16px 6% 32px; overflow-y:auto;">
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="30" height="20" viewBox="0 0 30 20" fill="none">
+        <path d="M2 18 A13 13 0 0 1 28 18" stroke="#534AB7" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M6 18 A9 9 0 0 1 24 18" stroke="#7F77DD" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M10 18 A5 5 0 0 1 20 18" stroke="#AFA9EC" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="15" cy="18" r="2" fill="#534AB7"/>
+      </svg>
+      <div style="color:white; font-weight:800; font-size:17px; letter-spacing:-0.3px; line-height:1.1;">NIDO<div style="font-size:7px; color:#7F77DD; letter-spacing:1.2px; font-weight:400; margin-top:2px;">ESCOLA</div></div>
+    </div>
+    <button onclick="closeMobileMenu()" aria-label="Fechar menu" style="width:48px; height:48px; background:#534AB7; border:2px solid #7F77DD; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 4l14 14M18 4L4 18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div style="border-top:1px solid rgba(83,74,183,0.25); border-bottom:1px solid rgba(83,74,183,0.25);">
+    <a href="index.html#metodo-detalle" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">O método <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="index.html#certificacion" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Certificação <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#matricula" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Matrícula <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#pricing" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Mensalidade <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#institutrizes" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; display:flex; align-items:center; justify-content:space-between;">Institutriz NIDO <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+  </div>
+
+  <div style="margin-top:28px;">
+    <a href="#contacto" onclick="closeMobileMenu()" style="display:block; background:#534AB7; color:white; padding:18px; border-radius:12px; font-size:16px; font-weight:700; text-decoration:none; text-align:center;">Começar matrícula →</a>
+    <p style="text-align:center; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.3);">Sem custo a primeira ligação · Resposta em 24h</p>
+  </div>
+
+  <div style="margin-top:24px; display:flex; align-items:center; justify-content:center; gap:10px;">
+    <a href="../admision.html" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇦🇷</span> Español</a>
+    <a href="admissao.html" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-size:18px;">🇧🇷</span> Português</a>
+  </div>
+</div>
+
+</body>
+</html>
