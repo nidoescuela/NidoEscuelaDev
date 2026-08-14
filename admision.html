@@ -21,6 +21,7 @@
   --white:  #FFFFFF;
   --green:  #1D9E75;
   --green-light: #E1F5EE;
+  --gold:   #DDA02A;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -151,6 +152,57 @@ nav {
 .price-card.featured .price-card-cta:hover { background: var(--mid); }
 .pricing-more-note { text-align: center; font-size: 13.5px; color: var(--gray2); margin-top: 32px; }
 .pricing-more-note a { color: var(--violet); font-weight: 600; text-decoration: none; }
+
+/* ─── BANCO DE INSTITUTRICES ─── */
+.instit-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 52px; align-items: start; margin-top: 44px; }
+@media (max-width: 900px) { .instit-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+.instit-steps { display: flex; flex-direction: column; gap: 22px; }
+.instit-step { display: flex; gap: 16px; align-items: flex-start; }
+.instit-step-num {
+  flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--xlight); color: var(--violet); font-family: 'DM Mono', monospace;
+  font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.instit-step-title { font-size: 15px; font-weight: 700; color: var(--deep); margin-bottom: 3px; }
+.instit-step-desc { font-size: 13.5px; color: var(--gray2); line-height: 1.65; }
+
+.instit-card {
+  background: var(--white); border: 1.5px solid var(--border); border-radius: 20px;
+  padding: 28px; position: relative;
+}
+.instit-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.instit-avatar {
+  width: 54px; height: 54px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--violet), var(--mid));
+  color: var(--white); font-family: 'DM Serif Display', serif; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.instit-name { font-size: 15.5px; font-weight: 700; color: var(--deep); }
+.instit-role { font-size: 12px; color: var(--gray); margin-top: 2px; }
+.instit-rating { display: flex; align-items: center; gap: 7px; margin-bottom: 16px; }
+.instit-stars { color: var(--gold); font-size: 15px; letter-spacing: 1px; }
+.instit-rating-num { font-size: 13.5px; font-weight: 700; color: var(--deep); }
+.instit-rating-count { font-size: 12.5px; color: var(--gray); }
+.instit-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.instit-tag { background: var(--xlight); color: var(--violet); font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 20px; }
+.instit-quote { font-size: 12.5px; color: var(--gray2); line-height: 1.6; font-style: italic; border-top: 1px solid var(--border); padding-top: 16px; }
+.instit-card-badge {
+  position: absolute; top: -12px; right: 24px; background: var(--green); color: var(--white);
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; padding: 5px 12px; border-radius: 20px;
+}
+
+.instit-disclaimer {
+  background: var(--cream); border: 1px solid var(--border); border-radius: 16px;
+  padding: 22px 26px; margin-top: 32px; display: flex; gap: 14px; align-items: flex-start;
+}
+.instit-disclaimer-icon {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--xlight);
+  color: var(--violet); font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.instit-disclaimer-title { font-size: 12.5px; font-weight: 700; color: var(--deep); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.instit-disclaimer-text { font-size: 12.5px; color: var(--gray2); line-height: 1.7; }
 
 /* ─── FAQ MINI ─── */
 .faq-mini { display: flex; flex-direction: column; gap: 0; margin-top: 8px; max-width: 760px; }
@@ -343,6 +395,82 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
   </div>
 </section>
 
+<!-- ══════ BANCO DE INSTITUTRICES NIDO ══════ -->
+<section class="section" id="institutrices">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Acompañamiento en el hogar · Opcional</div>
+      <h2 class="section-title">Institutriz NIDO</h2>
+      <p class="section-desc">La Institutriz es quien acompaña y cuida a tu hijo en el proceso de aprendizaje dentro de casa. Es un actor necesario del ecosistema de educación acelerada: ayuda a tu familia a sostener el día a día del método mientras avanza el Perfil de Desarrollo NIDO.</p>
+    </div>
+
+    <div class="instit-grid">
+      <div class="instit-steps reveal">
+        <div class="instit-step">
+          <div class="instit-step-num">1</div>
+          <div>
+            <div class="instit-step-title">Pedís una Institutriz NIDO</div>
+            <div class="instit-step-desc">Contás qué necesita tu familia — horas, días, edad de tu hijo — y te proponemos perfiles disponibles en tu zona.</div>
+          </div>
+        </div>
+        <div class="instit-step">
+          <div class="instit-step-num">2</div>
+          <div>
+            <div class="instit-step-title">La comunidad la califica</div>
+            <div class="instit-step-desc">Cada familia que trabajó con ella deja una calificación con estrellitas, igual que en las apps que ya usás todos los días. Su reputación se construye con el tiempo, familia por familia.</div>
+          </div>
+        </div>
+        <div class="instit-step">
+          <div class="instit-step-num">3</div>
+          <div>
+            <div class="instit-step-title">Vos elegís con esa reputación a la vista</div>
+            <div class="instit-step-desc">Antes de sumarla a tu familia ves su calificación, cuántas familias la calificaron y qué destacan de ella.</div>
+          </div>
+        </div>
+        <div class="instit-step">
+          <div class="instit-step-num">4</div>
+          <div>
+            <div class="instit-step-title">La comunidad modera el buen comportamiento</div>
+            <div class="instit-step-desc">Si algo no funciona como se espera, cualquier familia puede reportarlo y el perfil se revisa. La reputación pública es el mecanismo que cuida al resto de las familias NIDO.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="instit-card">
+          <div class="instit-card-badge">Disponible</div>
+          <div class="instit-card-top">
+            <div class="instit-avatar">MT</div>
+            <div>
+              <div class="instit-name">María T.</div>
+              <div class="instit-role">Institutriz NIDO · Zona Norte</div>
+            </div>
+          </div>
+          <div class="instit-rating">
+            <span class="instit-stars">★★★★★</span>
+            <span class="instit-rating-num">4.9</span>
+            <span class="instit-rating-count">· 128 familias</span>
+          </div>
+          <div class="instit-tags">
+            <span class="instit-tag">Puntual</span>
+            <span class="instit-tag">Cariñosa</span>
+            <span class="instit-tag">Metodología NIDO</span>
+          </div>
+          <div class="instit-quote">"Acompañó a nuestros mellizos todo el ciclo. Se nota que las familias la eligen una y otra vez."</div>
+        </div>
+
+        <div class="instit-disclaimer">
+          <div class="instit-disclaimer-icon">i</div>
+          <div>
+            <div class="instit-disclaimer-title">Un apunte importante</div>
+            <div class="instit-disclaimer-text">La Institutriz NIDO es una persona independiente que forma parte de la comunidad del ecosistema: no es personal de NIDO Escuela ni de PROMPTEAR. Su reputación es pública y la construyen y moderan las propias familias a través del sistema de calificación. NIDO no se responsabiliza por su comportamiento, decisiones o acciones por fuera de lo acordado entre las partes. Cada familia elige con quién trabajar en base a esa reputación, y puede reportar cualquier situación para que el perfil sea revisado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════ FAQ MINI ══════ -->
 <section class="section" id="faq-admision">
   <div class="section-inner">
@@ -414,6 +542,7 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
         <div class="footer-links">
           <a href="#matricula">Matrícula</a>
           <a href="#pricing">Cuota mensual</a>
+          <a href="#institutrices">Institutriz NIDO</a>
           <a href="#faq-admision">Preguntas de admisión</a>
         </div>
       </div>
@@ -489,7 +618,8 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     <a href="index.html#metodo-detalle" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">El método <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
     <a href="index.html#certificacion" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Certificación <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
     <a href="#matricula" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Matrícula <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
-    <a href="#pricing" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; display:flex; align-items:center; justify-content:space-between;">Cuota mensual <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#pricing" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; border-bottom:1px solid rgba(83,74,183,0.18); display:flex; align-items:center; justify-content:space-between;">Cuota mensual <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
+    <a href="#institutrices" onclick="closeMobileMenu()" style="font-size:17px; color:#AFA9EC; text-decoration:none; font-weight:500; padding:18px 0; display:flex; align-items:center; justify-content:space-between;">Institutriz NIDO <span style="color:#7F77DD; font-size:22px; line-height:1;">›</span></a>
   </div>
 
   <div style="margin-top:28px;">
