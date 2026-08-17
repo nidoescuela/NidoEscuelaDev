@@ -53,7 +53,7 @@ nav {
   cursor: pointer; color: var(--white); flex-shrink: 0;
 }
 .lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 20px; padding: 3px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
-.lang-flag { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 14px; text-decoration: none; opacity: 0.45; transition: opacity .2s, background .2s; filter: grayscale(40%); }
+.lang-flag { display: flex; align-items: center; justify-content: center; min-width: 30px; height: 26px; padding: 0 8px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--soft); text-decoration: none; opacity: 0.55; transition: opacity .2s, background .2s; }
 .lang-flag:hover { opacity: 0.8; }
 .lang-flag.active { opacity: 1; background: rgba(255,255,255,0.12); filter: none; cursor: default; }
 
@@ -261,6 +261,11 @@ section { padding: 96px 5%; }
 .haya-desc { font-size: 14px; color: var(--light); line-height: 1.75; }
 .haya-countries { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
 @media (max-width:700px) { .haya-countries { grid-template-columns: 1fr; } }
+@media (max-width:768px) {
+  .proteger-cta-grid { grid-template-columns: 1fr !important; padding:28px 24px !important; overflow:visible !important; }
+  .proteger-cta-btnwrap { width:100% !important; margin-top:8px; }
+  .proteger-cta-btnwrap a { width:100% !important; box-sizing:border-box !important; white-space:normal !important; }
+}
 .haya-country {
   background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
   border-radius: 16px; padding: 22px 24px;
@@ -674,9 +679,9 @@ footer {
     <a href="#padres">Para os pais</a><a href="#realidad">Realidade escolar</a><a href="#faq">Perguntas</a>
     <a href="#inscripcion" class="nav-cta">Inscrever-se</a>
     <div class="lang-switch">
-      <a href="/" class="lang-flag" aria-label="Español (Argentina)" title="Español (Argentina)">🇦🇷</a>
-      <a href="/pt/" class="lang-flag active" aria-label="Português (Brasil)" title="Português (Brasil)">🇧🇷</a>
-      <a href="/en/" class="lang-flag" aria-label="English" title="English">🇺🇸</a>
+      <a href="/" class="lang-flag" aria-label="Español (Argentina)" title="Español (Argentina)">ES</a>
+      <a href="/pt/" class="lang-flag active" aria-label="Português (Brasil)" title="Português (Brasil)">PO</a>
+      <a href="/en/" class="lang-flag" aria-label="English" title="English">EN</a>
     </div>
   </div>
   <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menu" style="display:none;">
@@ -1444,13 +1449,13 @@ footer {
     </div>
 
     <!-- Cierre esperanzador -->
-    <div class="reveal" style="background:linear-gradient(135deg, rgba(83,74,183,0.3), rgba(29,158,117,0.2)); border:1px solid rgba(83,74,183,0.4); border-radius:20px; padding:40px 36px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
+    <div class="reveal proteger-cta-grid" style="background:linear-gradient(135deg, rgba(83,74,183,0.3), rgba(29,158,117,0.2)); border:1px solid rgba(83,74,183,0.4); border-radius:20px; padding:40px 36px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
       <div>
         <div style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px;">NA NIDO ESCUELA</div>
         <div style="font-family:'DM Serif Display',serif; font-size:24px; color:var(--white); line-height:1.4; margin-bottom:12px;">Seu filho aprende em um ambiente seguro, acolhedor e desenhado por você.</div>
         <p style="font-size:14px; color:var(--soft); line-height:1.75;">Sem bullying. Sem violência. Sem redes sociais que você não pode controlar durante o horário escolar. A educação em casa não é isolamento — é uma escolha consciente do ambiente onde seu filho cresce.</p>
       </div>
-      <div style="text-align:center; flex-shrink:0;">
+      <div class="proteger-cta-btnwrap" style="text-align:center; flex-shrink:0;">
         <a href="#inscripcion" class="btn-primary" style="white-space:nowrap;">Proteger meu filho →</a>
       </div>
     </div>
@@ -1631,9 +1636,9 @@ footer {
       <div>
         <div class="footer-col-title">Idioma</div>
         <div class="footer-links">
-          <a href="/">🇦🇷 Español</a>
-          <a href="/pt/">🇧🇷 Português</a>
-          <a href="/en/">🇺🇸 English</a>
+          <a href="/">ES Español</a>
+          <a href="/pt/">PO Português</a>
+          <a href="/en/">EN English</a>
         </div>
       </div>
     </div>
@@ -1725,9 +1730,9 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
   <!-- FILA 4: Idioma -->
   <div style="margin-top:24px; display:flex; align-items:center; justify-content:center; gap:10px;">
-    <a href="/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇦🇷</span> Español</a>
-    <a href="/pt/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-size:18px;">🇧🇷</span> Português</a>
-    <a href="/en/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇺🇸</span> English</a>
+    <a href="/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-weight:700; font-size:12px; opacity:0.6;">ES</span> Español</a>
+    <a href="/pt/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-weight:700; font-size:12px;">PO</span> Português</a>
+    <a href="/en/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-weight:700; font-size:12px; opacity:0.6;">EN</span> English</a>
   </div>
 
 </div>
