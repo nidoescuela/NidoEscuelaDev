@@ -53,7 +53,7 @@ nav {
   cursor: pointer; color: var(--white); flex-shrink: 0;
 }
 .lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 20px; padding: 3px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
-.lang-flag { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 14px; text-decoration: none; opacity: 0.45; transition: opacity .2s, background .2s; filter: grayscale(40%); }
+.lang-flag { display: flex; align-items: center; justify-content: center; min-width: 30px; height: 26px; padding: 0 8px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--soft); text-decoration: none; opacity: 0.55; transition: opacity .2s, background .2s; }
 .lang-flag:hover { opacity: 0.8; }
 .lang-flag.active { opacity: 1; background: rgba(255,255,255,0.12); filter: none; cursor: default; }
 
@@ -261,6 +261,18 @@ section { padding: 96px 5%; }
 .haya-desc { font-size: 14px; color: var(--light); line-height: 1.75; }
 .haya-countries { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
 @media (max-width:700px) { .haya-countries { grid-template-columns: 1fr; } }
+@media (max-width:768px) {
+  .proteger-cta-grid { grid-template-columns: 1fr !important; padding:28px 24px !important; overflow:visible !important; }
+  .proteger-cta-btnwrap { width:100% !important; margin-top:8px; }
+  .proteger-cta-btnwrap a { width:100% !important; box-sizing:border-box !important; white-space:normal !important; }
+}
+@media (max-width:768px) {
+  .fuego-cta-grid { grid-template-columns: 1fr !important; padding:32px 24px !important; overflow:visible !important; }
+  .fuego-cta-text { width:100% !important; max-width:100% !important; }
+  .fuego-cta-text p { max-width:100% !important; }
+  .fuego-cta-btnwrap { width:100% !important; flex-shrink:1 !important; margin-top:8px; }
+  .fuego-cta-btnwrap a { width:100% !important; box-sizing:border-box !important; }
+}
 .haya-country {
   background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
   border-radius: 16px; padding: 22px 24px;
@@ -674,9 +686,9 @@ footer {
     <a href="#padres">Para padres</a><a href="#realidad">Realidad escolar</a><a href="#faq">Preguntas</a>
     <a href="#inscripcion" class="nav-cta">Inscribirme</a>
     <div class="lang-switch">
-      <a href="/" class="lang-flag active" aria-label="Español (Argentina)" title="Español (Argentina)">🇦🇷</a>
-      <a href="/pt/" class="lang-flag" aria-label="Português (Brasil)" title="Português (Brasil)">🇧🇷</a>
-      <a href="/en/" class="lang-flag" aria-label="English" title="English">🇺🇸</a>
+      <a href="/" class="lang-flag active" aria-label="Español (Argentina)" title="Español (Argentina)">ES</a>
+      <a href="/pt/" class="lang-flag" aria-label="Português (Brasil)" title="Português (Brasil)">PO</a>
+      <a href="/en/" class="lang-flag" aria-label="English" title="English">EN</a>
     </div>
   </div>
   <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" style="display:none;">
@@ -1269,9 +1281,9 @@ footer {
     </div>
 
     <!-- ── CTA FUEGO SILENCIOSO ── -->
-    <div class="reveal" style="background:linear-gradient(135deg, var(--deep) 0%, #2D1A3E 100%); border-radius:20px; padding:48px 40px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; position:relative; overflow:hidden;">
+    <div class="reveal fuego-cta-grid" style="background:linear-gradient(135deg, var(--deep) 0%, #2D1A3E 100%); border-radius:20px; padding:48px 40px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; position:relative; overflow:hidden;">
       <div style="position:absolute; top:-60px; right:100px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(229,115,115,0.12), transparent 70%); pointer-events:none;"></div>
-      <div style="position:relative;">
+      <div class="fuego-cta-text" style="position:relative;">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
           <span style="font-size:28px;">🔥</span>
           <div>
@@ -1286,7 +1298,7 @@ footer {
           <span style="color:#FFAB91;">✓</span> Comunidad privada de padres
         </div>
       </div>
-      <div style="flex-shrink:0; position:relative;">
+      <div class="fuego-cta-btnwrap" style="flex-shrink:0; position:relative;">
         <a href="#inscripcion" style="display:inline-flex; flex-direction:column; align-items:center; gap:6px; background:linear-gradient(135deg, #E57373, #C62828); color:white; padding:20px 32px; border-radius:14px; text-decoration:none; font-weight:700; font-size:15px; transition:all .2s; text-align:center; box-shadow: 0 8px 32px rgba(229,115,115,0.3);">
           <span>Quiero acceder a</span>
           <span style="font-size:18px;">🔥 Fuego Silencioso</span>
@@ -1572,13 +1584,13 @@ footer {
     </div>
 
     <!-- Cierre esperanzador -->
-    <div class="reveal" style="background:linear-gradient(135deg, rgba(83,74,183,0.3), rgba(29,158,117,0.2)); border:1px solid rgba(83,74,183,0.4); border-radius:20px; padding:40px 36px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
+    <div class="reveal proteger-cta-grid" style="background:linear-gradient(135deg, rgba(83,74,183,0.3), rgba(29,158,117,0.2)); border:1px solid rgba(83,74,183,0.4); border-radius:20px; padding:40px 36px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
       <div>
         <div style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px;">EN NIDO ESCUELA</div>
         <div style="font-family:'DM Serif Display',serif; font-size:24px; color:var(--white); line-height:1.4; margin-bottom:12px;">Tu hijo aprende en un entorno seguro, contenido y diseñado por vos.</div>
         <p style="font-size:14px; color:var(--soft); line-height:1.75;">Sin bullying. Sin violencia. Sin redes sociales que no podés controlar durante el horario escolar. La educación en casa no es aislamiento — es elección consciente del entorno donde tu hijo crece.</p>
       </div>
-      <div style="text-align:center; flex-shrink:0;">
+      <div class="proteger-cta-btnwrap" style="text-align:center; flex-shrink:0;">
         <a href="#inscripcion" class="btn-primary" style="white-space:nowrap;">Proteger a mi hijo →</a>
       </div>
     </div>
@@ -1759,9 +1771,9 @@ footer {
       <div>
         <div class="footer-col-title">Idioma</div>
         <div class="footer-links">
-          <a href="/">🇦🇷 Español</a>
-          <a href="/pt/">🇧🇷 Português</a>
-          <a href="/en/">🇺🇸 English</a>
+          <a href="/">ES Español</a>
+          <a href="/pt/">PO Português</a>
+          <a href="/en/">EN English</a>
         </div>
       </div>
     </div>
@@ -1853,9 +1865,9 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
   <!-- FILA 4: Idioma -->
   <div style="margin-top:24px; display:flex; align-items:center; justify-content:center; gap:10px;">
-    <a href="/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-size:18px;">🇦🇷</span> Español</a>
-    <a href="/pt/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇧🇷</span> Português</a>
-    <a href="/en/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-size:18px; filter:grayscale(50%); opacity:0.6;">🇺🇸</span> English</a>
+    <a href="/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-size:14px; color:white; font-weight:600;"><span style="font-weight:700; font-size:12px;">ES</span> Español</a>
+    <a href="/pt/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-weight:700; font-size:12px; opacity:0.6;">PO</span> Português</a>
+    <a href="/en/" style="display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); text-decoration:none; font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;"><span style="font-weight:700; font-size:12px; opacity:0.6;">EN</span> English</a>
   </div>
 
 </div>
