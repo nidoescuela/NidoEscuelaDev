@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+  PLANTILLA DE NOTA — NIDO Escuela
+  Cómo usarla:
+  1. Copiá esta carpeta/archivo a  /news/<slug-de-la-nota>/index.html
+  2. Reemplazá todo lo que está entre {{ }}.
+  3. Agregá la tarjeta de la nota en /news/index.html.
+  4. Borrá el <meta name="robots"> de abajo.
+-->
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>{{TITULO_SEO}} | NIDO Escuela</title>
+<meta name="description" content="{{META_DESCRIPTION_MAX_160}}">
+<link rel="canonical" href="https://nidoescuela.com/news/{{SLUG}}/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{TITULO_H1}}">
+<meta property="og:description" content="{{META_DESCRIPTION_MAX_160}}">
+<meta property="og:url" content="https://nidoescuela.com/news/{{SLUG}}/">
+<meta property="og:image" content="https://nidoescuela.com/news/assets/img/{{IMAGEN}}.jpg">
+<meta property="article:published_time" content="{{AAAA-MM-DD}}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/news/assets/news.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{TITULO_H1}}",
+  "description": "{{META_DESCRIPTION_MAX_160}}",
+  "datePublished": "{{AAAA-MM-DD}}",
+  "inLanguage": "es-AR",
+  "author": { "@type": "Organization", "name": "NIDO Escuela" },
+  "publisher": { "@type": "Organization", "name": "NIDO Escuela", "url": "https://nidoescuela.com" },
+  "mainEntityOfPage": "https://nidoescuela.com/news/{{SLUG}}/"
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Ir al contenido</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/">NIDO <span>ESCUELA</span></a>
+    <nav class="head-nav" aria-label="Principal">
+      <a href="/#metodo-detalle">El método</a>
+      <a href="/#certificacion">Certificación</a>
+      <a href="/#padres">Para padres</a>
+      <a href="/news/" aria-current="page">Noticias</a>
+      <a href="/#inscripcion">Inscribirme</a>
+    </nav>
+    <div class="lang">
+      <a href="/news/" aria-current="true">ES</a>
+      <a href="/pt/news/">PO</a>
+      <a href="/en/news/">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker"><a href="/news/">Noticias</a> · {{CATEGORIA}}</p>
+    <h1>{{TITULO_H1}}</h1>
+    <p class="standfirst">{{BAJADA}}</p>
+    <p class="byline">Equipo NIDO Escuela · <time datetime="{{AAAA-MM-DD}}">{{FECHA_LEGIBLE}}</time> · {{X}} min de lectura</p>
+  </div>
+</div>
+
+<figure class="hero-shot">
+  <picture>
+    <source media="(max-width: 640px)" srcset="/news/assets/img/{{IMAGEN}}-hero-vert.webp" type="image/webp">
+    <source media="(max-width: 640px)" srcset="/news/assets/img/{{IMAGEN}}-hero-vert.jpg" type="image/jpeg">
+    <source srcset="/news/assets/img/{{IMAGEN}}-hero.webp" type="image/webp">
+    <img src="/news/assets/img/{{IMAGEN}}-hero.jpg" width="1600" height="900" alt="{{ALT_DESCRIPTIVO}}">
+  </picture>
+  <figcaption>{{EPIGRAFE}}</figcaption>
+</figure>
+
+<div class="article-body">
+  <div class="wrap">
+
+<p class="lead">{{PRIMER_PARRAFO_GANCHO}}</p>
+
+<h2>El dato</h2>
+<p>{{DATO_DURO}}</p>
+<p class="fuente">{{FUENTE_COMPLETA}}</p>
+
+<h2>El espejo</h2>
+<p>{{ESPEJO_PERSONAL}}</p>
+
+<h2>Qué hace NIDO</h2>
+<p>{{RESPUESTA_INSTITUCIONAL}}</p>
+
+<h2>El fundamento</h2>
+<blockquote>
+  <p>“{{VERSICULO}}”</p>
+  <cite>{{REFERENCIA_BIBLICA}}</cite>
+</blockquote>
+
+<h2>El llamado</h2>
+<p>{{LLAMADO_A_LA_ACCION}}</p>
+<p class="cierre"><strong>{{FIRMA_DE_CIERRE}}</strong></p>
+
+<div class="cta-nido">
+  <h3>{{TITULO_CTA}}</h3>
+  <p>{{TEXTO_CTA}}</p>
+  <a class="btn-nido" href="/#inscripcion">Quiero conocer NIDO</a>
+</div>
+
+  </div>
+</div>
+
+<nav class="post-nav" aria-label="Navegación entre notas">
+  <div class="wrap">
+    <a href="/news/">← Todas las notas</a>
+    <span style="color:var(--ink-soft);">{{PROXIMA_NOTA}}</span>
+  </div>
+</nav>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><strong style="color:#fff;">NIDO Escuela</strong> — Nutrir · Impulsar · Desarrollar · Orientar</p>
+      <p>Certificación internacional Home Life Academy · Convenio de La Haya</p>
+    </div>
+    <div>
+      <p><a href="/">Volver al inicio</a> · <a href="/#inscripcion">Inscribirme</a></p>
+      <p><a href="mailto:hola@nidoescuela.com">hola@nidoescuela.com</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
