@@ -245,6 +245,11 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
   .matricula-wrap { padding: 40px 7%; border-radius: 18px; }
 }
 </style>
+<style>
+.nido-local{font-size:13px;color:var(--gray);margin-top:4px;min-height:1.2em;}
+.nido-local--dark{color:var(--soft);margin:-2px 0 14px;}
+.instit-example{font-size:12px;color:var(--gray);margin:0 0 10px;font-style:italic;}
+</style>
 </head>
 <body>
 
@@ -289,8 +294,8 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
       <div class="matricula-grid">
         <div>
           <div class="matricula-label">Matrícula anual</div>
-          <div class="matricula-price">$300.000<span>ARS</span></div>
-          <p class="matricula-note">Por estudiante matriculado. Se abona todos los años, mientras tu hijo continúe en NIDO Escuela.</p>
+          <div class="matricula-price"><b class="nido-amt" data-usd="149" style="font-weight:400">USD 149</b><span class="nido-unit"></span></div><div class="nido-local nido-local--dark" data-usd="149"></div>
+          <p class="matricula-note">Por estudiante matriculado. Se abona todos los años, mientras tu hijo continúe en NIDO Escuela. Valores en pesos calculados con la cotización del dólar del día.</p>
         </div>
         <div class="matricula-includes">
           <div class="matricula-includes-item"><span class="check">✓</span> Gestión completa de la inscripción y activación del legajo</div>
@@ -317,11 +322,11 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
         <div class="price-card-num">01</div>
         <div class="price-card-name">Familia NIDO 1</div>
         <div class="price-card-students">1 estudiante matriculado</div>
-        <div class="price-card-perstudent"><span class="amt">$75.000</span><span class="unit">/mes</span></div>
+        <div class="price-card-perstudent"><span class="amt nido-amt" data-usd="89">USD 89</span><span class="unit">/mes</span></div>
         <div class="price-card-persub">por estudiante</div>
         <div class="price-card-total">
           <div class="price-card-total-label">Total mensual familia</div>
-          <div class="price-card-total-amt">$75.000</div>
+          <div class="price-card-total-amt nido-amt" data-usd="89">USD 89</div><div class="nido-local" data-usd="89"></div>
         </div>
         <div class="price-card-feats">
           <div><span class="check">✓</span> Seguimiento pedagógico personalizado</div>
@@ -336,11 +341,11 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
         <div class="price-card-num">02</div>
         <div class="price-card-name">Familia NIDO 2</div>
         <div class="price-card-students">2 estudiantes matriculados</div>
-        <div class="price-card-perstudent"><span class="amt">$68.000</span><span class="unit">/mes</span></div>
+        <div class="price-card-perstudent"><span class="amt nido-amt" data-usd="79">USD 79</span><span class="unit">/mes</span></div>
         <div class="price-card-persub">por estudiante</div>
         <div class="price-card-total">
           <div class="price-card-total-label">Total mensual familia</div>
-          <div class="price-card-total-amt">$136.000</div>
+          <div class="price-card-total-amt nido-amt" data-usd="158">USD 158</div><div class="nido-local" data-usd="158"></div>
         </div>
         <div class="price-card-feats">
           <div><span class="check">✓</span> Seguimiento pedagógico personalizado para cada hijo</div>
@@ -354,11 +359,11 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
         <div class="price-card-num">03</div>
         <div class="price-card-name">Familia NIDO 3</div>
         <div class="price-card-students">3 estudiantes matriculados</div>
-        <div class="price-card-perstudent"><span class="amt">$60.000</span><span class="unit">/mes</span></div>
+        <div class="price-card-perstudent"><span class="amt nido-amt" data-usd="69">USD 69</span><span class="unit">/mes</span></div>
         <div class="price-card-persub">por estudiante</div>
         <div class="price-card-total">
           <div class="price-card-total-label">Total mensual familia</div>
-          <div class="price-card-total-amt">$180.000</div>
+          <div class="price-card-total-amt nido-amt" data-usd="207">USD 207</div><div class="nido-local" data-usd="207"></div>
         </div>
         <div class="price-card-feats">
           <div><span class="check">✓</span> Seguimiento pedagógico personalizado para cada hijo</div>
@@ -382,8 +387,9 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
     </div>
 
     <div class="reveal" style="max-width:460px; margin-top:40px;">
+      <p class="instit-example">Así se ve un perfil de Institutriz NIDO (ejemplo ilustrativo).</p>
       <div class="instit-card">
-        <div class="instit-card-badge">Disponible</div>
+        <div class="instit-card-badge">Ejemplo</div>
         <div class="instit-card-top">
           <div class="instit-avatar">MT</div>
           <div>
@@ -492,7 +498,7 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 NIDO Escuela. Todos los derechos reservados.</div>
+      <div class="footer-copy">© 2026 PROMPTEAR S.A.S. · NIDO Escuela. Todos los derechos reservados.</div>
     </div>
   </div>
 </footer>
@@ -565,5 +571,19 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </div>
 </div>
 
+<script>
+/* Precios base en USD (página en inglés); se muestran en ARS con la cotización del día. Si no hay cotización, queda el valor en USD. */
+(function(){
+  var CUR="ARS", LOC="es-AR", ROUND=1000;
+  fetch("https://open.er-api.com/v6/latest/USD").then(function(r){return r.json();}).then(function(d){
+    var rate=d&&d.rates&&d.rates[CUR]; if(!rate) return;
+    var fmt=new Intl.NumberFormat(LOC,{style:"currency",currency:CUR,maximumFractionDigits:0});
+    var conv=function(u){return fmt.format(Math.round(u*rate/ROUND)*ROUND);};
+    document.querySelectorAll(".nido-amt").forEach(function(el){el.textContent=conv(parseFloat(el.getAttribute("data-usd")));});
+    document.querySelectorAll(".nido-unit").forEach(function(el){el.textContent="ARS";});
+    document.querySelectorAll(".nido-local").forEach(function(el){el.textContent="USD "+el.getAttribute("data-usd")+" · cotización del día";});
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
