@@ -244,6 +244,64 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
   .section { padding: 64px 6%; }
   .matricula-wrap { padding: 40px 7%; border-radius: 18px; }
 }
+
+/* ─── FICHA DE MATRICULACIÓN ─── */
+.ficha { background: var(--white); border: 1.5px solid var(--border); border-radius: 24px; padding: 48px 6%; margin-top: 40px; box-shadow: 0 20px 50px rgba(83,74,183,0.08); }
+.ficha-step { padding: 34px 0 30px; border-top: 1px solid var(--border); }
+.ficha-step:first-of-type { border-top: 0; padding-top: 0; }
+.ficha-step-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+.ficha-num { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--violet); background: var(--xlight); padding: 5px 10px; border-radius: 20px; }
+.ficha-step-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--deep); font-weight: 400; }
+.ficha-hint { font-size: 14px; color: var(--gray2); line-height: 1.7; margin-bottom: 24px; max-width: 620px; }
+.ficha-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+.ficha-full { grid-column: 1 / -1; }
+.ficha label { display: block; font-size: 13.5px; font-weight: 600; color: var(--deep); margin-bottom: 7px; }
+.ficha label small { font-weight: 400; color: var(--gray); }
+.ficha input[type=text], .ficha input[type=email], .ficha input[type=tel], .ficha input[type=date], .ficha select {
+  width: 100%; font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--deep);
+  padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 10px; background: var(--white);
+  transition: border-color .2s, box-shadow .2s; }
+.ficha input:focus, .ficha select:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 4px rgba(83,74,183,0.12); }
+.ficha input:user-invalid, .ficha select:user-invalid { border-color: #C0392B; }
+.ficha-choice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.ficha-choice.two { grid-template-columns: 1fr 1fr; }
+.ficha-choice label { position: relative; margin: 0; border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; cursor: pointer; font-size: 15px; font-weight: 700; transition: border-color .2s, background .2s; }
+.ficha-choice label span { display: block; font-size: 12.5px; font-weight: 400; color: var(--gray); margin-top: 4px; }
+.ficha-choice input { position: absolute; opacity: 0; pointer-events: none; }
+.ficha-choice label:has(input:checked) { border-color: var(--violet); background: var(--xlight); box-shadow: inset 0 0 0 1px var(--violet); }
+.ficha-choice label:has(input:focus-visible) { box-shadow: 0 0 0 4px rgba(83,74,183,0.2); }
+.ficha-student { background: var(--cream); border-radius: 16px; padding: 24px; margin-top: 18px; }
+.ficha-student[hidden], .ficha-tutor[hidden] { display: none; }
+.ficha-student-title { font-size: 15px; font-weight: 700; color: var(--violet); margin-bottom: 16px; }
+.ficha-bloque { grid-column: 1 / -1; font-size: 13.5px; color: var(--green); font-weight: 600; min-height: 1em; }
+.ficha-file input[type=file] { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--gray2); padding: 10px; border: 1.5px dashed var(--mid); border-radius: 10px; background: var(--white); cursor: pointer; }
+.ficha-file input[type=file]::file-selector-button { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; border: 0; border-radius: 8px; background: var(--violet); color: var(--white); padding: 8px 14px; margin-right: 10px; cursor: pointer; }
+.ficha-file-st { display: block; font-size: 12.5px; color: var(--green); margin-top: 6px; min-height: 1em; }
+.ficha-file-st.err { color: #C0392B; }
+.ficha-file-hint { grid-column: 1 / -1; font-size: 12.5px; color: var(--gray); line-height: 1.6; margin-top: -4px; }
+.ficha-toggle { background: none; border: 0; padding: 0; margin-top: 18px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--violet); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.ficha-tutor { margin-top: 18px; }
+.ficha-resumen { background: var(--deep); border-radius: 16px; padding: 22px 24px; margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ficha-resumen-label { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+.ficha-resumen-val { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--white); }
+.ficha-resumen-note { grid-column: 1 / -1; font-size: 12.5px; color: var(--gray); }
+.ficha-check { display: flex !important; gap: 12px; align-items: flex-start; font-size: 14px !important; font-weight: 400 !important; color: var(--gray2) !important; line-height: 1.6; margin-bottom: 14px !important; cursor: pointer; }
+.ficha-check input { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--violet); flex-shrink: 0; }
+.ficha-check a { color: var(--violet); }
+.ficha-submit { width: 100%; margin-top: 10px; background: var(--violet); color: var(--white); border: 0; border-radius: 12px; padding: 18px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: background .2s, transform .2s; }
+.ficha-submit:hover { background: var(--mid); transform: translateY(-2px); }
+.ficha-submit:disabled { opacity: .6; cursor: wait; transform: none; }
+.ficha-legal { text-align: center; font-size: 12px; color: var(--gray); margin-top: 14px; }
+.ficha-msg { margin-top: 20px; padding: 18px 20px; border-radius: 14px; font-size: 15px; line-height: 1.6; }
+.ficha-msg.ok { background: var(--green-light); color: var(--green); }
+.ficha-msg.err { background: #FBEAEA; color: #C0392B; }
+.ficha-hp { display: none; }
+.ficha-alt { margin-top: 32px; }
+@media (max-width: 640px) {
+  .ficha { padding: 32px 6%; border-radius: 18px; }
+  .ficha-grid, .ficha-choice, .ficha-choice.two, .ficha-resumen { grid-template-columns: 1fr; }
+}
+</style>
 <style>
 .nido-local{font-size:13px;color:var(--gray);margin-top:4px;min-height:1.2em;}
 .nido-local--dark{color:var(--soft);margin:-2px 0 14px;}
@@ -448,17 +506,149 @@ footer { background: var(--deep); padding: 64px 5% 32px; }
   </div>
 </section>
 
-<!-- ══════ CTA FINAL ══════ -->
-<section class="section" id="contacto" style="padding-top:0;">
-  <div class="section-inner">
-    <div class="cta-final reveal">
+<!-- ══════ FICHA DE MATRICULACIÓN ══════ -->
+<section class="section" id="contacto">
+  <div class="section-inner" style="max-width:860px;">
+    <div class="reveal">
+      <div class="section-eyebrow">Passo 3 · Ficha de matrícula</div>
+      <h2 class="section-title">Você tomou a decisão. Vamos completar a matrícula.</h2>
+      <p class="section-desc">Com estes dados montamos o cadastro da sua família, cuidamos da certificação internacional em nome de cada filho e enviamos o link de pagamento. Leva cerca de 8 minutos: tenha em mãos o documento de cada estudante.</p>
+    </div>
+
+    <form class="ficha reveal" name="matricula-nido-pt" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" id="fichaForm" novalidate>
+      <input type="hidden" name="form-name" value="matricula-nido-pt">
+      <p class="ficha-hp"><label>Não preencher: <input name="bot-field"></label></p>
+      <input type="hidden" name="plan_familia" id="fichaPlan" value="Família NIDO 1">
+
+      <div class="ficha-step">
+        <div class="ficha-step-head"><span class="ficha-num">01</span><h3 class="ficha-step-title">Responsável pela família</h3></div>
+        <p class="ficha-hint">É quem assina a matrícula, recebe as notas fiscais e acessa o painel da família.</p>
+        <div class="ficha-grid">
+          <div><label for="r_nombre">Nome completo</label><input type="text" id="r_nombre" name="responsable_nombre" autocomplete="name" required></div>
+          <div><label for="r_rel">Relação com os estudantes</label><select id="r_rel" name="responsable_relacion" required><option value="">Escolha uma opção</option><option>Mãe</option><option>Pai</option><option>Tutor(a) legal</option></select></div>
+          <div><label for="r_dni">CPF ou passaporte</label><input type="text" id="r_dni" name="responsable_documento" required></div>
+          <div><label for="r_email">E-mail</label><input type="email" id="r_email" name="responsable_email" autocomplete="email" required></div>
+          <div><label for="r_wa">WhatsApp <small>com código do país</small></label><input type="tel" id="r_wa" name="responsable_whatsapp" autocomplete="tel" placeholder="+55 11 9 …" required></div>
+          <div><label for="r_pais">País</label><input type="text" id="r_pais" name="pais" autocomplete="country-name" value="Brasil" required></div>
+          <div><label for="r_prov">Estado</label><input type="text" id="r_prov" name="provincia" autocomplete="address-level1" required></div>
+          <div><label for="r_ciudad">Cidade</label><input type="text" id="r_ciudad" name="ciudad" autocomplete="address-level2" required></div>
+          <div class="ficha-full"><label for="r_dir">Endereço <small>rua, número e CEP</small></label><input type="text" id="r_dir" name="domicilio" autocomplete="street-address" required></div>
+        </div>
+        <button type="button" class="ficha-toggle" id="fichaAddTutor" aria-expanded="false" aria-controls="fichaTutor2">Adicionar um segundo responsável</button>
+        <div class="ficha-tutor ficha-student" id="fichaTutor2" hidden>
+          <div class="ficha-student-title">Segundo responsável (opcional)</div>
+          <div class="ficha-grid">
+            <div><label for="t2_nombre">Nome completo</label><input type="text" id="t2_nombre" name="responsable2_nombre" disabled></div>
+            <div><label for="t2_rel">Relação</label><select id="t2_rel" name="responsable2_relacion" disabled><option value="">Escolha uma opção</option><option>Mãe</option><option>Pai</option><option>Tutor(a) legal</option></select></div>
+            <div><label for="t2_email">E-mail</label><input type="email" id="t2_email" name="responsable2_email" disabled></div>
+            <div><label for="t2_wa">WhatsApp</label><input type="tel" id="t2_wa" name="responsable2_whatsapp" disabled></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ficha-step">
+        <div class="ficha-step-head"><span class="ficha-num">02</span><h3 class="ficha-step-title">Estudantes</h3></div>
+        <p class="ficha-hint">Escreva os nomes exatamente como aparecem no documento: é assim que a certificação internacional é emitida.</p>
+        <label id="fichaCantLbl">Quantos filhos você vai matricular?</label>
+        <div class="ficha-choice" role="radiogroup" aria-labelledby="fichaCantLbl">
+          <label><input type="radio" name="cantidad_estudiantes" value="1" checked>1 estudante<span>Família NIDO 1</span></label><label><input type="radio" name="cantidad_estudiantes" value="2">2 estudantes<span>Família NIDO 2</span></label><label><input type="radio" name="cantidad_estudiantes" value="3">3 estudantes<span>Família NIDO 3</span></label>
+        </div>
+        <div class="ficha-resumen" aria-live="polite">
+          <div><div class="ficha-resumen-label">Matrícula anual</div><div class="ficha-resumen-val" id="fichaResMat">USD 149</div></div>
+          <div><div class="ficha-resumen-label">Mensalidade da família</div><div class="ficha-resumen-val" id="fichaResCuota">USD 89/mês</div></div>
+          <p class="ficha-resumen-note">Valores em USD; pagos em reais pela cotação do dia.</p>
+        </div>
+
+        <div class="ficha-student" data-student="1">
+          <div class="ficha-student-title">Estudante 1</div>
+          <div class="ficha-grid">
+            <div class="ficha-full"><label for="e1_nombre">Nome completo</label><input type="text" id="e1_nombre" name="e1_nombre" required></div>
+            <div><label for="e1_doc">Número do CPF, RG ou passaporte</label><input type="text" id="e1_doc" name="e1_documento" required></div>
+            <div><label for="e1_nac">Data de nascimento</label><input type="date" id="e1_nac" name="e1_nacimiento" class="ficha-birth" required></div>
+            <div><label for="e1_nacio">Nacionalidade</label><input type="text" id="e1_nacio" name="e1_nacionalidad" value="Brasileira" required></div>
+            <div><label for="e1_grado">Série ou ano a cursar</label><input type="text" id="e1_grado" name="e1_grado" placeholder="Ex.: 4º ano do Fundamental" required></div>
+            <div><label for="e1_sit">Situação atual</label><select id="e1_sit" name="e1_situacion" required><option value="">Escolha uma opção</option><option>Frequenta uma escola</option><option>Já faz homeschooling</option><option>Não está escolarizado(a)</option></select></div>
+            <div><label for="e1_perfil">Fez o Perfil Estudante NIDO?</label><select id="e1_perfil" name="e1_perfil" required><option value="">Escolha uma opção</option><option>Sim, já recebemos o relatório</option><option>Ainda não</option></select></div>
+            <div class="ficha-file"><label for="e1_dnif">Documento · frente</label><input type="file" id="e1_dnif" name="e1_dni_frente" accept="image/*,application/pdf" required><span class="ficha-file-st" aria-live="polite"></span></div>
+            <div class="ficha-file"><label for="e1_dnid">Documento · verso</label><input type="file" id="e1_dnid" name="e1_dni_dorso" accept="image/*,application/pdf" required><span class="ficha-file-st" aria-live="polite"></span></div>
+            <p class="ficha-file-hint">Foto nítida ou PDF, sem reflexos e com os quatro cantos visíveis. Pode ser RG ou certidão com CPF; se usar passaporte, envie a página com foto na frente e a página de dados no verso.</p>
+            <p class="ficha-bloque" aria-live="polite"></p><input type="hidden" name="e1_bloque">
+          </div>
+        </div>
+        <div class="ficha-student" data-student="2" hidden>
+          <div class="ficha-student-title">Estudante 2</div>
+          <div class="ficha-grid">
+            <div class="ficha-full"><label for="e2_nombre">Nome completo</label><input type="text" id="e2_nombre" name="e2_nombre" required disabled></div>
+            <div><label for="e2_doc">Número do CPF, RG ou passaporte</label><input type="text" id="e2_doc" name="e2_documento" required disabled></div>
+            <div><label for="e2_nac">Data de nascimento</label><input type="date" id="e2_nac" name="e2_nacimiento" class="ficha-birth" required disabled></div>
+            <div><label for="e2_nacio">Nacionalidade</label><input type="text" id="e2_nacio" name="e2_nacionalidad" value="Brasileira" required disabled></div>
+            <div><label for="e2_grado">Série ou ano a cursar</label><input type="text" id="e2_grado" name="e2_grado" placeholder="Ex.: 4º ano do Fundamental" required disabled></div>
+            <div><label for="e2_sit">Situação atual</label><select id="e2_sit" name="e2_situacion" required disabled><option value="">Escolha uma opção</option><option>Frequenta uma escola</option><option>Já faz homeschooling</option><option>Não está escolarizado(a)</option></select></div>
+            <div><label for="e2_perfil">Fez o Perfil Estudante NIDO?</label><select id="e2_perfil" name="e2_perfil" required disabled><option value="">Escolha uma opção</option><option>Sim, já recebemos o relatório</option><option>Ainda não</option></select></div>
+            <div class="ficha-file"><label for="e2_dnif">Documento · frente</label><input type="file" id="e2_dnif" name="e2_dni_frente" accept="image/*,application/pdf" required disabled><span class="ficha-file-st" aria-live="polite"></span></div>
+            <div class="ficha-file"><label for="e2_dnid">Documento · verso</label><input type="file" id="e2_dnid" name="e2_dni_dorso" accept="image/*,application/pdf" required disabled><span class="ficha-file-st" aria-live="polite"></span></div>
+            <p class="ficha-file-hint">Foto nítida ou PDF, sem reflexos e com os quatro cantos visíveis. Pode ser RG ou certidão com CPF; se usar passaporte, envie a página com foto na frente e a página de dados no verso.</p>
+            <p class="ficha-bloque" aria-live="polite"></p><input type="hidden" name="e2_bloque" disabled>
+          </div>
+        </div>
+        <div class="ficha-student" data-student="3" hidden>
+          <div class="ficha-student-title">Estudante 3</div>
+          <div class="ficha-grid">
+            <div class="ficha-full"><label for="e3_nombre">Nome completo</label><input type="text" id="e3_nombre" name="e3_nombre" required disabled></div>
+            <div><label for="e3_doc">Número do CPF, RG ou passaporte</label><input type="text" id="e3_doc" name="e3_documento" required disabled></div>
+            <div><label for="e3_nac">Data de nascimento</label><input type="date" id="e3_nac" name="e3_nacimiento" class="ficha-birth" required disabled></div>
+            <div><label for="e3_nacio">Nacionalidade</label><input type="text" id="e3_nacio" name="e3_nacionalidad" value="Brasileira" required disabled></div>
+            <div><label for="e3_grado">Série ou ano a cursar</label><input type="text" id="e3_grado" name="e3_grado" placeholder="Ex.: 4º ano do Fundamental" required disabled></div>
+            <div><label for="e3_sit">Situação atual</label><select id="e3_sit" name="e3_situacion" required disabled><option value="">Escolha uma opção</option><option>Frequenta uma escola</option><option>Já faz homeschooling</option><option>Não está escolarizado(a)</option></select></div>
+            <div><label for="e3_perfil">Fez o Perfil Estudante NIDO?</label><select id="e3_perfil" name="e3_perfil" required disabled><option value="">Escolha uma opção</option><option>Sim, já recebemos o relatório</option><option>Ainda não</option></select></div>
+            <div class="ficha-file"><label for="e3_dnif">Documento · frente</label><input type="file" id="e3_dnif" name="e3_dni_frente" accept="image/*,application/pdf" required disabled><span class="ficha-file-st" aria-live="polite"></span></div>
+            <div class="ficha-file"><label for="e3_dnid">Documento · verso</label><input type="file" id="e3_dnid" name="e3_dni_dorso" accept="image/*,application/pdf" required disabled><span class="ficha-file-st" aria-live="polite"></span></div>
+            <p class="ficha-file-hint">Foto nítida ou PDF, sem reflexos e com os quatro cantos visíveis. Pode ser RG ou certidão com CPF; se usar passaporte, envie a página com foto na frente e a página de dados no verso.</p>
+            <p class="ficha-bloque" aria-live="polite"></p><input type="hidden" name="e3_bloque" disabled>
+          </div>
+        </div>
+      </div>
+
+      <div class="ficha-step">
+        <div class="ficha-step-head"><span class="ficha-num">03</span><h3 class="ficha-step-title">Pagamento e faturamento</h3></div>
+        <p class="ficha-hint">Nada é cobrado agora. Com estes dados enviamos o link de pagamento da matrícula.</p>
+        <label id="fichaPagoLbl">Como prefere pagar a matrícula?</label>
+        <div class="ficha-choice two" role="radiogroup" aria-labelledby="fichaPagoLbl">
+          <label><input type="radio" name="forma_pago_matricula" value="Cartão de crédito" required>Cartão de crédito<span>Você recebe um link de pagamento</span></label>
+          <label><input type="radio" name="forma_pago_matricula" value="PIX">PIX<span>Enviamos a chave PIX</span></label>
+        </div>
+        <div class="ficha-grid" style="margin-top:20px;">
+          <div class="ficha-full"><label for="f_nombre">Nota fiscal em nome de</label><input type="text" id="f_nombre" name="factura_nombre" required></div>
+          <div><label for="f_cuit">CPF / CNPJ</label><input type="text" id="f_cuit" name="factura_cuit" required></div>
+          <div><label for="f_cond">Tipo de pessoa</label><select id="f_cond" name="factura_condicion" required><option value="">Escolha uma opção</option><option>Pessoa física</option><option>Pessoa jurídica</option><option>Exterior</option></select></div>
+          <div><label for="f_inicio">Quando querem começar?</label><select id="f_inicio" name="inicio_deseado" required><option value="">Escolha uma opção</option><option>O quanto antes</option><option>Ano letivo 2027</option></select></div>
+          <div><label for="f_guia">Código de Guia NIDO <small>se alguém te acompanhou</small></label><input type="text" id="f_guia" name="codigo_guia"></div>
+          <div class="ficha-full"><label for="f_origen">Como conheceu a NIDO?</label><select id="f_origen" name="origen"><option value="">Escolha uma opção</option><option>Indicação de outra família</option><option>Guia NIDO</option><option>Igreja ou comunidade</option><option>Redes sociais</option><option>Seminário para pais</option><option>Outro</option></select></div>
+        </div>
+      </div>
+
+      <div class="ficha-step">
+        <div class="ficha-step-head"><span class="ficha-num">04</span><h3 class="ficha-step-title">Concordância da família</h3></div>
+        <p class="ficha-hint">São os acordos básicos sobre os quais o modelo NIDO se apoia.</p>
+        <label class="ficha-check"><input type="checkbox" name="acuerdo_responsabilidad" value="Sí" required>Entendo que a família é a responsável final pela educação dos filhos e que a NIDO acompanha, orienta e certifica esse processo.</label>
+        <label class="ficha-check"><input type="checkbox" name="acuerdo_carta_abierta" value="Sí" required>Aceito o princípio de carta aberta: a trajetória de cada estudante é visível para a família e para a Coordenação NIDO desde o ingresso até a conclusão.</label>
+        <label class="ficha-check"><input type="checkbox" name="acuerdo_datos" value="Sí" required>Autorizo a NIDO Escola a tratar estes dados e documentos para a matrícula e a certificação internacional, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</label>
+        <label class="ficha-check"><input type="checkbox" name="acuerdo_terminos" value="Sí" required>Li e aceito os <a href="termos.html" target="_blank" rel="noopener">termos e condições de matrícula</a>.</label>
+        <button type="submit" class="ficha-submit" id="fichaSubmit">Enviar solicitação de matrícula</button>
+        <p class="ficha-legal">PROMPTEAR S.A.S. · NIDO Escuela · Respondemos pelo WhatsApp em até 48 horas úteis.</p>
+      </div>
+      <div class="ficha-msg" id="fichaMsg" role="status" hidden></div>
+    </form>
+
+    <div class="cta-final ficha-alt reveal">
       <div class="cta-final-glow"></div>
-      <h2 class="cta-final-title">Vamos começar o processo de matrícula</h2>
-      <p class="cta-final-desc">Agendamos uma breve chamada, confirmamos o plano da sua Família NIDO e ativamos a matrícula.</p>
+      <h2 class="cta-final-title">Prefere conversar antes de preencher a ficha?</h2>
+      <p class="cta-final-desc">Agendamos uma breve chamada, tiramos suas dúvidas e confirmamos o plano da sua Família NIDO.</p>
       <a href="https://wa.me/5491157062794" class="cta-final-btn">Falar no WhatsApp →</a>
     </div>
   </div>
 </section>
+
 
 <footer>
   <div class="footer-inner">
@@ -582,6 +772,122 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     document.querySelectorAll(".nido-unit").forEach(function(el){el.textContent="BRL";});
     document.querySelectorAll(".nido-local").forEach(function(el){el.textContent="USD "+el.getAttribute("data-usd")+" · cotação do dia";});
   }).catch(function(){});
+})();
+</script>
+
+<script>
+/* Ficha de matriculación — Netlify Forms */
+(function () {
+  var T = {"fam": "Família NIDO {n}", "mes": "/mês", "bl": "Bloco sugerido: ", "tutor_add": "Adicionar um segundo responsável", "tutor_rm": "Remover segundo responsável", "submit": "Enviar solicitação de matrícula", "sending": "Enviando solicitação…", "pdfbig": "O PDF passa de 1,2 MB. Envie uma foto ou um PDF mais leve.", "pdfok": "PDF carregado ✓", "bad": "Formato inválido. Envie uma foto ou um PDF.", "proc": "Processando foto…", "photook": "Foto carregada ✓ (", "unread": "Não conseguimos ler a foto. Tente outra imagem (JPG ou PNG).", "ok": "Solicitação de matrícula enviada. Nas próximas 48 horas úteis escrevemos pelo WhatsApp com o link de pagamento e a data da primeira reunião de acompanhamento.", "err": "Não conseguimos enviar a solicitação. Verifique sua conexão e toque novamente em \"Enviar solicitação de matrícula\". Se o erro continuar, fale conosco pelo WhatsApp."};
+  var form = document.getElementById('fichaForm');
+  if (!form) return;
+  var plan = document.getElementById('fichaPlan'), msg = document.getElementById('fichaMsg');
+  var CUOTA = { 1: 89, 2: 79, 3: 69 }, MATRICULA = 149;
+  function setStudents(n) {
+    form.querySelectorAll('.ficha-student[data-student]').forEach(function (b) {
+      var on = Number(b.dataset.student) <= n;
+      b.hidden = !on;
+      b.querySelectorAll('input, select').forEach(function (f) { f.disabled = !on; });
+    });
+    plan.value = T.fam.replace('{n}', n);
+    document.getElementById('fichaResMat').textContent = 'USD ' + (MATRICULA * n);
+    document.getElementById('fichaResCuota').textContent = 'USD ' + (CUOTA[n] * n) + T.mes;
+  }
+  form.querySelectorAll('input[name=cantidad_estudiantes]').forEach(function (r) {
+    r.addEventListener('change', function () { setStudents(Number(r.value)); });
+  });
+  setStudents(1);
+  // Los botones "Matricular N hijos" de las tarjetas preseleccionan la cantidad
+  document.querySelectorAll('.price-card-cta').forEach(function (a) {
+    var m = a.textContent.match(/(\d)/);
+    if (!m) return;
+    a.addEventListener('click', function () {
+      var r = form.querySelector('input[name=cantidad_estudiantes][value="' + m[1] + '"]');
+      if (r) { r.checked = true; setStudents(Number(m[1])); }
+    });
+  });
+  var btn = document.getElementById('fichaAddTutor'), t2 = document.getElementById('fichaTutor2');
+  btn.addEventListener('click', function () {
+    var open = t2.hidden;
+    t2.hidden = !open;
+    t2.querySelectorAll('input, select').forEach(function (f) { f.disabled = !open; });
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? T.tutor_rm : T.tutor_add;
+  });
+  function bloque(fecha) {
+    if (!fecha) return '';
+    var n = new Date(fecha + 'T00:00:00'), ref = new Date('2027-03-01T00:00:00');
+    var edad = ref.getFullYear() - n.getFullYear();
+    if (ref < new Date(ref.getFullYear(), n.getMonth(), n.getDate())) edad--;
+    if (edad < 0 || edad > 99) return '';
+    if (edad < 6) return 'NIDO Inicial';
+    if (edad <= 12) return 'NIDO Alas';
+    if (edad <= 18) return 'NIDO Frontera';
+    return 'NIDO Adultos';
+  }
+  form.querySelectorAll('.ficha-birth').forEach(function (inp) {
+    inp.addEventListener('change', function () {
+      var box = inp.closest('.ficha-grid'), b = bloque(inp.value);
+      box.querySelector('.ficha-bloque').textContent = b ? T.bl + b : '';
+      box.querySelector('input[type=hidden]').value = b;
+    });
+  });
+  // DNI: las fotos se comprimen en el navegador para no superar el límite de 8 MB de Netlify
+  var MAX_PDF = 1.2 * 1024 * 1024, comprimidos = new Map();
+  function comprimir(file) {
+    return new Promise(function (ok, fail) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var k = Math.min(1, 1600 / Math.max(img.width, img.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? ok(new File([b], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' })) : fail(); }, 'image/jpeg', 0.82);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); fail(); };
+      img.src = url;
+    });
+  }
+  form.querySelectorAll('.ficha-file input[type=file]').forEach(function (inp) {
+    inp.addEventListener('change', function () {
+      var st = inp.parentElement.querySelector('.ficha-file-st'), f = inp.files[0];
+      st.className = 'ficha-file-st'; inp.setCustomValidity(''); comprimidos.delete(inp.name);
+      if (!f) { st.textContent = ''; return; }
+      if (f.type === 'application/pdf') {
+        if (f.size > MAX_PDF) { st.className = 'ficha-file-st err'; st.textContent = T.pdfbig; inp.setCustomValidity(T.pdfbig); return; }
+        st.textContent = T.pdfok; return;
+      }
+      if (!f.type.startsWith('image/')) { st.className = 'ficha-file-st err'; st.textContent = T.bad; inp.setCustomValidity(T.bad); return; }
+      st.textContent = T.proc;
+      comprimir(f).then(function (c) {
+        comprimidos.set(inp.name, c);
+        st.textContent = T.photook + Math.round(c.size / 1024) + ' KB)';
+      }).catch(function () {
+        st.className = 'ficha-file-st err'; st.textContent = T.unread; inp.setCustomValidity(T.unread);
+      });
+    });
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.hidden = true;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var send = document.getElementById('fichaSubmit');
+    send.disabled = true; send.textContent = T.sending;
+    var data = new FormData(form);
+    comprimidos.forEach(function (file, name) { data.set(name, file); });
+    fetch('/', { method: 'POST', body: data }).then(function (res) {
+      if (!res.ok) throw new Error(res.status);
+      form.querySelectorAll('.ficha-step').forEach(function (el) { el.style.display = 'none'; });
+      msg.className = 'ficha-msg ok'; msg.textContent = T.ok;
+    }).catch(function () {
+      msg.className = 'ficha-msg err'; msg.textContent = T.err;
+      send.disabled = false; send.textContent = T.submit;
+    }).then(function () {
+      msg.hidden = false;
+      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
 })();
 </script>
 </body>
